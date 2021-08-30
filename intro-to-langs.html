@@ -439,7 +439,7 @@ summary {
 <div class="sourceCode" id="cb9"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="fu">Foo</span><span class="op">(</span><span class="kw">val</span> x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>          <span class="kw">var</span> y<span class="op">:</span> Double <span class="op">=</span> <span class="fl">0.0</span><span class="op">)</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Type of a is infered</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co">// Type of a is inferred</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> a <span class="op">=</span> <span class="kw">new</span> <span class="fu">Foo</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="fl">4.0</span><span class="op">)</span></span>
 <span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>a<span class="op">.</span>x<span class="op">)</span> <span class="co">//x is read-only</span></span>
 <span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>a<span class="op">.</span>y<span class="op">)</span> <span class="co">//y is read-write</span></span>
@@ -484,9 +484,11 @@ summary {
 <span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">asString</span><span class="op">()</span> <span class="op">:</span> String</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="fu">Baz</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> Double<span class="op">,</span> <span class="kw">private</span> z<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">extends</span> <span class="fu">Foo</span><span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">with</span> Printable</span></code></pre></div>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="fu">Baz</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> Double<span class="op">,</span> <span class="kw">private</span> <span class="kw">val</span> z<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="kw">extends</span> <span class="fu">Foo</span><span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span> <span class="kw">with</span> Printable <span class="op">{</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">val</span> s<span class="op">:</span> String <span class="op">=</span> s</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">def</span> <span class="fu">asString</span><span class="op">():</span> String <span class="op">=</span> <span class="op">???</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </div>
 <div id="right">
 <p><strong>Python</strong></p>
@@ -512,8 +514,7 @@ summary {
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Person</span><span class="op">(</span>name<span class="op">:</span> String<span class="op">,</span> </span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  address<span class="op">:</span> Address<span class="op">)</span></span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> p <span class="op">=</span> <span class="kw">new</span> <span class="fu">Person</span><span class="op">(</span><span class="st">&quot;G&quot;</span><span class="op">,</span> </span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">new</span> <span class="fu">Address</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="dv">2</span><span class="op">))</span></span></code></pre></div>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> p <span class="op">=</span> <span class="fu">Person</span><span class="op">(</span><span class="st">&quot;G&quot;</span><span class="op">,</span> <span class="fu">Address</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="dv">2</span><span class="op">))</span></span></code></pre></div>
 </div>
 <div id="right">
 <p><strong>Python &gt;= 3.7</strong></p>
