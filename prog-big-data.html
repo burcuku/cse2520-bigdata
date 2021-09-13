@@ -1290,7 +1290,7 @@ for node in iter(t):
 <p>The simplest possible aggregation is counting the number of elements, possibly matching a condition</p>
 <p><span class="math inline">\(count(xs: [A], pred): Integer\)</span></p>
 <div class="sourceCode" id="cb83"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">count</span><span class="op">(</span>list<span class="op">:</span> <span class="bu">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">],</span> f<span class="op">:</span> <span class="bu">Int</span> <span class="op">=&gt;</span> Boolean<span class="op">)</span> <span class="op">=</span>  <span class="fu">filter</span><span class="op">(</span>list<span class="op">,</span>f<span class="op">).</span>length</span></code></pre></div>
-<p><strong>Q:</strong> How can we implement this with folding or reduction?</p>
+<p><strong>Q:</strong> How can we implement this with folding?</p>
 </div>
 <div id="distinct-elements" class="section level2 unnumbered">
 <h2 class="unnumbered">Distinct elements</h2>
