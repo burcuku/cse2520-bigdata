@@ -11,7 +11,7 @@
 
 <meta name="author" content="Georgios Gousios and Burcu Kulahcioglu Ozkan" />
 
-<meta name="date" content="2021-09-13" />
+<meta name="date" content="2021-09-16" />
 
 <title>Programming Techniques for Big Data</title>
 
@@ -290,7 +290,7 @@ summary {
 
 <h1 class="title toc-ignore">Programming Techniques for Big Data</h1>
 <h4 class="author">Georgios Gousios and Burcu Kulahcioglu Ozkan</h4>
-<h4 class="date">13 September 2021</h4>
+<h4 class="date">16 September 2021</h4>
 
 </div>
 
@@ -1231,9 +1231,9 @@ for node in iter(t):
 <p>We notice that iteration and reduction are independent. What if we abstract iteration away?</p>
 </div>
 <div id="folding-left" class="section level3 unnumbered">
-<h3 class="unnumbered">Folding Left</h3>
+<h3 class="unnumbered">Folding left</h3>
 <p>Folding functions generate a single value from a collection of data.</p>
-<p><span class="math inline">\(foldLeft[B](xs: [A], init: B, f: (acc: B, x: A) \rightarrow B) \rightarrow B\)</span></p>
+<p><span class="math inline">\(foldLeft(xs: [A], init: B, f: (acc: B, x: A) \rightarrow B) \rightarrow B\)</span></p>
 <p>Left fold takes a function <code>f</code> with 2 arguments and an initial value and applies <code>f</code> on all items, starting from the <strong>left</strong> most. <code>f</code> combines the result of its previous application with the current element.</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">totalWeight</span><span class="op">(</span>acc<span class="op">:</span> Double<span class="op">,</span> p<span class="op">:</span> Person<span class="op">):</span> Double <span class="op">=</span> <span class="co">// acc is for accumulator</span></span>
 <span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>    acc <span class="op">+</span> p<span class="op">.</span>weight</span></code></pre></div>
@@ -1243,7 +1243,7 @@ for node in iter(t):
 <span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> total <span class="op">=</span> <span class="fu">foldLeft</span><span class="op">(</span>people<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>acc<span class="op">:</span> Double<span class="op">,</span> p<span class="op">:</span> Person<span class="op">)</span> <span class="op">=&gt;</span> acc <span class="op">+</span> p<span class="op">.</span>weight<span class="op">)</span></span></code></pre></div>
 </div>
 <div id="folding-right" class="section level3 unnumbered">
-<h3 class="unnumbered">Folding Right</h3>
+<h3 class="unnumbered">Folding right</h3>
 <p><span class="math inline">\(foldRight(xs: [A], init: B, f: (x: A, acc: B) \rightarrow B) \rightarrow B\)</span></p>
 <p>Right fold takes a function <code>f</code> with 2 arguments and an initial value and applies <code>f</code> on all items, starting from the <strong>right</strong> most. <code>f</code> combines the result of its previous application with the current element.</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> total <span class="op">=</span> <span class="fu">foldRight</span><span class="op">(</span>people<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>p<span class="op">:</span> Person<span class="op">,</span> acc<span class="op">:</span> Double<span class="op">)</span> <span class="op">=&gt;</span> <span class="op">(</span>p<span class="op">.</span>weight <span class="op">+</span> acc<span class="op">))</span></span></code></pre></div>
@@ -1458,7 +1458,7 @@ List(
 <h2 class="unnumbered"><code>flatMap</code>: Map and flatten in one step</h2>
 <p><span class="math inline">\(flatMap(xs: [A], f: A \rightarrow [B]): [B]\)</span></p>
 <p><code>flatMap</code> enables us to combine two data collections and return a new collection with flattened values.</p>
-<div class="sourceCode" id="cb100"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses2<span class="op">:</span> <span class="bu">Seq</span><span class="op">[(</span>Dean<span class="op">,</span> Addr<span class="op">)]</span> <span class="op">=</span></span>
+<div class="sourceCode" id="cb100"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses2<span class="op">:</span> <span class="bu">List</span><span class="op">[(</span>Dean<span class="op">,</span> Addr<span class="op">)]</span> <span class="op">=</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>  deans<span class="op">.</span><span class="fu">flatMap</span><span class="op">(</span>d <span class="op">=&gt;</span></span>
 <span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>    addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> <span class="op">(</span>d<span class="op">.</span>k<span class="op">))</span></span>
 <span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>     <span class="op">.</span><span class="fu">map</span><span class="op">(</span>a <span class="op">=&gt;</span> <span class="op">(</span>d<span class="op">,</span> v<span class="op">)))</span></span></code></pre></div>
@@ -1467,9 +1467,9 @@ List(
 ##       (Dean(TPM,Hans,Wamelink),Addr(TPM,Jafaalaan,5)))</code></pre>
 <div class="incremental">
 <p>In Scala, <code>flatMap</code> is special</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses2<span class="op">:</span> <span class="bu">Seq</span><span class="op">[(</span>Dean<span class="op">,</span> Addr<span class="op">)]</span> <span class="op">=</span> <span class="op">{</span></span>
+<div class="sourceCode" id="cb102"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses2<span class="op">:</span> <span class="bu">List</span><span class="op">[(</span>Dean<span class="op">,</span> Addr<span class="op">)]</span> <span class="op">=</span> <span class="op">{</span></span>
 <span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span></span>
-<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>    d <span class="op">&lt;-</span> deans<span class="op">;</span></span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a>    d <span class="op">&lt;-</span> deans</span>
 <span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a>    v <span class="op">&lt;-</span> addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> d<span class="op">.</span>k<span class="op">)</span></span>
 <span id="cb102-5"><a href="#cb102-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">)</span> <span class="cf">yield</span> <span class="op">(</span>d<span class="op">,</span> v<span class="op">)</span></span>
 <span id="cb102-6"><a href="#cb102-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
