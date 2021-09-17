@@ -11,7 +11,7 @@
 
 <meta name="author" content="Georgios Gousios and Burcu Kulahcioglu Ozkan" />
 
-<meta name="date" content="2021-09-16" />
+<meta name="date" content="2021-09-17" />
 
 <title>Programming Techniques for Big Data</title>
 
@@ -290,7 +290,7 @@ summary {
 
 <h1 class="title toc-ignore">Programming Techniques for Big Data</h1>
 <h4 class="author">Georgios Gousios and Burcu Kulahcioglu Ozkan</h4>
-<h4 class="date">16 September 2021</h4>
+<h4 class="date">17 September 2021</h4>
 
 </div>
 
@@ -1348,7 +1348,7 @@ sequence elements to a `set` data structure.-->
 <pre><code>## HashMap(Other -&gt; 135.0, Female -&gt; 130.0, Male -&gt; 132.0)</code></pre>
 <p>Q: What are the types of each variable?</p>
 <p>The above is equivalent to the following SQL expression</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> gender, mean(age)</span>
+<div class="sourceCode" id="cb91"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> gender, mean(height)</span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> people</span>
 <span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> age <span class="op">&gt;</span> <span class="dv">18</span></span>
 <span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> gender</span></code></pre></div>
@@ -1460,7 +1460,7 @@ List(
 <p><code>flatMap</code> enables us to combine two data collections and return a new collection with flattened values.</p>
 <div class="sourceCode" id="cb100"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses2<span class="op">:</span> <span class="bu">List</span><span class="op">[(</span>Dean<span class="op">,</span> Addr<span class="op">)]</span> <span class="op">=</span></span>
 <span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>  deans<span class="op">.</span><span class="fu">flatMap</span><span class="op">(</span>d <span class="op">=&gt;</span></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>    addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> <span class="op">(</span>d<span class="op">.</span>k<span class="op">))</span></span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>    addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> d<span class="op">.</span>k<span class="op">)</span></span>
 <span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>     <span class="op">.</span><span class="fu">map</span><span class="op">(</span>a <span class="op">=&gt;</span> <span class="op">(</span>d<span class="op">,</span> v<span class="op">)))</span></span></code></pre></div>
 <pre><code>## List((Dean(EWI,John,Schmitz),Addr(EWI,Mekelweg,4)), 
 ##       (Dean(EWI,John,Schmitz),Addr(EWI,Van Mourik Broekmanweg,6)),
