@@ -14299,19 +14299,19 @@ need to use too big vectors.</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[1]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">path</span> <span class="o">=</span> <span class="s">s&quot;datasets/imdb.csv&quot;</span>
 
-<span class="k">val</span> <span class="n">data</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="o">(</span><span class="n">path</span><span class="o">).</span>
+<span class="k">val</span> <span class="n">data</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="n">textFile</span><span class="o">(</span><span class="n">path</span><span class="o">)</span>
     <span class="c1">// Remove HTML, string escapes and punctuation</span>
-    <span class="n">map</span><span class="o">(</span><span class="n">w</span> <span class="o">=&gt;</span> <span class="n">w</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;&quot;&quot;&lt;(?!\/?a(?=&gt;|\s.*&gt;))\/?.*&gt;&quot;&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">)).</span>
-    <span class="n">map</span><span class="o">(</span><span class="n">w</span> <span class="o">=&gt;</span> <span class="n">w</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;&quot;&quot;[\…\”\&#39;\’\`\,\(\)\&quot;\\]&quot;&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">)).</span>
+    <span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">w</span> <span class="o">=&gt;</span> <span class="n">w</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;&quot;&quot;&lt;(?!\/?a(?=&gt;|\s.*&gt;))\/?.*&gt;&quot;&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">))</span>
+    <span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">w</span> <span class="o">=&gt;</span> <span class="n">w</span><span class="o">.</span><span class="n">replaceAll</span><span class="o">(</span><span class="s">&quot;&quot;&quot;[\…\”\&#39;\’\`\,\(\)\&quot;\\]&quot;&quot;&quot;</span><span class="o">,</span> <span class="s">&quot;&quot;</span><span class="o">))</span>
     <span class="c1">// Make lowercase</span>
-    <span class="n">map</span><span class="o">(</span><span class="n">w</span> <span class="o">=&gt;</span> <span class="n">w</span><span class="o">.</span><span class="n">trim</span><span class="o">.</span><span class="n">toLowerCase</span><span class="o">).</span>
+    <span class="o">.</span><span class="n">map</span><span class="o">(</span><span class="n">w</span> <span class="o">=&gt;</span> <span class="n">w</span><span class="o">.</span><span class="n">toLowerCase</span><span class="o">)</span>
     <span class="c1">// Word2Vec works at the sentence level</span>
-    <span class="n">flatMap</span><span class="o">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;[.?!;:]&quot;</span><span class="o">))</span>
+    <span class="o">.</span><span class="n">flatMap</span><span class="o">(</span><span class="n">c</span> <span class="o">=&gt;</span> <span class="n">c</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot;[.?!;:]&quot;</span><span class="o">)).</span><span class="n">map</span><span class="o">(</span><span class="k">_</span><span class="o">.</span><span class="n">trim</span><span class="o">)</span>
 </pre></div>
 
      </div>
@@ -14327,14 +14327,45 @@ need to use too big vectors.</p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>Intitializing Scala interpreter ...</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+
+
+
+
+<div class="jp-RenderedText jp-OutputArea-output " data-mime-type="text/plain">
+<pre>Spark Web UI available at http://192.168.178.199:4040
+SparkContext available as &#39;sc&#39; (version = 3.0.1, master = local[*], app id = local-1633376834637)
+SparkSession available as &#39;spark&#39;
+</pre>
+</div>
+
+</div>
+
+<div class="jp-OutputArea-child">
+
+    
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[1]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>path: String = datasets/imdb.csv
-data: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[11] at flatMap at &lt;console&gt;:36
+data: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[6] at map at &lt;console&gt;:34
 </pre>
 </div>
 
@@ -14353,7 +14384,7 @@ data: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[11] at flatMap at &lt;
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[2]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="n">data</span><span class="o">.</span><span class="n">take</span><span class="o">(</span><span class="mi">3</span><span class="o">).</span><span class="n">foreach</span><span class="o">(</span><span class="n">l</span> <span class="o">=&gt;</span> <span class="n">println</span><span class="o">(</span><span class="s">&quot;  R:&quot;</span> <span class="o">+</span> <span class="n">l</span><span class="o">))</span>
@@ -14378,7 +14409,7 @@ data: org.apache.spark.rdd.RDD[String] = MapPartitionsRDD[11] at flatMap at &lt;
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
 <pre>  R:review
   R:jennifer ehle was sparkling in pride and prejudice
-  R: jeremy northam was simply wonderful in the winslow boy
+  R:jeremy northam was simply wonderful in the winslow boy
 </pre>
 </div>
 </div>
@@ -14404,7 +14435,7 @@ Array of Strings.</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.ml.linalg.Vector</span>
@@ -14443,7 +14474,7 @@ Array of Strings.</p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 
 
 
@@ -14482,7 +14513,7 @@ have been processed to remove stopwords.</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.ml.feature.StopWordsRemover</span>
@@ -14520,14 +14551,14 @@ have been processed to remove stopwords.</p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[6]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[4]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>import org.apache.spark.ml.feature.StopWordsRemover
-stopWordsRemover: org.apache.spark.ml.feature.StopWordsRemover = StopWordsRemover: uid=stopWords_4e00bbc95207, numStopWords=181, locale=en_GB, caseSensitive=false
+stopWordsRemover: org.apache.spark.ml.feature.StopWordsRemover = StopWordsRemover: uid=stopWords_2855c252242d, numStopWords=181, locale=en_GB, caseSensitive=false
 documentDF: org.apache.spark.sql.DataFrame = [text: array&lt;string&gt;, nostopwords: array&lt;string&gt;]
 </pre>
 </div>
@@ -14546,7 +14577,7 @@ documentDF: org.apache.spark.sql.DataFrame = [text: array&lt;string&gt;, nostopw
 </div>
 <div class="jp-Cell-inputWrapper"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput " data-mime-type="text/markdown">
-<p>We are now ready to train our model! To do so, we set the VectorSize parameter to 200; this means the output will</p>
+<p>We are now ready to train our model!</p>
 <p>To exclude the long tail of words that do not appear frequently, we remove words will less than 10 appearences in our
 dataset.</p>
 
@@ -14554,17 +14585,17 @@ dataset.</p>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.ml.feature.Word2Vec</span>
 
 <span class="c1">// Learn a mapping from words to Vectors</span>
-<span class="k">val</span> <span class="n">word2Vec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Word2Vec</span><span class="o">().</span>
-    <span class="n">setInputCol</span><span class="o">(</span><span class="s">&quot;text&quot;</span><span class="o">).</span>
-    <span class="n">setOutputCol</span><span class="o">(</span><span class="s">&quot;result&quot;</span><span class="o">).</span>
-    <span class="n">setVectorSize</span><span class="o">(</span><span class="mi">200</span><span class="o">).</span>
-    <span class="n">setMinCount</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
+<span class="k">val</span> <span class="n">word2Vec</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Word2Vec</span><span class="o">()</span>
+    <span class="o">.</span><span class="n">setInputCol</span><span class="o">(</span><span class="s">&quot;text&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">setOutputCol</span><span class="o">(</span><span class="s">&quot;result&quot;</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">setVectorSize</span><span class="o">(</span><span class="mi">200</span><span class="o">)</span>
+    <span class="o">.</span><span class="n">setMinCount</span><span class="o">(</span><span class="mi">10</span><span class="o">)</span>
 <span class="k">val</span> <span class="n">model</span> <span class="o">=</span> <span class="n">word2Vec</span><span class="o">.</span><span class="n">fit</span><span class="o">(</span><span class="n">documentDF</span><span class="o">)</span>
 </pre></div>
 
@@ -14581,15 +14612,15 @@ dataset.</p>
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[5]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>import org.apache.spark.ml.feature.Word2Vec
-word2Vec: org.apache.spark.ml.feature.Word2Vec = w2v_0bca9b730f88
-model: org.apache.spark.ml.feature.Word2VecModel = Word2VecModel: uid=w2v_0bca9b730f88, numWords=21593, vectorSize=200
+word2Vec: org.apache.spark.ml.feature.Word2Vec = w2v_b8b665ef2a0e
+model: org.apache.spark.ml.feature.Word2VecModel = Word2VecModel: uid=w2v_b8b665ef2a0e, numWords=21593, vectorSize=200
 </pre>
 </div>
 
@@ -14613,7 +14644,7 @@ model: org.apache.spark.ml.feature.Word2VecModel = Word2VecModel: uid=w2v_0bca9b
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[10]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="c1">// Find synonyms for a single word</span>
@@ -14637,16 +14668,16 @@ model: org.apache.spark.ml.feature.Word2VecModel = Word2VecModel: uid=w2v_0bca9b
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[finney,0.7338382005691528]
-[dourif,0.7258254885673523]
-[perlman,0.7130116820335388]
-[ford,0.7012817859649658]
-[jeremy,0.6846911311149597]
-[garrett,0.6624922156333923]
-[brad,0.648384690284729]
-[pitts,0.6481888294219971]
-[slater,0.6321536302566528]
-[matthew,0.6298080086708069]
+<pre>[finney,0.7722606062889099]
+[perlman,0.7646912336349487]
+[dourif,0.746439516544342]
+[garrett,0.7226223945617676]
+[ford,0.6852742433547974]
+[palillo,0.6821386218070984]
+[pyun,0.6814386248588562]
+[bale,0.6788373589515686]
+[jeremy,0.678361177444458]
+[slater,0.6644403338432312]
 </pre>
 </div>
 </div>
@@ -14665,16 +14696,15 @@ model: org.apache.spark.ml.feature.Word2VecModel = Word2VecModel: uid=w2v_0bca9b
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[7]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="k">def</span> <span class="n">toDF</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="o">=</span> 
-    <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="o">(</span><span class="nc">Seq</span><span class="o">(</span>
-        <span class="n">s</span><span class="o">.</span><span class="n">trim</span><span class="o">.</span>
-        <span class="n">toLowerCase</span><span class="o">.</span>
-        <span class="n">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">)</span>
-    <span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="nc">Tuple1</span><span class="o">.</span><span class="n">apply</span><span class="o">)).</span>
-    <span class="n">toDF</span><span class="o">(</span><span class="s">&quot;text&quot;</span><span class="o">)</span>
+    <span class="n">spark</span><span class="o">.</span><span class="n">createDataFrame</span><span class="o">(</span><span class="nc">Seq</span><span class="o">(</span><span class="n">s</span><span class="o">.</span><span class="n">trim</span>
+        <span class="o">.</span><span class="n">toLowerCase</span>
+        <span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">)</span>
+    <span class="o">).</span><span class="n">map</span><span class="o">(</span><span class="nc">Tuple1</span><span class="o">.</span><span class="n">apply</span><span class="o">))</span>
+    <span class="o">.</span><span class="n">toDF</span><span class="o">(</span><span class="s">&quot;text&quot;</span><span class="o">)</span>
 
 <span class="n">toDF</span><span class="o">(</span><span class="s">&quot;James Bond&quot;</span><span class="o">).</span><span class="n">collect</span><span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
 </pre></div>
@@ -14704,7 +14734,7 @@ model: org.apache.spark.ml.feature.Word2VecModel = Word2VecModel: uid=w2v_0bca9b
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[11]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[7]:</div>
 
 
 
@@ -14729,12 +14759,11 @@ model: org.apache.spark.ml.feature.Word2VecModel = Word2VecModel: uid=w2v_0bca9b
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="k">val</span> <span class="n">q</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="o">(</span><span class="n">toDF</span><span class="o">(</span><span class="s">&quot;James Bond&quot;</span><span class="o">))</span> 
 <span class="n">q</span><span class="o">.</span><span class="n">printSchema</span>
-<span class="c1">//q.select(&quot;result&quot;).first().getAs[Vector](&quot;result&quot;)</span>
 </pre></div>
 
      </div>
@@ -14766,14 +14795,13 @@ model: org.apache.spark.ml.feature.Word2VecModel = Word2VecModel: uid=w2v_0bca9b
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[17]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
 
 
 
 
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain">
 <pre>q: org.apache.spark.sql.DataFrame = [text: array&lt;string&gt;, result: vector]
-res10: org.apache.spark.ml.linalg.Vector = [-0.07568837329745293,0.10922888806089759,-0.19828727841377258,-0.10063215997070074,-0.022734854312147945,-0.04850327968597412,0.1391393467783928,-0.026905825827270746,0.016493046307004988,-0.05607726098969579,0.08449060469865799,-0.12062385678291321,-0.1454901173710823,-0.05178629979491234,0.1516144536435604,0.24320750311017036,0.0887338393367827,-0.19192825257778168,-0.09060228988528252,0.03439111541956663,-0.34947018325328827,0.1920247282832861,-0.013259299099445343,-0.019132611283566803,-0.07067592814564705,0.3122910466045141,-0.01685235369950533,0.01844208351189991,-0.010525070130825043,-0.11741789057850838,0.12037621065974236,-0.15623166412115097,0.15426398441195488...
 </pre>
 </div>
 
@@ -14792,18 +14820,17 @@ res10: org.apache.spark.ml.linalg.Vector = [-0.07568837329745293,0.1092288880608
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[19]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[9]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="k">def</span> <span class="n">query</span><span class="o">(</span><span class="n">s</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="o">=</span> <span class="o">{</span>
     <span class="k">val</span> <span class="n">q</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">transform</span><span class="o">(</span><span class="n">toDF</span><span class="o">(</span><span class="n">s</span><span class="o">))</span>
     <span class="k">val</span> <span class="n">qTokens</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">toLowerCase</span><span class="o">.</span><span class="n">split</span><span class="o">(</span><span class="s">&quot; &quot;</span><span class="o">)</span>
 
-    <span class="n">model</span><span class="o">.</span>
-        <span class="n">findSynonyms</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">getAs</span><span class="o">[</span><span class="kt">Vector</span><span class="o">](</span><span class="s">&quot;result&quot;</span><span class="o">),</span> <span class="mi">10</span><span class="o">).</span>
-        <span class="n">filter</span><span class="o">(</span><span class="n">r</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="n">qTokens</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="n">r</span><span class="o">(</span><span class="mi">0</span><span class="o">))).</span>
-        <span class="n">collect</span><span class="o">.</span>
-        <span class="n">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">findSynonyms</span><span class="o">(</span><span class="n">q</span><span class="o">.</span><span class="n">first</span><span class="o">.</span><span class="n">getAs</span><span class="o">[</span><span class="kt">Vector</span><span class="o">](</span><span class="s">&quot;result&quot;</span><span class="o">),</span> <span class="mi">10</span><span class="o">)</span>
+        <span class="o">.</span><span class="n">filter</span><span class="o">(</span><span class="n">r</span> <span class="o">=&gt;</span> <span class="o">!</span><span class="n">qTokens</span><span class="o">.</span><span class="n">contains</span><span class="o">(</span><span class="n">r</span><span class="o">(</span><span class="mi">0</span><span class="o">)))</span>
+        <span class="o">.</span><span class="n">collect</span>
+        <span class="o">.</span><span class="n">foreach</span><span class="o">(</span><span class="n">println</span><span class="o">)</span>
 <span class="o">}</span>
 </pre></div>
 
@@ -14820,7 +14847,7 @@ res10: org.apache.spark.ml.linalg.Vector = [-0.07568837329745293,0.1092288880608
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[19]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[9]:</div>
 
 
 
@@ -14862,15 +14889,15 @@ res10: org.apache.spark.ml.linalg.Vector = [-0.07568837329745293,0.1092288880608
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[film,0.8394587635993958]
-[flick,0.5519292950630188]
-[documentary,0.5171377062797546]
-[cartoon,0.49328547716140747]
-[mini-series,0.48773887753486633]
-[show,0.4875704050064087]
-[flic,0.48537948727607727]
-[picture,0.4752477705478668]
-[stinker,0.4617299735546112]
+<pre>[film,0.8398674130439758]
+[flick,0.598155677318573]
+[cartoon,0.5386905670166016]
+[mini-series,0.535006582736969]
+[moviesbut,0.5239917635917664]
+[documentary,0.5068673491477966]
+[show,0.5063693523406982]
+[stinker,0.49897581338882446]
+[picture,0.49263861775398254]
 </pre>
 </div>
 </div>
@@ -14882,7 +14909,7 @@ res10: org.apache.spark.ml.linalg.Vector = [-0.07568837329745293,0.1092288880608
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[20]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[11]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="n">query</span><span class="o">(</span><span class="s">&quot;brad pitt is a great actor&quot;</span><span class="o">)</span>
@@ -14905,13 +14932,14 @@ res10: org.apache.spark.ml.linalg.Vector = [-0.07568837329745293,0.1092288880608
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>[elisabeth,0.6951945424079895]
-[daly,0.6415725946426392]
-[pitts,0.6391802430152893]
-[schoelen,0.6325849294662476]
-[mackintosh,0.627791166305542]
-[finney,0.6270254254341125]
-[comedian,0.6220017671585083]
+<pre>[dourif,0.6699931025505066]
+[terence,0.6649662256240845]
+[mabius,0.659092128276825]
+[dustin,0.6457685232162476]
+[stoltz,0.6436259746551514]
+[silva,0.6400138139724731]
+[raoul,0.6366493105888367]
+[elisabeth,0.6356052160263062]
 </pre>
 </div>
 </div>
@@ -14943,7 +14971,7 @@ solve analogy problems. In the original Word2Vec paper, the authors show that, w
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[21]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="k">import</span> <span class="nn">org.apache.spark.ml.linalg.DenseVector</span>
@@ -14969,7 +14997,7 @@ solve analogy problems. In the original Word2Vec paper, the authors show that, w
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[21]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[12]:</div>
 
 
 
@@ -14997,7 +15025,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[22]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[13]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="k">def</span> <span class="n">analogy</span><span class="o">(</span><span class="n">x</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">isToY</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">likeZ</span><span class="k">:</span> <span class="kt">String</span><span class="o">,</span> <span class="n">isToA</span><span class="k">:</span> <span class="kt">String</span><span class="o">)</span> <span class="o">{</span>
@@ -15025,7 +15053,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 <div class="jp-OutputArea-child">
 
     
-    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[22]:</div>
+    <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[13]:</div>
 
 
 
@@ -15044,7 +15072,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[23]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="n">analogy</span><span class="o">(</span><span class="s">&quot;king&quot;</span><span class="o">,</span><span class="s">&quot;man&quot;</span><span class="o">,</span><span class="s">&quot;queen&quot;</span><span class="o">,</span><span class="s">&quot;woman&quot;</span><span class="o">)</span>
@@ -15067,7 +15095,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>4.508268779455774
+<pre>4.502840631713733
 </pre>
 </div>
 </div>
@@ -15079,7 +15107,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[24]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[15]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="n">analogy</span><span class="o">(</span><span class="s">&quot;soldier&quot;</span><span class="o">,</span><span class="s">&quot;army&quot;</span><span class="o">,</span><span class="s">&quot;sailor&quot;</span><span class="o">,</span><span class="s">&quot;navy&quot;</span><span class="o">)</span>
@@ -15102,7 +15130,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>2.2069538934155437
+<pre>2.1463648185567026
 </pre>
 </div>
 </div>
@@ -15114,7 +15142,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[25]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[16]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="n">analogy</span><span class="o">(</span><span class="s">&quot;Athens&quot;</span><span class="o">,</span><span class="s">&quot;Greece&quot;</span><span class="o">,</span><span class="s">&quot;Paris&quot;</span><span class="o">,</span><span class="s">&quot;France&quot;</span><span class="o">)</span>
@@ -15137,7 +15165,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1.9403866749796244
+<pre>2.1083978795843925
 </pre>
 </div>
 </div>
@@ -15149,7 +15177,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[26]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[17]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="n">analogy</span><span class="o">(</span><span class="s">&quot;brother&quot;</span><span class="o">,</span><span class="s">&quot;sister&quot;</span><span class="o">,</span><span class="s">&quot;grandson&quot;</span><span class="o">,</span><span class="s">&quot;grandaughter&quot;</span><span class="o">)</span>
@@ -15172,7 +15200,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1.8891224172900605
+<pre>1.8668779419101222
 </pre>
 </div>
 </div>
@@ -15184,7 +15212,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell   ">
 <div class="jp-Cell-inputWrapper">
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[27]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In&nbsp;[18]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
      <div class="CodeMirror cm-s-jupyter">
 <div class=" highlight hl-scala"><pre><span></span><span class="c1">// The dataset is from the mid-00s :-)</span>
@@ -15208,7 +15236,7 @@ vectorDistance: (xs: org.apache.spark.ml.linalg.Vector, ys: org.apache.spark.ml.
 
 
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain">
-<pre>1.7170905239581218
+<pre>1.644923423629974
 </pre>
 </div>
 </div>
