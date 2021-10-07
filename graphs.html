@@ -543,7 +543,17 @@ _For more information look at [this presentation](http://vigna.di.unimi.it/algow
 <div id="pregel-using-bsp-to-process-graphs" class="section level2">
 <h2>Pregel: Using BSP to process graphs</h2>
 <p>Pregel (by Google) is a distributed graph processing framework.</p>
-<p>Pregel computations impose a BSP structure on program execution: * Computations consist of a sequence of supersteps * In a superstep, the framework invokes a user-defined function for each vertex * Function specifies behaviour at a single vertex (<em>V</em>) and a single superstep (<em>S</em>) - it can read messages sent to <em>V</em> in superstep (<em>S-1</em>) - it can send messages to other vertices that will be read in superstep (<em>S+1</em>) - it can modify the state of <em>V</em> and its outgoing edges</p>
+<p>Pregel computations impose a BSP structure on program execution:</p>
+<ul>
+<li>Computations consist of a sequence of supersteps</li>
+<li>In a superstep, the framework invokes a user-defined function for each vertex</li>
+<li>Function specifies behaviour at a single vertex (<em>V</em>) and a single superstep (<em>S</em>)
+<ul>
+<li>it can read messages sent to <em>V</em> in superstep (<em>S-1</em>)</li>
+<li>it can send messages to other vertices that will be read in superstep (<em>S+1</em>)</li>
+<li>it can modify the state of <em>V</em> and its outgoing edges</li>
+</ul></li>
+</ul>
 <p>Open source implementations: <a href="https://giraph.apache.org/">Apache Giraph</a> and <a href="https://spark.apache.org/docs/latest/graphx-programming-guide.html">GraphX</a>.</p>
 </div>
 <div id="vertex-centric-approach" class="section level2">
