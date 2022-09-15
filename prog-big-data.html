@@ -11,7 +11,7 @@
 
 <meta name="author" content="Georgios Gousios and Burcu Kulahcioglu Ozkan" />
 
-<meta name="date" content="2022-09-11" />
+<meta name="date" content="2022-09-15" />
 
 <title>Programming Techniques for Big Data</title>
 
@@ -507,7 +507,7 @@ display: none;
 
 <h1 class="title toc-ignore">Programming Techniques for Big Data</h1>
 <h4 class="author">Georgios Gousios and Burcu Kulahcioglu Ozkan</h4>
-<h4 class="date">11 September 2022</h4>
+<h4 class="date">15 September 2022</h4>
 
 </div>
 
@@ -1420,33 +1420,37 @@ languages.</p>
 <span id="cb57-6"><a href="#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>line <span class="op">&lt;-</span> data<span class="op">)</span> <span class="op">{</span></span>
 <span id="cb57-7"><a href="#cb57-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span><span class="op">(</span>line<span class="op">)</span></span>
 <span id="cb57-8"><a href="#cb57-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>and then in Python</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">&quot;/big/data&quot;</span>,<span class="st">&quot;r&quot;</span>) <span class="im">as</span> data:</span>
-<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># readlines() returns an object that implements __iter__()</span></span>
-<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> line <span class="kw">in</span> data.readlines():</span>
-<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span> line</span></code></pre></div>
+<!--
+and then in Python
+```python
+with open("/big/data","r") as data:
+  # readlines() returns an object that implements __iter__()
+  for line in data.readlines():
+      print line
+```
+-->
 </div>
 <div id="observation" class="section level2 unnumbered">
 <h2 class="unnumbered">Observation</h2>
 <p>Observation allows us to process (almost) unbounded size data sets,
 where the data source controls the processing rate</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Consumer</span></span>
-<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> <span class="ex">Observer</span><span class="op">[</span>A<span class="op">]</span> <span class="op">{</span></span>
-<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">onNext</span><span class="op">(</span>a<span class="op">:</span> A<span class="op">):</span> <span class="bu">Unit</span></span>
-<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">onError</span><span class="op">(</span>t<span class="op">:</span> <span class="ex">Throwable</span><span class="op">):</span> <span class="bu">Unit</span></span>
-<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">onComplete</span><span class="op">():</span> <span class="bu">Unit</span></span>
-<span id="cb59-6"><a href="#cb59-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
-<span id="cb59-7"><a href="#cb59-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb59-8"><a href="#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Producer</span></span>
-<span id="cb59-9"><a href="#cb59-9" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> <span class="ex">Observable</span><span class="op">[</span>A<span class="op">]</span> <span class="op">{</span></span>
-<span id="cb59-10"><a href="#cb59-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">subscribe</span><span class="op">(</span>obs<span class="op">:</span> <span class="ex">Observer</span><span class="op">[</span>A<span class="op">]):</span> <span class="bu">Unit</span></span>
-<span id="cb59-11"><a href="#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co">// Consumer</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> <span class="ex">Observer</span><span class="op">[</span>A<span class="op">]</span> <span class="op">{</span></span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">onNext</span><span class="op">(</span>a<span class="op">:</span> A<span class="op">):</span> <span class="bu">Unit</span></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">onError</span><span class="op">(</span>t<span class="op">:</span> <span class="ex">Throwable</span><span class="op">):</span> <span class="bu">Unit</span></span>
+<span id="cb58-5"><a href="#cb58-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">onComplete</span><span class="op">():</span> <span class="bu">Unit</span></span>
+<span id="cb58-6"><a href="#cb58-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb58-7"><a href="#cb58-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-8"><a href="#cb58-8" aria-hidden="true" tabindex="-1"></a><span class="co">// Producer</span></span>
+<span id="cb58-9"><a href="#cb58-9" aria-hidden="true" tabindex="-1"></a><span class="kw">trait</span> <span class="ex">Observable</span><span class="op">[</span>A<span class="op">]</span> <span class="op">{</span></span>
+<span id="cb58-10"><a href="#cb58-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">subscribe</span><span class="op">(</span>obs<span class="op">:</span> <span class="ex">Observer</span><span class="op">[</span>A<span class="op">]):</span> <span class="bu">Unit</span></span>
+<span id="cb58-11"><a href="#cb58-11" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <p>Example usage</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Example using library rx.lang.scala</span></span>
-<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Having additional method in Observable: def subscribe(onNext: T =&gt; Unit)</span></span>
-<span id="cb60-3"><a href="#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Observable</span><span class="op">.</span><span class="fu">just</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span> <span class="op">,</span><span class="dv">3</span> <span class="op">,</span><span class="dv">4</span> <span class="op">,</span><span class="dv">5</span><span class="op">)</span></span>
-<span id="cb60-4"><a href="#cb60-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">)</span></span>
-<span id="cb60-5"><a href="#cb60-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">subscribe</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="fu">println</span><span class="op">(</span>x<span class="op">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Example using library rx.lang.scala</span></span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">// Having additional method in Observable: def subscribe(onNext: T =&gt; Unit)</span></span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="ex">Observable</span><span class="op">.</span><span class="fu">just</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span> <span class="op">,</span><span class="dv">3</span> <span class="op">,</span><span class="dv">4</span> <span class="op">,</span><span class="dv">5</span><span class="op">)</span></span>
+<span id="cb59-4"><a href="#cb59-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb59-5"><a href="#cb59-5" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span><span class="fu">subscribe</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="fu">println</span><span class="op">(</span>x<span class="op">))</span></span></code></pre></div>
 </div>
 <div id="iteration-and-observation" class="section level2 unnumbered">
 <h2 class="unnumbered">Iteration and Observation</h2>
@@ -1456,12 +1460,20 @@ where the data source controls the processing rate</p>
 in both cases</li>
 </ul>
 <p>Iterator-based <code>map</code>. “Pulls” data out of array.</p>
-<div class="sourceCode" id="cb61"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Array</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="co">// Scala</span></span></code></pre></div>
-<div class="sourceCode" id="cb62"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">map</span>([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>], <span class="kw">lambda</span> x: x <span class="op">+</span> <span class="dv">1</span>) <span class="co"># Python</span></span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Array</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="co">// Scala</span></span></code></pre></div>
+<!-- 
+```python
+map([1,2,3,4], lambda x: x + 1) # Python
+```
+-->
 <p>Observation-based (reactive) <code>map</code>. Data is “pushed” to it
 asynchronously, when new data is available.</p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Observable</span><span class="op">.</span><span class="fu">just</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="co">// Scala with rx.lang.scala</span></span></code></pre></div>
-<div class="sourceCode" id="cb64"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>Observable.from_([<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]).<span class="bu">map</span>(<span class="kw">lambda</span> x: x <span class="op">+</span> <span class="dv">1</span>) <span class="co"># Python</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb61-1"><a href="#cb61-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Observable</span><span class="op">.</span><span class="fu">just</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> x <span class="op">+</span> <span class="dv">1</span><span class="op">)</span> <span class="co">// Scala with rx.lang.scala</span></span></code></pre></div>
+<!--
+```python
+Observable.from_([1,2,3,4]).map(lambda x: x + 1) # Python
+```
+-->
 <p><strong>D:</strong> (How) Can we convert between the two types of
 enumeration?</p>
 </div>
@@ -1469,11 +1481,11 @@ enumeration?</p>
 <h2 class="unnumbered">Traversal</h2>
 <p>We apply a strategy to visit all individual items in a
 collection.</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> l <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>  l<span class="op">.</span><span class="fu">foreach</span><span class="op">(</span>print<span class="op">)</span></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> m <span class="op">=</span> <span class="ex">Map</span><span class="op">(</span><span class="st">&quot;x&quot;</span> <span class="op">-&gt;</span> <span class="dv">1</span><span class="op">,</span> <span class="st">&quot;y&quot;</span> <span class="op">-&gt;</span> <span class="dv">2</span><span class="op">)</span></span>
-<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>  m<span class="op">.</span><span class="fu">foreach</span><span class="op">(</span>print<span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> l <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">)</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  l<span class="op">.</span><span class="fu">foreach</span><span class="op">(</span>print<span class="op">)</span></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> m <span class="op">=</span> <span class="ex">Map</span><span class="op">(</span><span class="st">&quot;x&quot;</span> <span class="op">-&gt;</span> <span class="dv">1</span><span class="op">,</span> <span class="st">&quot;y&quot;</span> <span class="op">-&gt;</span> <span class="dv">2</span><span class="op">)</span></span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a>  m<span class="op">.</span><span class="fu">foreach</span><span class="op">(</span>print<span class="op">)</span></span></code></pre></div>
 <!-- 
 ```python
 for i in [1,2,3]:
@@ -1496,15 +1508,15 @@ children first, then its neighbors.</li>
 <h2 class="unnumbered">Traversal through iteration</h2>
 <p>In most programming environments, traversal is implemented by
 <em>iterators</em>.</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="kw">class</span> <span class="fu">Tree</span><span class="op">(</span>value<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> children<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>Tree<span class="op">])</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">dfs</span><span class="op">(</span>tree<span class="op">:</span> Tree<span class="op">):</span> <span class="ex">Iterator</span><span class="op">[</span><span class="ex">String</span><span class="op">]</span> <span class="op">=</span> tree <span class="cf">match</span> <span class="op">{</span></span>
-<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="fu">Tree</span><span class="op">(</span>value<span class="op">,</span> Nil<span class="op">)</span> <span class="op">=&gt;</span> <span class="ex">Iterator</span><span class="op">(</span>value<span class="op">)</span></span>
-<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="fu">Tree</span><span class="op">(</span>value<span class="op">,</span> children<span class="op">)</span> <span class="op">=&gt;</span> children<span class="op">.</span>iterator<span class="op">.</span><span class="fu">flatMap</span><span class="op">(</span>c <span class="op">=&gt;</span> <span class="fu">dfs</span><span class="op">(</span>c<span class="op">))</span> <span class="op">++</span> <span class="ex">Iterator</span><span class="op">(</span>value<span class="op">)</span></span>
-<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a>  <span class="cf">case</span> <span class="kw">class</span> <span class="fu">Tree</span><span class="op">(</span>value<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> children<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>Tree<span class="op">])</span></span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">dfs</span><span class="op">(</span>tree<span class="op">:</span> Tree<span class="op">):</span> <span class="ex">Iterator</span><span class="op">[</span><span class="ex">String</span><span class="op">]</span> <span class="op">=</span> tree <span class="cf">match</span> <span class="op">{</span></span>
+<span id="cb63-4"><a href="#cb63-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="fu">Tree</span><span class="op">(</span>value<span class="op">,</span> Nil<span class="op">)</span> <span class="op">=&gt;</span> <span class="ex">Iterator</span><span class="op">(</span>value<span class="op">)</span></span>
+<span id="cb63-5"><a href="#cb63-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="fu">Tree</span><span class="op">(</span>value<span class="op">,</span> children<span class="op">)</span> <span class="op">=&gt;</span> children<span class="op">.</span>iterator<span class="op">.</span><span class="fu">flatMap</span><span class="op">(</span>c <span class="op">=&gt;</span> <span class="fu">dfs</span><span class="op">(</span>c<span class="op">))</span> <span class="op">++</span> <span class="ex">Iterator</span><span class="op">(</span>value<span class="op">)</span></span>
+<span id="cb63-6"><a href="#cb63-6" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
 <p>Then, we can iterate using standard language constructs.</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> tree <span class="op">=</span> <span class="fu">Tree</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="ex">List</span><span class="op">(</span><span class="fu">Tree</span><span class="op">(</span><span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="ex">List</span><span class="op">(</span><span class="fu">Tree</span><span class="op">(</span><span class="st">&quot;c&quot;</span><span class="op">,</span> Nil<span class="op">),</span> <span class="fu">Tree</span><span class="op">(</span><span class="st">&quot;d&quot;</span><span class="op">,</span> Nil<span class="op">)))))</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfs</span><span class="op">(</span>tree<span class="op">).</span><span class="fu">foreach</span><span class="op">(</span>print<span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> tree <span class="op">=</span> <span class="fu">Tree</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="ex">List</span><span class="op">(</span><span class="fu">Tree</span><span class="op">(</span><span class="st">&quot;b&quot;</span><span class="op">,</span> <span class="ex">List</span><span class="op">(</span><span class="fu">Tree</span><span class="op">(</span><span class="st">&quot;c&quot;</span><span class="op">,</span> Nil<span class="op">),</span> <span class="fu">Tree</span><span class="op">(</span><span class="st">&quot;d&quot;</span><span class="op">,</span> Nil<span class="op">)))))</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">dfs</span><span class="op">(</span>tree<span class="op">).</span><span class="fu">foreach</span><span class="op">(</span>print<span class="op">)</span></span></code></pre></div>
 <!-- 
 ## Traversal through iteration {- }
 
@@ -1567,17 +1579,17 @@ condition
 <h3 class="unnumbered">Our running example</h3>
 <p>Suppose we have a list of people; each person is identified by a
 unique identifier, their age, their height in cm and their gender.</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Person</span><span class="op">(</span>id<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> age<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> height<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> weight<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> gender<span class="op">:</span> <span class="ex">String</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Person</span><span class="op">(</span>id<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> age<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> height<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> weight<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> gender<span class="op">:</span> <span class="ex">String</span><span class="op">)</span></span></code></pre></div>
 <p>Now, let’s create 1000 random people!</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> genders <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="st">&quot;Male&quot;</span><span class="op">,</span> <span class="st">&quot;Female&quot;</span><span class="op">,</span> <span class="st">&quot;Other&quot;</span><span class="op">)</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> rand <span class="op">=</span> <span class="kw">new</span> <span class="ex">Random</span><span class="op">(</span><span class="dv">42</span><span class="op">)</span></span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> people <span class="op">=</span> <span class="op">(</span><span class="dv">1</span> to <span class="dv">1000</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>i <span class="op">=&gt;</span> <span class="fu">Person</span><span class="op">(</span>i<span class="op">,</span></span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> rand<span class="op">.</span><span class="fu">between</span><span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">80</span><span class="op">),</span></span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>    height <span class="op">=</span> rand<span class="op">.</span><span class="fu">between</span><span class="op">(</span><span class="dv">60</span><span class="op">,</span> <span class="dv">200</span><span class="op">),</span></span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>    weight <span class="op">=</span> rand<span class="op">.</span><span class="fu">between</span><span class="op">(</span><span class="dv">40</span><span class="op">,</span> <span class="dv">120</span><span class="op">),</span></span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>    gender <span class="op">=</span> <span class="fu">genders</span><span class="op">(</span>rand<span class="op">.</span><span class="fu">between</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">3</span><span class="op">))))</span></span>
-<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>toList</span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> genders <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="st">&quot;Male&quot;</span><span class="op">,</span> <span class="st">&quot;Female&quot;</span><span class="op">,</span> <span class="st">&quot;Other&quot;</span><span class="op">)</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> rand <span class="op">=</span> <span class="kw">new</span> <span class="ex">Random</span><span class="op">(</span><span class="dv">42</span><span class="op">)</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> people <span class="op">=</span> <span class="op">(</span><span class="dv">1</span> to <span class="dv">1000</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>i <span class="op">=&gt;</span> <span class="fu">Person</span><span class="op">(</span>i<span class="op">,</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a>    age <span class="op">=</span> rand<span class="op">.</span><span class="fu">between</span><span class="op">(</span><span class="dv">10</span><span class="op">,</span> <span class="dv">80</span><span class="op">),</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    height <span class="op">=</span> rand<span class="op">.</span><span class="fu">between</span><span class="op">(</span><span class="dv">60</span><span class="op">,</span> <span class="dv">200</span><span class="op">),</span></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    weight <span class="op">=</span> rand<span class="op">.</span><span class="fu">between</span><span class="op">(</span><span class="dv">40</span><span class="op">,</span> <span class="dv">120</span><span class="op">),</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>    gender <span class="op">=</span> <span class="fu">genders</span><span class="op">(</span>rand<span class="op">.</span><span class="fu">between</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">3</span><span class="op">))))</span></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">.</span>toList</span></code></pre></div>
 <pre><code>## Person(1000,50,102,58,Female)</code></pre>
 </div>
 <div id="conversion-or-mapping" class="section level3 unnumbered">
@@ -1587,18 +1599,18 @@ function to each individual element. This is generalized to the <span class="mat
 <p><span class="math inline">\(map(xs: [A], f: (A) \rightarrow B)
 \rightarrow [B]\)</span></p>
 <p>Let’s convert the persons’ heights to meters</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">toMeters</span><span class="op">(</span>person<span class="op">:</span> Person<span class="op">):</span> Person <span class="op">=</span> person<span class="op">.</span><span class="fu">copy</span><span class="op">(</span>height <span class="op">=</span> person<span class="op">.</span>height <span class="op">*</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dv">100</span><span class="op">)</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb71-3"><a href="#cb71-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> peopleInMeters <span class="op">=</span> <span class="fu">map</span><span class="op">(</span>people<span class="op">,</span> p <span class="op">=&gt;</span> <span class="fu">toMeters</span><span class="op">(</span>p<span class="op">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">toMeters</span><span class="op">(</span>person<span class="op">:</span> Person<span class="op">):</span> Person <span class="op">=</span> person<span class="op">.</span><span class="fu">copy</span><span class="op">(</span>height <span class="op">=</span> person<span class="op">.</span>height <span class="op">*</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dv">100</span><span class="op">)</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> peopleInMeters <span class="op">=</span> <span class="fu">map</span><span class="op">(</span>people<span class="op">,</span> p <span class="op">=&gt;</span> <span class="fu">toMeters</span><span class="op">(</span>p<span class="op">))</span></span></code></pre></div>
 <p>or using a lambda function:</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> peopleInMeters <span class="op">=</span> <span class="fu">map</span><span class="op">(</span>people<span class="op">,</span> p <span class="op">=&gt;</span> p<span class="op">.</span><span class="fu">copy</span><span class="op">(</span>height <span class="op">=</span> p<span class="op">.</span>height <span class="op">*</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dv">100</span><span class="op">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> peopleInMeters <span class="op">=</span> <span class="fu">map</span><span class="op">(</span>people<span class="op">,</span> <span class="op">(</span>p<span class="op">:</span> Person<span class="op">)</span> <span class="op">=&gt;</span> p<span class="op">.</span><span class="fu">copy</span><span class="op">(</span>height <span class="op">=</span> p<span class="op">.</span>height <span class="op">*</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dv">100</span><span class="op">))</span></span></code></pre></div>
 <p>Note: <a href="https://www.scala-lang.org/api/2.13.3/scala/collection/immutable/List.html">Scala
 <code>List</code></a> has built-in implementations for most of the
 functions we discuss in this lecture.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">// definition in scala.collection.immutable.List</span></span>
-<span id="cb73-2"><a href="#cb73-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> map<span class="op">[</span>B<span class="op">](</span>f<span class="op">:</span> <span class="op">(</span>A<span class="op">)</span> <span class="op">=&gt;</span> B<span class="op">):</span> <span class="ex">List</span><span class="op">[</span>B<span class="op">]</span></span></code></pre></div>
-<div class="sourceCode" id="cb74"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">// example usage of the built-in function</span></span>
-<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> peopleInMeters <span class="op">=</span> people<span class="op">.</span><span class="fu">map</span><span class="op">(</span>p <span class="op">=&gt;</span> p<span class="op">.</span><span class="fu">copy</span><span class="op">(</span>height <span class="op">=</span> p<span class="op">.</span>height <span class="op">*</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dv">100</span><span class="op">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">// definition in scala.collection.immutable.List</span></span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> map<span class="op">[</span>B<span class="op">](</span>f<span class="op">:</span> <span class="op">(</span>A<span class="op">)</span> <span class="op">=&gt;</span> B<span class="op">):</span> <span class="ex">List</span><span class="op">[</span>B<span class="op">]</span></span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a>  <span class="co">// example usage of the built-in function</span></span>
+<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> peopleInMeters <span class="op">=</span> people<span class="op">.</span><span class="fu">map</span><span class="op">(</span>p <span class="op">=&gt;</span> p<span class="op">.</span><span class="fu">copy</span><span class="op">(</span>height <span class="op">=</span> p<span class="op">.</span>height <span class="op">*</span> <span class="fl">1.0</span> <span class="op">/</span> <span class="dv">100</span><span class="op">))</span></span></code></pre></div>
 </div>
 <div id="projection" class="section level3 unnumbered">
 <h3 class="unnumbered">Projection</h3>
@@ -1606,8 +1618,8 @@ functions we discuss in this lecture.</p>
 nested data type for further processing. To implement this, we need to
 iterate over all items of a collection and apply a <em>conversion</em>
 function.</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> heightsAndWeights <span class="op">=</span> <span class="fu">map</span><span class="op">(</span>people<span class="op">,</span> <span class="op">(</span>p<span class="op">:</span> Person<span class="op">)</span> <span class="op">=&gt;</span> <span class="op">(</span>p<span class="op">.</span>height<span class="op">,</span> p<span class="op">.</span>weight<span class="op">))</span></span>
-<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> weights <span class="op">=</span> <span class="fu">map</span><span class="op">(</span>people<span class="op">,</span> <span class="op">(</span>p<span class="op">:</span>Person<span class="op">)</span> <span class="op">=&gt;</span> p<span class="op">.</span>weight<span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> heightsAndWeights <span class="op">=</span> <span class="fu">map</span><span class="op">(</span>people<span class="op">,</span> <span class="op">(</span>p<span class="op">:</span> Person<span class="op">)</span> <span class="op">=&gt;</span> <span class="op">(</span>p<span class="op">.</span>height<span class="op">,</span> p<span class="op">.</span>weight<span class="op">))</span></span>
+<span id="cb72-2"><a href="#cb72-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> weights <span class="op">=</span> <span class="fu">map</span><span class="op">(</span>people<span class="op">,</span> <span class="op">(</span>p<span class="op">:</span>Person<span class="op">)</span> <span class="op">=&gt;</span> p<span class="op">.</span>weight<span class="op">)</span></span></code></pre></div>
 </div>
 <div id="filtering" class="section level3 unnumbered">
 <h3 class="unnumbered">Filtering</h3>
@@ -1615,22 +1627,22 @@ function.</p>
 predicate function to each individual element.</p>
 <p><span class="math inline">\(filter(xs: [A], f: (A) \rightarrow
 Boolean): [A]\)</span></p>
-<div class="sourceCode" id="cb76"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> tallPeople <span class="op">=</span> <span class="fu">filter</span><span class="op">(</span>people<span class="op">,</span> p <span class="op">=&gt;</span> p<span class="op">.</span>height <span class="op">&gt;</span> <span class="dv">180</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> tallPeople <span class="op">=</span> <span class="fu">filter</span><span class="op">(</span>people<span class="op">,</span> p <span class="op">=&gt;</span> p<span class="op">.</span>height <span class="op">&gt;</span> <span class="dv">180</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Q:</strong> How can we implement filter?</p>
 <div class="incremental">
-<div class="sourceCode" id="cb77"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">filter</span><span class="op">(</span>xs<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>Person<span class="op">],</span> pred<span class="op">:</span> Person <span class="op">=&gt;</span> <span class="ex">Boolean</span><span class="op">):</span> <span class="ex">List</span><span class="op">[</span>Person<span class="op">]</span> <span class="op">=</span> xs <span class="cf">match</span> <span class="op">{</span></span>
-<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> Nil <span class="op">=&gt;</span> Nil</span>
-<span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="cf">if</span> <span class="fu">pred</span><span class="op">(</span>h<span class="op">)</span> <span class="op">=&gt;</span> h <span class="op">::</span> <span class="fu">filter</span><span class="op">(</span>t<span class="op">,</span> pred<span class="op">)</span></span>
-<span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="op">=&gt;</span> <span class="fu">filter</span><span class="op">(</span>t<span class="op">,</span> pred<span class="op">)</span></span>
-<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">filter</span><span class="op">(</span>xs<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>Person<span class="op">],</span> pred<span class="op">:</span> Person <span class="op">=&gt;</span> <span class="ex">Boolean</span><span class="op">):</span> <span class="ex">List</span><span class="op">[</span>Person<span class="op">]</span> <span class="op">=</span> xs <span class="cf">match</span> <span class="op">{</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> Nil <span class="op">=&gt;</span> Nil</span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="cf">if</span> <span class="fu">pred</span><span class="op">(</span>h<span class="op">)</span> <span class="op">=&gt;</span> h <span class="op">::</span> <span class="fu">filter</span><span class="op">(</span>t<span class="op">,</span> pred<span class="op">)</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="op">=&gt;</span> <span class="fu">filter</span><span class="op">(</span>t<span class="op">,</span> pred<span class="op">)</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
 </div>
 <div class="incremental">
 <p>Filter on a generic class:</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> filter<span class="op">[</span>T<span class="op">](</span>xs<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>T<span class="op">],</span> pred<span class="op">:</span> T <span class="op">=&gt;</span> <span class="ex">Boolean</span><span class="op">):</span> <span class="ex">List</span><span class="op">[</span>T<span class="op">]</span> <span class="op">=</span> xs <span class="cf">match</span> <span class="op">{</span></span>
-<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> Nil <span class="op">=&gt;</span> Nil</span>
-<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="cf">if</span> <span class="fu">pred</span><span class="op">(</span>h<span class="op">)</span> <span class="op">=&gt;</span> h <span class="op">::</span> <span class="fu">filter</span><span class="op">(</span>t<span class="op">,</span> pred<span class="op">)</span></span>
-<span id="cb78-4"><a href="#cb78-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="op">=&gt;</span> <span class="fu">filter</span><span class="op">(</span>t<span class="op">,</span> pred<span class="op">)</span></span>
-<span id="cb78-5"><a href="#cb78-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> filter<span class="op">[</span>T<span class="op">](</span>xs<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>T<span class="op">],</span> pred<span class="op">:</span> T <span class="op">=&gt;</span> <span class="ex">Boolean</span><span class="op">):</span> <span class="ex">List</span><span class="op">[</span>T<span class="op">]</span> <span class="op">=</span> xs <span class="cf">match</span> <span class="op">{</span></span>
+<span id="cb75-2"><a href="#cb75-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> Nil <span class="op">=&gt;</span> Nil</span>
+<span id="cb75-3"><a href="#cb75-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="cf">if</span> <span class="fu">pred</span><span class="op">(</span>h<span class="op">)</span> <span class="op">=&gt;</span> h <span class="op">::</span> <span class="fu">filter</span><span class="op">(</span>t<span class="op">,</span> pred<span class="op">)</span></span>
+<span id="cb75-4"><a href="#cb75-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="op">=&gt;</span> <span class="fu">filter</span><span class="op">(</span>t<span class="op">,</span> pred<span class="op">)</span></span>
+<span id="cb75-5"><a href="#cb75-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
 </div>
 </div>
 </div>
@@ -1652,13 +1664,13 @@ first</li>
 <p>Our task is to calculate the total weight for our people list. To do
 so, we need to iterate over the list and add the individual weights.
 First, we do it with an imperative approach:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> totalWeight <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a>  weights<span class="op">.</span><span class="fu">foreach</span><span class="op">(</span>w <span class="op">=&gt;</span> <span class="op">{</span></span>
-<span id="cb79-4"><a href="#cb79-4" aria-hidden="true" tabindex="-1"></a>    totalWeight <span class="op">=</span> totalWeight <span class="op">+</span> w</span>
-<span id="cb79-5"><a href="#cb79-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
-<span id="cb79-6"><a href="#cb79-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb79-7"><a href="#cb79-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span><span class="op">(</span>totalWeight<span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> totalWeight <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a>  weights<span class="op">.</span><span class="fu">foreach</span><span class="op">(</span>w <span class="op">=&gt;</span> <span class="op">{</span></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>    totalWeight <span class="op">=</span> totalWeight <span class="op">+</span> w</span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">})</span></span>
+<span id="cb76-6"><a href="#cb76-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb76-7"><a href="#cb76-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">println</span><span class="op">(</span>totalWeight<span class="op">)</span></span></code></pre></div>
 <p>We notice that iteration and reduction are independent. What if we
 abstract iteration away?</p>
 </div>
@@ -1672,13 +1684,13 @@ A) \rightarrow B) \rightarrow B\)</span></p>
 initial value and applies <code>f</code> on all items, starting from the
 <strong>left</strong> most. <code>f</code> combines the result of its
 previous application with the current element.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">totalWeight</span><span class="op">(</span>acc<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> p<span class="op">:</span> Person<span class="op">):</span> <span class="ex">Double</span> <span class="op">=</span> <span class="co">// acc is for accumulator</span></span>
-<span id="cb80-2"><a href="#cb80-2" aria-hidden="true" tabindex="-1"></a>    acc <span class="op">+</span> p<span class="op">.</span>weight</span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">totalWeight</span><span class="op">(</span>acc<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> p<span class="op">:</span> Person<span class="op">):</span> <span class="ex">Double</span> <span class="op">=</span> <span class="co">// acc is for accumulator</span></span>
+<span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>    acc <span class="op">+</span> p<span class="op">.</span>weight</span></code></pre></div>
 <p>Then we can calculate the total weight of all people in our
 collection as follows</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> total <span class="op">=</span> <span class="fu">foldLeft</span><span class="op">(</span>people<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>acc<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> p<span class="op">:</span> Person<span class="op">)</span> <span class="op">=&gt;</span> <span class="fu">totalWeight</span><span class="op">(</span>acc<span class="op">,</span> p<span class="op">))</span></span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="co">// or equivalently</span></span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> total <span class="op">=</span> <span class="fu">foldLeft</span><span class="op">(</span>people<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>acc<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> p<span class="op">:</span> Person<span class="op">)</span> <span class="op">=&gt;</span> acc <span class="op">+</span> p<span class="op">.</span>weight<span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb78-1"><a href="#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> total <span class="op">=</span> <span class="fu">foldLeft</span><span class="op">(</span>people<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>acc<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> p<span class="op">:</span> Person<span class="op">)</span> <span class="op">=&gt;</span> <span class="fu">totalWeight</span><span class="op">(</span>acc<span class="op">,</span> p<span class="op">))</span></span>
+<span id="cb78-2"><a href="#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="co">// or equivalently</span></span>
+<span id="cb78-3"><a href="#cb78-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> total <span class="op">=</span> <span class="fu">foldLeft</span><span class="op">(</span>people<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>acc<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> p<span class="op">:</span> Person<span class="op">)</span> <span class="op">=&gt;</span> acc <span class="op">+</span> p<span class="op">.</span>weight<span class="op">)</span></span></code></pre></div>
 </div>
 <div id="folding-right" class="section level3 unnumbered">
 <h3 class="unnumbered">Folding right</h3>
@@ -1688,7 +1700,7 @@ acc: B) \rightarrow B) \rightarrow B\)</span></p>
 initial value and applies <code>f</code> on all items, starting from the
 <strong>right</strong> most. <code>f</code> combines the result of its
 previous application with the current element.</p>
-<div class="sourceCode" id="cb82"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> total <span class="op">=</span> <span class="fu">foldRight</span><span class="op">(</span>people<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>p<span class="op">:</span> Person<span class="op">,</span> acc<span class="op">:</span> <span class="ex">Double</span><span class="op">)</span> <span class="op">=&gt;</span> <span class="op">(</span>p<span class="op">.</span>weight <span class="op">+</span> acc<span class="op">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> total <span class="op">=</span> <span class="fu">foldRight</span><span class="op">(</span>people<span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>p<span class="op">:</span> Person<span class="op">,</span> acc<span class="op">:</span> <span class="ex">Double</span><span class="op">)</span> <span class="op">=&gt;</span> <span class="op">(</span>p<span class="op">.</span>weight <span class="op">+</span> acc<span class="op">))</span></span></code></pre></div>
 </div>
 <div id="foldright-and-foldleft-differences" class="section level3 unnumbered">
 <h3 class="unnumbered"><code>foldRight</code> and <code>foldLeft</code>:
@@ -1696,12 +1708,12 @@ differences</h3>
 <p>To see how <code>foldRight</code> and <code>foldLeft</code> are
 evaluated, we define a reduction function that accumulates the
 intermediate steps as a string.</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">reduce_str</span><span class="op">(</span>acc<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> x<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> <span class="ex">String</span> <span class="op">=</span> <span class="st">&quot;(&quot;</span> <span class="op">+</span> acc <span class="op">+</span> <span class="st">&quot; + &quot;</span> <span class="op">+</span> x <span class="op">+</span> <span class="st">&quot;)&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb80"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb80-1"><a href="#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">reduce_str</span><span class="op">(</span>acc<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> x<span class="op">:</span> <span class="ex">String</span><span class="op">):</span> <span class="ex">String</span> <span class="op">=</span> <span class="st">&quot;(&quot;</span> <span class="op">+</span> acc <span class="op">+</span> <span class="st">&quot; + &quot;</span> <span class="op">+</span> x <span class="op">+</span> <span class="st">&quot;)&quot;</span></span></code></pre></div>
 <p>How does <code>foldLeft</code> work?</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span><span class="fu">foldLeft</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>_<span class="op">.</span>toString<span class="op">),</span> <span class="st">&quot;0&quot;</span><span class="op">,</span> reduce_str<span class="op">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span><span class="fu">foldLeft</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">).</span><span class="fu">map</span><span class="op">(</span>_<span class="op">.</span>toString<span class="op">),</span> <span class="st">&quot;0&quot;</span><span class="op">,</span> reduce_str<span class="op">))</span></span></code></pre></div>
 <pre><code>## (((((0 + 1) + 2) + 3) + 4) + 5)</code></pre>
 <p>How does <code>foldRight</code> work?</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>println(foldRight(List(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>).<span class="bu">map</span>(_.toString), <span class="st">&quot;0&quot;</span>, reduce_str))</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>println(foldRight(List(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>).<span class="bu">map</span>(_.toString), <span class="st">&quot;0&quot;</span>, reduce_str))</span></code></pre></div>
 <pre><code>## (1 + (2 + (3 + (4 + (5 + 0)))))</code></pre>
 <p><strong>Q</strong>: <em>Can we always apply <code>foldLeft</code>
 instead of <code>foldRight</code>?</em></p>
@@ -1716,9 +1728,9 @@ reduction operation is commutative</em>.</p>
 <p>We can see that if we choose a non-commutative operator,
 <code>reduceL</code> and <code>reduceR</code> produce different
 results.</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> resultLeft <span class="op">=</span> <span class="fu">foldLeft</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">),</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>x<span class="op">:</span><span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span><span class="bu">Int</span><span class="op">)</span> <span class="op">=&gt;</span> x <span class="op">-</span> y<span class="op">)</span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> resultRight <span class="op">=</span> <span class="fu">foldRight</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">),</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>x<span class="op">:</span><span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span><span class="bu">Int</span><span class="op">)</span> <span class="op">=&gt;</span> x <span class="op">-</span> y<span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb85"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> resultLeft <span class="op">=</span> <span class="fu">foldLeft</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">),</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>x<span class="op">:</span><span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span><span class="bu">Int</span><span class="op">)</span> <span class="op">=&gt;</span> x <span class="op">-</span> y<span class="op">)</span></span>
+<span id="cb85-2"><a href="#cb85-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb85-3"><a href="#cb85-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> resultRight <span class="op">=</span> <span class="fu">foldRight</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">,</span><span class="dv">4</span><span class="op">,</span><span class="dv">5</span><span class="op">),</span> <span class="dv">0</span><span class="op">,</span> <span class="op">(</span>x<span class="op">:</span><span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span><span class="bu">Int</span><span class="op">)</span> <span class="op">=&gt;</span> x <span class="op">-</span> y<span class="op">)</span></span></code></pre></div>
 <p>Q: What are the values of <code>resultLeft</code> and
 <code>resultRight</code>?</p>
 </div>
@@ -1737,9 +1749,9 @@ is the first value in the collection.<br />
 <li>The return type <code>B</code> must be a subtype of
 <code>A</code>.</li>
 </ul>
-<div class="sourceCode" id="cb89"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> weights <span class="op">=</span> people<span class="op">.</span><span class="fu">map</span><span class="op">(</span>_<span class="op">.</span>weight<span class="op">)</span></span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> totalWeightLeft <span class="op">=</span> weights<span class="op">.</span><span class="fu">reduceLeft</span><span class="op">(</span>_ <span class="op">+</span> _<span class="op">)</span></span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> totalWeightRight <span class="op">=</span> weights<span class="op">.</span><span class="fu">reduceRight</span><span class="op">(</span>_ <span class="op">+</span> _<span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> weights <span class="op">=</span> people<span class="op">.</span><span class="fu">map</span><span class="op">(</span>_<span class="op">.</span>weight<span class="op">)</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> totalWeightLeft <span class="op">=</span> weights<span class="op">.</span><span class="fu">reduceLeft</span><span class="op">(</span>_ <span class="op">+</span> _<span class="op">)</span></span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> totalWeightRight <span class="op">=</span> weights<span class="op">.</span><span class="fu">reduceRight</span><span class="op">(</span>_ <span class="op">+</span> _<span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="counting-elements" class="section level2 unnumbered">
@@ -1748,7 +1760,7 @@ is the first value in the collection.<br />
 possibly matching a condition</p>
 <p><span class="math inline">\(count(xs: [A], pred):
 Integer\)</span></p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">count</span><span class="op">(</span>list<span class="op">:</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">],</span> f<span class="op">:</span> <span class="bu">Int</span> <span class="op">=&gt;</span> <span class="ex">Boolean</span><span class="op">)</span> <span class="op">=</span>  <span class="fu">filter</span><span class="op">(</span>list<span class="op">,</span>f<span class="op">).</span>length</span></code></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">count</span><span class="op">(</span>list<span class="op">:</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">],</span> f<span class="op">:</span> <span class="bu">Int</span> <span class="op">=&gt;</span> <span class="ex">Boolean</span><span class="op">)</span> <span class="op">=</span>  <span class="fu">filter</span><span class="op">(</span>list<span class="op">,</span>f<span class="op">).</span>length</span></code></pre></div>
 <p><strong>Q:</strong> How can we implement this with folding?</p>
 </div>
 <div id="distinct-elements" class="section level2 unnumbered">
@@ -1758,14 +1770,13 @@ duplicates.</p>
 <p><span class="math inline">\(distinct(xs: [A]): [A]\)</span></p>
 <!--Distinct operations are usually implemented by copying the initial
 sequence elements to a `set` data structure.-->
-<div class="sourceCode" id="cb91"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> a <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">)</span></span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">.</span>distinct</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>a<span class="op">.</span>toSet</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> a <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">)</span></span>
+<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a>a<span class="op">.</span>distinct</span>
+<span id="cb88-3"><a href="#cb88-3" aria-hidden="true" tabindex="-1"></a>a<span class="op">.</span>toSet</span></code></pre></div>
 <pre><code>## List(1, 2, 3)
 ## Set(1, 2, 3)</code></pre>
-<p>Distinct assumes that items have unique identities; in Python, we use
-the <code>id()</code> method (same as <code>hashCode()</code> in
-Java).</p>
+<p>Distinct assumes that items have unique identities (e.g.,
+<code>hashCode()</code> in Java).</p>
 </div>
 <div id="numerical-aggregations" class="section level2 unnumbered">
 <h2 class="unnumbered">Numerical aggregations</h2>
@@ -1786,40 +1797,40 @@ Some examples are:</p>
 function.</p>
 <p><span class="math inline">\(groupBy(xs:[A], f: A \rightarrow K):
 Map[K, [A]]\)</span></p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">groupBy</span><span class="op">(</span>xs<span class="op">:</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">],</span> classifier<span class="op">:</span> <span class="bu">Int</span> <span class="op">=&gt;</span> <span class="ex">String</span><span class="op">):</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]]</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">groupByHelper</span><span class="op">(</span>xs<span class="op">,</span> classifier<span class="op">,</span> <span class="ex">Map</span><span class="op">())</span></span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb93-5"><a href="#cb93-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span> <span class="kw">def</span> <span class="fu">groupByHelper</span><span class="op">(</span>xs<span class="op">:</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">],</span> classifier<span class="op">:</span> <span class="bu">Int</span> <span class="op">=&gt;</span> <span class="ex">String</span><span class="op">,</span> groups<span class="op">:</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]]):</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]]</span> <span class="op">=</span> xs <span class="cf">match</span> <span class="op">{</span></span>
-<span id="cb93-6"><a href="#cb93-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> Nil <span class="op">=&gt;</span> groups</span>
-<span id="cb93-7"><a href="#cb93-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="op">=&gt;</span></span>
-<span id="cb93-8"><a href="#cb93-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">val</span> key<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span> <span class="fu">classifier</span><span class="op">(</span>h<span class="op">)</span></span>
-<span id="cb93-9"><a href="#cb93-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">val</span> value<span class="op">:</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]</span> <span class="op">=</span> h <span class="op">::</span> groups<span class="op">.</span><span class="fu">getOrElse</span><span class="op">(</span>key<span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]())</span></span>
-<span id="cb93-10"><a href="#cb93-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">groupByHelper</span><span class="op">(</span>t<span class="op">,</span> classifier<span class="op">,</span> groups <span class="op">+</span> <span class="op">((</span>key<span class="op">,</span>  value<span class="op">)))</span></span>
-<span id="cb93-11"><a href="#cb93-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
-<div class="sourceCode" id="cb94"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">number_classifier</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="ex">String</span> <span class="op">=</span> </span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="st">&quot;even&quot;</span></span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="st">&quot;odd&quot;</span></span>
-<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-5"><a href="#cb94-5" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> list <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">)</span></span>
-<span id="cb94-6"><a href="#cb94-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="fu">groupBy</span><span class="op">(</span>list<span class="op">,</span> number_classifier<span class="op">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">groupBy</span><span class="op">(</span>xs<span class="op">:</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">],</span> classifier<span class="op">:</span> <span class="bu">Int</span> <span class="op">=&gt;</span> <span class="ex">String</span><span class="op">):</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">groupByHelper</span><span class="op">(</span>xs<span class="op">,</span> classifier<span class="op">,</span> <span class="ex">Map</span><span class="op">())</span></span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb90-4"><a href="#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="#cb90-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">private</span> <span class="kw">def</span> <span class="fu">groupByHelper</span><span class="op">(</span>xs<span class="op">:</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">],</span> classifier<span class="op">:</span> <span class="bu">Int</span> <span class="op">=&gt;</span> <span class="ex">String</span><span class="op">,</span> groups<span class="op">:</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]]):</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]]</span> <span class="op">=</span> xs <span class="cf">match</span> <span class="op">{</span></span>
+<span id="cb90-6"><a href="#cb90-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> Nil <span class="op">=&gt;</span> groups</span>
+<span id="cb90-7"><a href="#cb90-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> h <span class="op">::</span> t <span class="op">=&gt;</span></span>
+<span id="cb90-8"><a href="#cb90-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">val</span> key<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span> <span class="fu">classifier</span><span class="op">(</span>h<span class="op">)</span></span>
+<span id="cb90-9"><a href="#cb90-9" aria-hidden="true" tabindex="-1"></a>      <span class="kw">val</span> value<span class="op">:</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]</span> <span class="op">=</span> h <span class="op">::</span> groups<span class="op">.</span><span class="fu">getOrElse</span><span class="op">(</span>key<span class="op">,</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]())</span></span>
+<span id="cb90-10"><a href="#cb90-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">groupByHelper</span><span class="op">(</span>t<span class="op">,</span> classifier<span class="op">,</span> groups <span class="op">+</span> <span class="op">((</span>key<span class="op">,</span>  value<span class="op">)))</span></span>
+<span id="cb90-11"><a href="#cb90-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">number_classifier</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="ex">String</span> <span class="op">=</span> </span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>x <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span><span class="op">)</span> <span class="st">&quot;even&quot;</span></span>
+<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span> <span class="st">&quot;odd&quot;</span></span>
+<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> list <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">)</span></span>
+<span id="cb91-6"><a href="#cb91-6" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span><span class="op">(</span><span class="fu">groupBy</span><span class="op">(</span>list<span class="op">,</span> number_classifier<span class="op">))</span></span></code></pre></div>
 <pre><code>## Map(odd -&gt; List(7, 5, 3, 1), even -&gt; List(6, 4, 2))</code></pre>
 </div>
 <div id="aggregation-example" class="section level2 unnumbered">
 <h2 class="unnumbered">Aggregation example</h2>
 <p>How can we get the average height per gender (adults only) in our
 list of people?</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> adults <span class="op">=</span> people<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>_<span class="op">.</span>age <span class="op">&gt;</span> <span class="dv">18</span><span class="op">)</span></span>
-<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> adultsByGender <span class="op">=</span> adults<span class="op">.</span><span class="fu">groupBy</span><span class="op">(</span>_<span class="op">.</span>gender<span class="op">)</span></span>
-<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> heightsByGender <span class="op">=</span> adultsByGender<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_1<span class="op">,</span> x<span class="op">.</span>_2<span class="op">.</span><span class="fu">map</span><span class="op">(</span>_<span class="op">.</span>height<span class="op">)))</span></span>
-<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> avgHeightByGender <span class="op">=</span> heightsByGender<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_1<span class="op">,</span> x<span class="op">.</span>_2<span class="op">.</span>sum <span class="op">/</span> x<span class="op">.</span>_2<span class="op">.</span>size<span class="op">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> adults <span class="op">=</span> people<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>_<span class="op">.</span>age <span class="op">&gt;</span> <span class="dv">18</span><span class="op">)</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> adultsByGender <span class="op">=</span> adults<span class="op">.</span><span class="fu">groupBy</span><span class="op">(</span>_<span class="op">.</span>gender<span class="op">)</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> heightsByGender <span class="op">=</span> adultsByGender<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_1<span class="op">,</span> x<span class="op">.</span>_2<span class="op">.</span><span class="fu">map</span><span class="op">(</span>_<span class="op">.</span>height<span class="op">)))</span></span>
+<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">val</span> avgHeightByGender <span class="op">=</span> heightsByGender<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_1<span class="op">,</span> x<span class="op">.</span>_2<span class="op">.</span>sum <span class="op">/</span> x<span class="op">.</span>_2<span class="op">.</span>size<span class="op">))</span></span></code></pre></div>
 <pre><code>## HashMap(Other -&gt; 135.0, Female -&gt; 130.0, Male -&gt; 132.0)</code></pre>
 <p>Q: What are the types of each variable?</p>
 <p>The above is equivalent to the following SQL expression</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> gender, mean(height)</span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> people</span>
-<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> age <span class="op">&gt;</span> <span class="dv">18</span></span>
-<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> gender</span></code></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> gender, mean(height)</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="kw">from</span> people</span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> age <span class="op">&gt;</span> <span class="dv">18</span></span>
+<span id="cb95-4"><a href="#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="kw">group</span> <span class="kw">by</span> gender</span></code></pre></div>
 <p><strong>D</strong>: What are the relative strengths and weaknesses of
 each representation?</p>
 </div>
@@ -1847,16 +1858,20 @@ record.</li>
 structure.</li>
 <li>The KV pairs are usually represented as sequences</li>
 </ul>
-<div class="sourceCode" id="cb99"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>[ <span class="co"># Python</span></span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>  [<span class="st">&#39;EWI&#39;</span>: [<span class="st">&quot;Mekelweg&quot;</span>, <span class="dv">4</span>]],</span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a>  [<span class="st">&#39;TPM&#39;</span>: [<span class="st">&quot;Jafaalaan&quot;</span>, <span class="dv">5</span>]],</span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a>  [<span class="st">&#39;AE&#39;</span>: [<span class="st">&quot;Kluyverweg&quot;</span>, <span class="dv">1</span>]]</span>
-<span id="cb99-5"><a href="#cb99-5" aria-hidden="true" tabindex="-1"></a>]</span></code></pre></div>
-<div class="sourceCode" id="cb100"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="ex">List</span><span class="op">(</span> <span class="co">// Scala</span></span>
-<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span><span class="st">&quot;EWI&quot;</span><span class="op">,</span> <span class="op">(</span><span class="st">&quot;Mekelweg&quot;</span><span class="op">,</span> <span class="dv">4</span><span class="op">)),</span></span>
-<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span><span class="st">&quot;TPM&quot;</span><span class="op">,</span> <span class="op">(</span><span class="st">&quot;Jafaalaan&quot;</span><span class="op">,</span> <span class="dv">5</span><span class="op">)),</span></span>
-<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span><span class="st">&quot;AE&quot;</span><span class="op">,</span> <span class="op">(</span><span class="st">&quot;Kluyverweg&quot;</span><span class="op">,</span> <span class="dv">1</span><span class="op">))</span></span>
-<span id="cb100-5"><a href="#cb100-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">)</span></span></code></pre></div>
+<!--
+```python
+[ # Python
+  ['EWI': ["Mekelweg", 4]],
+  ['TPM': ["Jafaalaan", 5]],
+  ['AE': ["Kluyverweg", 1]]
+]
+```
+-->
+<div class="sourceCode" id="cb96"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="ex">List</span><span class="op">(</span> <span class="co">// Scala</span></span>
+<span id="cb96-2"><a href="#cb96-2" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span><span class="st">&quot;EWI&quot;</span><span class="op">,</span> <span class="op">(</span><span class="st">&quot;Mekelweg&quot;</span><span class="op">,</span> <span class="dv">4</span><span class="op">)),</span></span>
+<span id="cb96-3"><a href="#cb96-3" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span><span class="st">&quot;TPM&quot;</span><span class="op">,</span> <span class="op">(</span><span class="st">&quot;Jafaalaan&quot;</span><span class="op">,</span> <span class="dv">5</span><span class="op">)),</span></span>
+<span id="cb96-4"><a href="#cb96-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span><span class="st">&quot;AE&quot;</span><span class="op">,</span> <span class="op">(</span><span class="st">&quot;Kluyverweg&quot;</span><span class="op">,</span> <span class="dv">1</span><span class="op">))</span></span>
+<span id="cb96-5"><a href="#cb96-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">)</span></span></code></pre></div>
 </div>
 <div id="typical-operations-for-kv-collections" class="section level2 unnumbered">
 <h2 class="unnumbered">Typical operations for KV collections</h2>
@@ -1896,42 +1911,49 @@ elements with matching keys</dt>
 (V,W))]\)</span></p>
 </dd>
 </dl>
+<!-- 
+## Common operations on KVs {- }
+
+`mapValues`: With `mapValues` we can apply a transformation and keep data
+local.
+
+```scala
+def mapValues[U](f: (V) => U): RDD[(K, U)]
+```
+
+`reduceByKey`: Reducing values by key allows us to avoid moving data
+among nodes. This is because we can reduce locally and only distribute the
+_results_ of the reduction for further aggregation. This is also why
+`f` does not allow us to change the reduction type.
+
+```scala
+def reduceByKey(f: (V, V) => V): RDD[(K, V)]
+```
+-->
 </div>
-</div>
-<div id="common-operations-on-kvs" class="section level2 unnumbered">
-<h2 class="unnumbered">Common operations on KVs</h2>
-<p><code>mapValues</code>: With <code>mapValues</code> we can apply a
-transformation and keep data local.</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mapValues<span class="op">[</span>U<span class="op">](</span>f<span class="op">:</span> <span class="op">(</span>V<span class="op">)</span> <span class="op">=&gt;</span> U<span class="op">):</span> RDD<span class="op">[(</span>K<span class="op">,</span> U<span class="op">)]</span></span></code></pre></div>
-<p><code>reduceByKey</code>: Reducing values by key allows us to avoid
-moving data among nodes. This is because we can reduce locally and only
-distribute the <em>results</em> of the reduction for further
-aggregation. This is also why <code>f</code> does not allow us to change
-the reduction type.</p>
-<div class="sourceCode" id="cb102"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">reduceByKey</span><span class="op">(</span>f<span class="op">:</span> <span class="op">(</span>V<span class="op">,</span> V<span class="op">)</span> <span class="op">=&gt;</span> V<span class="op">):</span> RDD<span class="op">[(</span>K<span class="op">,</span> V<span class="op">)]</span></span></code></pre></div>
 </div>
 <div id="joining-datasets" class="section level2 unnumbered">
 <h2 class="unnumbered">Joining datasets</h2>
 <p>Suppose we have a dataset of addresses</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Addr</span><span class="op">(</span>k<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> street<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> num<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span>
-<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> addr <span class="op">=</span> <span class="ex">List</span><span class="op">(</span></span>
-<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Addr</span><span class="op">(</span><span class="st">&quot;EWI&quot;</span><span class="op">,</span> <span class="st">&quot;Mekelweg&quot;</span><span class="op">,</span> <span class="dv">4</span><span class="op">),</span></span>
-<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Addr</span><span class="op">(</span><span class="st">&quot;EWI&quot;</span><span class="op">,</span> <span class="st">&quot;Van Mourik Broekmanweg&quot;</span><span class="op">,</span> <span class="dv">6</span><span class="op">),</span></span>
-<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Addr</span><span class="op">(</span><span class="st">&quot;TPM&quot;</span><span class="op">,</span> <span class="st">&quot;Jafaalaan&quot;</span><span class="op">,</span> <span class="dv">5</span><span class="op">),</span></span>
-<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Addr</span><span class="op">(</span><span class="st">&quot;AE&quot;</span><span class="op">,</span>  <span class="st">&quot;Kluyverweg&quot;</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
-<span id="cb103-7"><a href="#cb103-7" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Addr</span><span class="op">(</span>k<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> street<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> num<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span>
+<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> addr <span class="op">=</span> <span class="ex">List</span><span class="op">(</span></span>
+<span id="cb97-3"><a href="#cb97-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Addr</span><span class="op">(</span><span class="st">&quot;EWI&quot;</span><span class="op">,</span> <span class="st">&quot;Mekelweg&quot;</span><span class="op">,</span> <span class="dv">4</span><span class="op">),</span></span>
+<span id="cb97-4"><a href="#cb97-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Addr</span><span class="op">(</span><span class="st">&quot;EWI&quot;</span><span class="op">,</span> <span class="st">&quot;Van Mourik Broekmanweg&quot;</span><span class="op">,</span> <span class="dv">6</span><span class="op">),</span></span>
+<span id="cb97-5"><a href="#cb97-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Addr</span><span class="op">(</span><span class="st">&quot;TPM&quot;</span><span class="op">,</span> <span class="st">&quot;Jafaalaan&quot;</span><span class="op">,</span> <span class="dv">5</span><span class="op">),</span></span>
+<span id="cb97-6"><a href="#cb97-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Addr</span><span class="op">(</span><span class="st">&quot;AE&quot;</span><span class="op">,</span>  <span class="st">&quot;Kluyverweg&quot;</span><span class="op">,</span> <span class="dv">1</span><span class="op">)</span></span>
+<span id="cb97-7"><a href="#cb97-7" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div>
 <p>and a dataset of deans</p>
-<div class="sourceCode" id="cb104"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Dean</span><span class="op">(</span>k<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> name<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> surname<span class="op">:</span> <span class="ex">String</span><span class="op">)</span></span>
-<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> deans <span class="op">=</span> <span class="ex">List</span><span class="op">(</span></span>
-<span id="cb104-3"><a href="#cb104-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Dean</span><span class="op">(</span><span class="st">&quot;EWI&quot;</span><span class="op">,</span> <span class="st">&quot;John&quot;</span><span class="op">,</span> <span class="st">&quot;Schmitz&quot;</span><span class="op">),</span></span>
-<span id="cb104-4"><a href="#cb104-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Dean</span><span class="op">(</span><span class="st">&quot;TPM&quot;</span><span class="op">,</span> <span class="st">&quot;Hans&quot;</span><span class="op">,</span> <span class="st">&quot;Wamelink&quot;</span><span class="op">)</span></span>
-<span id="cb104-5"><a href="#cb104-5" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Dean</span><span class="op">(</span>k<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> name<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> surname<span class="op">:</span> <span class="ex">String</span><span class="op">)</span></span>
+<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> deans <span class="op">=</span> <span class="ex">List</span><span class="op">(</span></span>
+<span id="cb98-3"><a href="#cb98-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Dean</span><span class="op">(</span><span class="st">&quot;EWI&quot;</span><span class="op">,</span> <span class="st">&quot;John&quot;</span><span class="op">,</span> <span class="st">&quot;Schmitz&quot;</span><span class="op">),</span></span>
+<span id="cb98-4"><a href="#cb98-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">Dean</span><span class="op">(</span><span class="st">&quot;TPM&quot;</span><span class="op">,</span> <span class="st">&quot;Hans&quot;</span><span class="op">,</span> <span class="st">&quot;Wamelink&quot;</span><span class="op">)</span></span>
+<span id="cb98-5"><a href="#cb98-5" aria-hidden="true" tabindex="-1"></a><span class="op">)</span></span></code></pre></div>
 <p><strong>Q</strong>: Define a method <code>deanAddresses</code> to
 retrieve a list of address of each dean.</p>
 <div id="first-attempt" class="section level3 unnumbered">
 <h3 class="unnumbered">First attempt</h3>
-<div class="sourceCode" id="cb105"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses <span class="op">:</span> <span class="ex">List</span><span class="op">[(</span>Dean<span class="op">,</span> <span class="ex">List</span><span class="op">[</span>Addr<span class="op">])]</span> <span class="op">=</span></span>
-<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>  deans<span class="op">.</span>map <span class="op">{</span>d <span class="op">=&gt;</span> <span class="op">(</span>d<span class="op">,</span> addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> d<span class="op">.</span>k<span class="op">))}</span></span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses <span class="op">:</span> <span class="ex">List</span><span class="op">[(</span>Dean<span class="op">,</span> <span class="ex">List</span><span class="op">[</span>Addr<span class="op">])]</span> <span class="op">=</span></span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a>  deans<span class="op">.</span>map <span class="op">{</span>d <span class="op">=&gt;</span> <span class="op">(</span>d<span class="op">,</span> addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> d<span class="op">.</span>k<span class="op">))}</span></span></code></pre></div>
 <p>In practice, we get the following results</p>
 <pre><code>// EEEWWWW
 List(
@@ -1955,34 +1977,34 @@ step</h2>
 [B]\)</span></p>
 <p><code>flatMap</code> enables us to combine two data collections and
 return a new collection with flattened values.</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses2<span class="op">:</span> <span class="ex">List</span><span class="op">[(</span>Dean<span class="op">,</span> Addr<span class="op">)]</span> <span class="op">=</span></span>
-<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>  deans<span class="op">.</span><span class="fu">flatMap</span><span class="op">(</span>d <span class="op">=&gt;</span></span>
-<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>    addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> d<span class="op">.</span>k<span class="op">)</span></span>
-<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>     <span class="op">.</span><span class="fu">map</span><span class="op">(</span>a <span class="op">=&gt;</span> <span class="op">(</span>d<span class="op">,</span> v<span class="op">)))</span></span></code></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses2<span class="op">:</span> <span class="ex">List</span><span class="op">[(</span>Dean<span class="op">,</span> Addr<span class="op">)]</span> <span class="op">=</span></span>
+<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a>  deans<span class="op">.</span><span class="fu">flatMap</span><span class="op">(</span>d <span class="op">=&gt;</span></span>
+<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a>    addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> d<span class="op">.</span>k<span class="op">)</span></span>
+<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a>     <span class="op">.</span><span class="fu">map</span><span class="op">(</span>a <span class="op">=&gt;</span> <span class="op">(</span>d<span class="op">,</span> v<span class="op">)))</span></span></code></pre></div>
 <pre><code>## List((Dean(EWI,John,Schmitz),Addr(EWI,Mekelweg,4)), 
 ##       (Dean(EWI,John,Schmitz),Addr(EWI,Van Mourik Broekmanweg,6)),
 ##       (Dean(TPM,Hans,Wamelink),Addr(TPM,Jafaalaan,5)))</code></pre>
 <div class="incremental">
 <p>In Scala, <code>flatMap</code> is special</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses2<span class="op">:</span> <span class="ex">List</span><span class="op">[(</span>Dean<span class="op">,</span> Addr<span class="op">)]</span> <span class="op">=</span> <span class="op">{</span></span>
-<span id="cb109-2"><a href="#cb109-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span></span>
-<span id="cb109-3"><a href="#cb109-3" aria-hidden="true" tabindex="-1"></a>    d <span class="op">&lt;-</span> deans</span>
-<span id="cb109-4"><a href="#cb109-4" aria-hidden="true" tabindex="-1"></a>    v <span class="op">&lt;-</span> addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> d<span class="op">.</span>k<span class="op">)</span></span>
-<span id="cb109-5"><a href="#cb109-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">)</span> <span class="cf">yield</span> <span class="op">(</span>d<span class="op">,</span> v<span class="op">)</span></span>
-<span id="cb109-6"><a href="#cb109-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> deanAddresses2<span class="op">:</span> <span class="ex">List</span><span class="op">[(</span>Dean<span class="op">,</span> Addr<span class="op">)]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb103-2"><a href="#cb103-2" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> <span class="op">(</span></span>
+<span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>    d <span class="op">&lt;-</span> deans</span>
+<span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>    v <span class="op">&lt;-</span> addr<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>a <span class="op">=&gt;</span> a<span class="op">.</span>k <span class="op">==</span> d<span class="op">.</span>k<span class="op">)</span></span>
+<span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">)</span> <span class="cf">yield</span> <span class="op">(</span>d<span class="op">,</span> v<span class="op">)</span></span>
+<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 </div>
 </div>
 <div id="kv-pairs-and-sql-tables" class="section level2 unnumbered">
 <h2 class="unnumbered">KV pairs and SQL tables</h2>
 <p>A KV pair is an alternative form of a relation, indexed by a key. We
 can always convert between the two.</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> relation <span class="op">:</span> <span class="ex">Set</span><span class="op">[</span>Tuple3<span class="op">[</span><span class="bu">Int</span><span class="op">,</span> <span class="bu">Int</span><span class="op">,</span> <span class="ex">String</span><span class="op">]]</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> relation <span class="op">:</span> <span class="ex">Set</span><span class="op">[</span>Tuple3<span class="op">[</span><span class="bu">Int</span><span class="op">,</span> <span class="bu">Int</span><span class="op">,</span> <span class="ex">String</span><span class="op">]]</span> <span class="op">=</span> <span class="op">???</span></span></code></pre></div>
 <p>Convert the above relation to a KV pair.</p>
-<div class="sourceCode" id="cb111"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> kvpair <span class="op">:</span> <span class="ex">Set</span><span class="op">[</span>Tuple2<span class="op">[</span><span class="bu">Int</span><span class="op">,</span> Tuple2<span class="op">[</span><span class="bu">Int</span><span class="op">,</span> <span class="ex">String</span><span class="op">]]]</span> <span class="op">=</span></span>
-<span id="cb111-2"><a href="#cb111-2" aria-hidden="true" tabindex="-1"></a>  relation<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_1<span class="op">,</span> <span class="op">(</span>x<span class="op">.</span>_2<span class="op">,</span> x<span class="op">.</span>_3<span class="op">)))</span></span></code></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> kvpair <span class="op">:</span> <span class="ex">Set</span><span class="op">[</span>Tuple2<span class="op">[</span><span class="bu">Int</span><span class="op">,</span> Tuple2<span class="op">[</span><span class="bu">Int</span><span class="op">,</span> <span class="ex">String</span><span class="op">]]]</span> <span class="op">=</span></span>
+<span id="cb105-2"><a href="#cb105-2" aria-hidden="true" tabindex="-1"></a>  relation<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_1<span class="op">,</span> <span class="op">(</span>x<span class="op">.</span>_2<span class="op">,</span> x<span class="op">.</span>_3<span class="op">)))</span></span></code></pre></div>
 <p>Convert the KV pair back to a relation.</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> relation2<span class="op">:</span> <span class="ex">Set</span><span class="op">[</span>Tuple3<span class="op">[</span><span class="bu">Int</span><span class="op">,</span> <span class="bu">Int</span><span class="op">,</span> <span class="ex">String</span><span class="op">]]</span> <span class="op">=</span></span>
-<span id="cb112-2"><a href="#cb112-2" aria-hidden="true" tabindex="-1"></a>  kvpair<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x<span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_1<span class="op">,</span> x<span class="op">.</span>_2<span class="op">.</span>_1<span class="op">,</span> x<span class="op">.</span>_2<span class="op">.</span>_2<span class="op">))</span></span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb106-1"><a href="#cb106-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> relation2<span class="op">:</span> <span class="ex">Set</span><span class="op">[</span>Tuple3<span class="op">[</span><span class="bu">Int</span><span class="op">,</span> <span class="bu">Int</span><span class="op">,</span> <span class="ex">String</span><span class="op">]]</span> <span class="op">=</span></span>
+<span id="cb106-2"><a href="#cb106-2" aria-hidden="true" tabindex="-1"></a>  kvpair<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x<span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_1<span class="op">,</span> x<span class="op">.</span>_2<span class="op">.</span>_1<span class="op">,</span> x<span class="op">.</span>_2<span class="op">.</span>_2<span class="op">))</span></span></code></pre></div>
 <p>This means that any operation we can do on relations, we can also do
 on KV pairs.</p>
 </div>
@@ -2033,8 +2055,8 @@ preserve the previous version of themselves when they are modified <span class="
 <li>Avoid locking while processing them, so we can process items in
 parallel</li>
 <li>Maintain and share old versions of data</li>
-<li>Seamlessly persist the data on disk</li>
 <li>Reason about changes in the data</li>
+<li>Safe hash table keys</li>
 </ul>
 <p>They come at a cost of increased memory usage (data is never
 deleted).</p>
@@ -2052,15 +2074,15 @@ deleted).</p>
 </div>
 </div>
 <div id="right">
-<div class="sourceCode" id="cb113"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> xs <span class="op">=</span> <span class="ex">TreeSet</span><span class="op">[</span><span class="bu">Char</span><span class="op">](</span><span class="ch">&#39;a&#39;</span><span class="op">,</span> <span class="ch">&#39;b&#39;</span><span class="op">,</span></span>
-<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a>                       <span class="ch">&#39;c&#39;</span><span class="op">,</span> <span class="ch">&#39;d&#39;</span><span class="op">,</span></span>
-<span id="cb113-3"><a href="#cb113-3" aria-hidden="true" tabindex="-1"></a>                       <span class="ch">&#39;g&#39;</span><span class="op">,</span> <span class="ch">&#39;f&#39;</span><span class="op">,</span></span>
-<span id="cb113-4"><a href="#cb113-4" aria-hidden="true" tabindex="-1"></a>                       <span class="ch">&#39;h&#39;</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> xs <span class="op">=</span> <span class="ex">TreeSet</span><span class="op">[</span><span class="bu">Char</span><span class="op">](</span><span class="ch">&#39;a&#39;</span><span class="op">,</span> <span class="ch">&#39;b&#39;</span><span class="op">,</span></span>
+<span id="cb107-2"><a href="#cb107-2" aria-hidden="true" tabindex="-1"></a>                       <span class="ch">&#39;c&#39;</span><span class="op">,</span> <span class="ch">&#39;d&#39;</span><span class="op">,</span></span>
+<span id="cb107-3"><a href="#cb107-3" aria-hidden="true" tabindex="-1"></a>                       <span class="ch">&#39;g&#39;</span><span class="op">,</span> <span class="ch">&#39;f&#39;</span><span class="op">,</span></span>
+<span id="cb107-4"><a href="#cb107-4" aria-hidden="true" tabindex="-1"></a>                       <span class="ch">&#39;h&#39;</span><span class="op">)</span></span></code></pre></div>
 <p><code>xs</code> is looks like a regular mutable tree here. We can
 share it between 2 threads, without worrying about updates.</p>
 <p>The difference of immutability is apparent only when we try to insert
 a new node <code>e</code>.</p>
-<div class="sourceCode" id="cb114"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> ys <span class="op">=</span> xs <span class="op">++</span> <span class="ex">TreeSet</span><span class="op">[</span><span class="bu">Char</span><span class="op">](</span><span class="ch">&#39;e&#39;</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> ys <span class="op">=</span> xs <span class="op">++</span> <span class="ex">TreeSet</span><span class="op">[</span><span class="bu">Char</span><span class="op">](</span><span class="ch">&#39;e&#39;</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
 <div id="data-structures-in-scala" class="section level2 unnumbered">
