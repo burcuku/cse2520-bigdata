@@ -11,7 +11,7 @@
 
 <meta name="author" content="Georgios Gousios" />
 
-<meta name="date" content="2023-10-10" />
+<meta name="date" content="2023-10-11" />
 
 <title>Spark SQL</title>
 
@@ -501,7 +501,7 @@ display: none;
 
 <h1 class="title toc-ignore">Spark SQL</h1>
 <h4 class="author">Georgios Gousios</h4>
-<h4 class="date">10 October 2023</h4>
+<h4 class="date">11 October 2023</h4>
 
 </div>
 
@@ -696,16 +696,16 @@ implementation, as long as they share a key.</p>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>department <span class="op">=</span> sqlContext<span class="op">.</span>read<span class="op">.</span><span class="fu">jdbc</span><span class="op">(</span><span class="st">&quot;jdbc:mysql://company/departments&quot;</span><span class="op">)</span></span>
 <span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
 <span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>people<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>people<span class="op">.</span>age <span class="op">&gt;</span> <span class="dv">30</span><span class="op">).</span>\</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>       <span class="fu">join</span><span class="op">(</span>department<span class="op">,</span> <span class="fu">people</span><span class="op">(</span>deptId<span class="op">)</span> <span class="op">===</span> <span class="fu">department</span><span class="op">(</span>id<span class="op">)</span></span></code></pre></div>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a>       <span class="fu">join</span><span class="op">(</span>department<span class="op">,</span> <span class="fu">people</span><span class="op">(</span><span class="st">&quot;deptId&quot;</span><span class="op">)</span> <span class="op">===</span> <span class="fu">department</span><span class="op">(</span><span class="st">&quot;id&quot;</span><span class="op">)</span></span></code></pre></div>
 <p>All types of joins are supported:</p>
 <ul>
 <li>Left outer:</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>people<span class="op">.</span><span class="fu">join</span><span class="op">(</span>department<span class="op">,</span> <span class="fu">people</span><span class="op">(</span>deptId<span class="op">)</span> <span class="op">===</span> <span class="fu">department</span><span class="op">(</span>id<span class="op">),</span> <span class="st">&quot;leftouter&quot;</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a>people<span class="op">.</span><span class="fu">join</span><span class="op">(</span>department<span class="op">,</span> <span class="fu">people</span><span class="op">(</span><span class="st">&quot;deptId&quot;</span><span class="op">)</span> <span class="op">===</span> <span class="fu">department</span><span class="op">(</span><span class="st">&quot;id&quot;</span><span class="op">),</span> <span class="st">&quot;leftouter&quot;</span><span class="op">)</span></span></code></pre></div>
 <ul>
 <li>Full outer:</li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>people<span class="op">.</span><span class="fu">join</span><span class="op">(</span>department<span class="op">,</span> <span class="fu">people</span><span class="op">(</span>deptId<span class="op">)</span> <span class="op">===</span> <span class="fu">department</span><span class="op">(</span>id<span class="op">),</span> <span class="st">&quot;fullouter&quot;</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a>people<span class="op">.</span><span class="fu">join</span><span class="op">(</span>department<span class="op">,</span> <span class="fu">people</span><span class="op">(</span><span class="st">&quot;deptId&quot;</span><span class="op">)</span> <span class="op">===</span> <span class="fu">department</span><span class="op">(</span><span class="st">&quot;id&quot;</span><span class="op">),</span> <span class="st">&quot;fullouter&quot;</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div id="grouping-and-aggregations" class="section level2 unnumbered">
 <h2 class="unnumbered">Grouping and Aggregations</h2>
@@ -755,21 +755,31 @@ following tree:</p>
 <span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>            <span class="fu">Literal</span><span class="op">(</span><span class="dv">4</span><span class="op">))</span></span></code></pre></div>
 <p>Catalyst knows 10s (100s?) such optimizations. The purpose is to
 minimize work done when the query is evaluated on real data.</p>
-</div>
-<div id="code-generation" class="section level2 unnumbered">
-<h2 class="unnumbered">Code generation</h2>
-<p>Given an expression tree and a context (the Dataframe), Catalyst
-exploits Scala’s compiler <a href="https://docs.scala-lang.org/overviews/quasiquotes/intro.html">ability</a>
-to manipulate ASTs as Strings.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="kw">def</span> <span class="fu">compile</span><span class="op">(</span>node<span class="op">:</span> <span class="ex">Node</span><span class="op">):</span> AST <span class="op">=</span> node <span class="cf">match</span> <span class="op">{</span></span>
-<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>  <span class="cf">case</span> <span class="fu">Literal</span><span class="op">(</span>value<span class="op">)</span> <span class="op">=&gt;</span> q<span class="st">&quot;$value&quot;</span></span>
-<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>  <span class="cf">case</span> <span class="ex">Attribute</span><span class="op">(</span>name<span class="op">)</span> <span class="op">=&gt;</span> q<span class="st">&quot;row.get($name)&quot;</span></span>
-<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>  <span class="cf">case</span> <span class="fu">GreaterThan</span><span class="op">(</span>left<span class="op">,</span> right<span class="op">)</span> <span class="op">=&gt;</span></span>
-<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>        q<span class="st">&quot;${compile(left)} &gt; ${compile(right)}&quot;</span></span>
-<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
-<p>The previous expression tree is converted (roughly!) to</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>df<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>row <span class="op">=&gt;</span> row<span class="op">.</span><span class="fu">get</span><span class="op">(</span><span class="st">&quot;team_size&quot;</span><span class="op">)</span> <span class="op">&gt;</span> <span class="dv">4</span><span class="op">)</span></span></code></pre></div>
-<p>and gets compiled at runtime to JVM code.</p>
+<!--
+## Code generation {- }
+
+Given an expression tree and a context (the Dataframe), Catalyst exploits
+Scala's compiler [ability](https://docs.scala-lang.org/overviews/quasiquotes/intro.html)
+to manipulate ASTs as Strings.
+
+```scala
+def compile(node: Node): AST = node match {
+  case Literal(value) => q"$value"
+  case Attribute(name) => q"row.get($name)"
+  case GreaterThan(left, right) =>
+        q"${compile(left)} > ${compile(right)}"
+}
+```
+
+The previous expression tree is converted (roughly!) to
+
+```scala
+df.filter(row => row.get("team_size") > 4)
+```
+
+and gets compiled at runtime to JVM code.
+
+-->
 </div>
 <div id="deriving-an-execution-plan" class="section level2 unnumbered">
 <h2 class="unnumbered">Deriving an execution plan</h2>
