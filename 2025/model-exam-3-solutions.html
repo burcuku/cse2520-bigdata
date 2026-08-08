@@ -9,10 +9,10 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Burcu Kulahcioglu Ozkan and Diomidis Spinellis" />
+<meta name="author" content="Georgios Gousios" />
 
 
-<title>CSE2520: Big Data Processing, 2026</title>
+<title>CSE2520: Exam Nov 2019</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -220,31 +220,110 @@ ul.task-list{list-style: none;}
 
 
 
-
-
-
 <style type="text/css">
-
-div.csl-bib-body { }
-div.csl-entry {
-clear: both;
+code {
+white-space: pre;
 }
-.hanging div.csl-entry {
-margin-left:2em;
-text-indent:-2em;
-}
-div.csl-left-margin {
-min-width:2em;
-float:left;
-}
-div.csl-right-inline {
-margin-left:2em;
-padding-left:1em;
-}
-div.csl-indent {
-margin-left: 2em;
+.sourceCode {
+overflow: visible;
 }
 </style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
 
 <style type="text/css">.reveal .slides {
 text-align: left;
@@ -346,17 +425,23 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+content: "";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "\e258";
-font-family: 'Glyphicons Halflings';
+content: "";
 border: none;
+}
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "";
+font-family: 'Glyphicons Halflings';
+display: inline-block;
+padding: 10px;
+border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -397,396 +482,458 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">CSE2520: Big Data Processing, 2026</h1>
-<h4 class="author">Burcu Kulahcioglu Ozkan and Diomidis Spinellis</h4>
+<h1 class="title toc-ignore">CSE2520: Exam Nov 2019</h1>
+<h4 class="author">Georgios Gousios</h4>
+<h4 class="date">6 Nov 2019</h4>
 
 </div>
 
 
-<div id="general-description" class="section level2">
-<h2>General description</h2>
-<p>The term “Big Data” describes datasets that are either too big or
-change too fast or both to be processed on a single computer.</p>
-<p>Big Data Processing provides an introduction to systems used to
-process Big Data. The main focus of the course is understanding the
-underpinnings of, programming and engineering big data systems;
-initially, the course explores general programming primitives that span
-across big data systems and touches upon distributed systems. Then, the
-course examines in detail the implementation of data analysis algorithms
-in Spark, in the context of batch processing applications, and Flink, in
-the context of streaming applications.</p>
-</div>
-<div id="learning-objectives" class="section level2">
-<h2>Learning objectives</h2>
-<p>After the end of the course, all students should be able to:</p>
+<div id="instructions" class="section level1">
+<h1>Instructions</h1>
 <ul>
-<li>Apply basic data processing operations (filtering, folding,
-projecting, etc)<br />
-</li>
-<li>Explain basic techniques (vector clocks, consensus) in distributed
-systems<br />
-</li>
-<li>Explain basic data management techniques in distributed
-databases<br />
-</li>
-<li>Explain the major components of batch processing systems<br />
-</li>
-<li>Create batch algorithms for novel (unseen) practical problems<br />
-</li>
-<li>Explain the difference between iterative/non-iterative
-algorithms<br />
-</li>
-<li>Explain basic graph algorithms and their implementation batch
-processing systems<br />
-</li>
-<li>Describe in which scenaria streaming algorithms are most
-applicable<br />
-</li>
-<li>Apply basic streaming algorithms to practical problems</li>
+<li><p>Fill in your answers on a separate answer sheet that will be
+automatically processed. Before you start, write down your name and
+student number on that sheet. <strong>Failure to do any of the above
+will result in the grade 0!</strong></p></li>
+<li><p>Use the provided paper for notes etc. Don’t write notes on the
+exam paper or the answer sheet.</p></li>
+<li><p>Given <span class="math inline">\(C\)</span> correct answers and
+<span class="math inline">\(W\)</span> wrong answers, the grade <span class="math inline">\(G\)</span> will be determined by the follow
+formula: <span class="math display">\[
+G = \frac{C - \frac{W}{3}}{40} \times 10, G &gt; 0
+\]</span></p></li>
+<li><p><em>Not</em> answering a question (i.e. leaving it blank) is not
+considered either a <em>correct</em> on an <em>incorrect</em>
+answer.</p></li>
+<li><p>For each question, there is only one answer that is
+correct.</p></li>
 </ul>
+<p>You have <strong>150</strong> minutes (2.5 hours): <em>Good
+Luck!</em></p>
+<p><strong>For some answers that could have been missinterpreted due to
+language ambiguities, 2 options are marked as accepted</strong></p>
 </div>
-<div id="course-organization" class="section level2">
-<h2>Course organization</h2>
+<div id="exam-questions" class="section level1">
+<h1>Exam questions</h1>
+<ol style="list-style-type: decimal">
+<li><p>Consensus algorithms (e.g., Paxos or Raft):</p>
+<ol style="list-style-type: decimal">
+<li>enable 2 nodes to decide on something</li>
+<li>work by replicating state machines <strong>&lt;—</strong></li>
+<li>are based on vector clocks</li>
+<li>enable a distributed system to agree on a common time</li>
+</ol></li>
+<li><p>A GFS chunkserver/HDFS datanode is responsible to:</p>
+<ol style="list-style-type: decimal">
+<li>Store filesystem path information</li>
+<li>Split the data into partitions</li>
+<li>Store data partitions <strong>&lt;—</strong></li>
+<li>Replicate the data onto multiple disks</li>
+</ol></li>
+<li><p>Which of the following is the computation order of applying
+<code>reduceL</code> to a list of 10 integers with the ‘+’ operator?</p>
+<ol style="list-style-type: decimal">
+<li>(((((((((0 + 1) + 2) + 3) + 4) + 5) + 6) + 7) + 8) + 9)
+<strong>&lt;—</strong></li>
+<li>(((1 + 2) + (3 + 4)) + 5) + (((6 + 7) + (8 + 9)) + 0)</li>
+<li>(1 + (2 + (3 + (4 + (5 + (6 + (7 + (8 + (9 + 0)))))))))</li>
+<li>(1 + 2) + (3 + 4) + (5 + 6) + (7 + 8) + (9 + 0)</li>
+</ol></li>
+<li><p>We need to calculate the average temperature of the last 10
+minutes every 30 minutes from a stream of measurements taken every
+minute. What type of window do we need to use?</p>
+<ol style="list-style-type: decimal">
+<li>Sliding window</li>
+<li>Tumbling window</li>
+<li>Jumping window <strong>&lt;—</strong></li>
+<li>Session window</li>
+</ol></li>
+<li><p>We have the following datasets:</p>
 <ul>
-<li><p><strong>5 ECTS</strong>: This means that you need to devote at
-least 140 hours of study for this course.</p></li>
-<li><p><strong>Online meetings</strong>: The course consists of 12
-2-hour meetings. You are not required, but you are <strong>strongly
-encouraged</strong>, to attend.</p></li>
-<li><p><strong>Homework</strong>: In the homework assignments, you will
-have to write code or reply to open questions. You will always work in
-pairs.</p></li>
-<li><p><strong>Groups</strong>: The students are responsible to form
-pairs and communicate them to the course TAs, by registering them to
-Weblab.</p></li>
-<li><p><strong>Labs</strong>: 4 hours per week, designed to help you
-work together and get support from teaching assistants.</p></li>
-<li><p><strong>Teaching Assistants</strong>: Teaching assistants will be
-available during lab hours to provide your with feedback on your
-assignments. Do be active in asking questions, but don’t expect them to
-provide you with solutions.</p></li>
-</ul>
-</div>
-<div id="contents-and-tentative-schedule" class="section level2">
-<h2>Contents and tentative schedule</h2>
-<table>
-<colgroup>
-<col width="5%" />
-<col width="8%" />
-<col width="37%" />
-<col width="13%" />
-<col width="34%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Week</th>
-<th align="left">Date</th>
-<th align="left">Topic</th>
-<th align="left">Teacher</th>
-<th align="left">Assignment (Deadline)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">31/8</td>
-<td align="left"><a href="course-intro.html">Course introduction</a>, <a href="big-data.html">Big and Fast data</a>, <a href="intro-to-langs.html">Intro to course PL</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">2/9</td>
-<td align="left"><a href="prog-big-data.html">Programming for Big Data
-(1): Basic data types, FP in a nutshell</a></td>
-<td align="left">BKO</td>
-<td align="left">FP (26/9)</td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">7/9</td>
-<td align="left"><a href="ds-cmd-line.html">Data Engineering on the
-Command Line (1)</a>, <a href="https://www.spinellis.gr/unix/utools-en-90.pdf">Diomidis’s
-slides</a></td>
-<td align="left">DS</td>
-<td align="left"><!--(https://brightspace.tudelft.nl/d2l/le/content/399744/viewContent/2324723/View)--></td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">9/9</td>
-<td align="left"><a href="ds-cmd-line.html">Data Engineering on the
-Command Line (2)</a>, <a href="https://www.spinellis.gr/unix/utools-en-90.pdf">Diomidis’s
-slides</a></td>
-<td align="left">DS</td>
-<td align="left">Unix (3/10)</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="left">14/9</td>
-<td align="left"><a href="prog-big-data.html">Programming for Big Data
-(2): Enumerating datasets</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="left">16/9</td>
-<td align="left"><a href="dist-systems.html">Distributed
-Systems</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="left">21/9</td>
-<td align="left"><a href="dist-databases.html">Distributed
-Databases</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="left">23/9</td>
-<td align="left"><a href="dist-fs.html">Distributed Filesystems</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">28/9</td>
-<td align="left"><a href="spark.html">Spark: RDDs and Pair RDDs</a></td>
-<td align="left">BKO</td>
-<td align="left">Spark (24/10)</td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="left">30/9</td>
-<td align="left"><a href="spark.html">Spark Internals</a>, <a href="spark-datasets.html">Spark SQL</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">6</td>
-<td align="left">5/10</td>
-<td align="left"><a href="graphs.html">Graph Processing</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="left">7/10</td>
-<td align="left"><em>No lecture</em></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">7</td>
-<td align="left">12/10</td>
-<td align="left"><a href="streaming.html">Stream processing</a></td>
-<td align="left">BKO</td>
-<td align="left">Flink (01/11)</td>
-</tr>
-<tr class="even">
-<td align="left">7</td>
-<td align="left">14/10</td>
-<td align="left"><a href="streaming.html">Stream processing
-systems</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"><a href="recap.html">Recap</a></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody>
-</table>
-<!--| 8 | 20/10 | Guest Lecture by [Maciej Gorywoda](https://blog.jetbrains.com/author/maciej-gorywoda-jetbrains-com/), JetBrains: Functional Programming in Scala  | Guest Lecture | ||-->
-<!--| 8 | 25/10 | _No lecture_ |  | ||
-| 9 | 1/11 | [Recap](recap.html) | | || -->
-<!--, [Answers to recap questions](https://docs.google.com/document/d/1BpVzfK1AfAt9q8PtKAVM8XhHzCp2QHpOzeTl6pLexbo) (Quintin van Leersum and Mikhail Epifanov)-->
-<!--| 8 | 20/10 | [Recap](recap.html) *(no lecture)* |  | ||-->
-<p>The schedule is subject to small changes during the term.</p>
-<p>You can access the websites of the previous edition <a href="https://burcuku.github.io/cse2520-bigdata/2025/">here</a>. The
-lecture notes are based on the lectures taught by <a href="http://gousiosg.org">Georgios Gousios</a> in 2017-2020.</p>
-<div id="teachers" class="section level3">
-<h3>Teachers</h3>
-<ul>
-<li><strong>BKO</strong>: <a href="https://burcuku.github.io/home">Burcu
-Kulahcioglu Ozkan</a></li>
-<li><strong>DS</strong>: <a href="http://www.spinellis.gr/">Diomidis
-Spinellis</a></li>
-</ul>
-<p>The lab work is supervised by <a href="https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/software-technology/computer-science-engineering-teaching-team/people/thomas-overklift-vaupel-klein">Thomas
-Overklift</a>.</p>
-</div>
-</div>
-<div id="online-resources" class="section level2">
-<h2>Online resources</h2>
-<p>Portions of this course have been converted to online educational
-material by other TU Delft teachers. Please take a look at the following
-EdX MOOCs / ProfEds:</p>
-<ul>
-<li><a href="https://www.edx.org/course/unix-tools-data-software-and-production-engineering">Unix
-Tools: Data, Software and Production Engineering</a>, by Diomidis
-Spinellis</li>
-<li><a href="https://online-learning.tudelft.nl/courses/introduction-to-functional-programming-for-big-data-processing/">Introduction
-to Functional Programming for Big Data Processing</a>, by Jan
-Rellermeyer</li>
-<li><a href="https://online-learning.tudelft.nl/courses/taming-big-data-streams-real-time-data-processing-at-scale/">Taming
-Big Data Streams: Real-time Data Processing at Scale</a>, by Asterios
-Katsifodimos</li>
-</ul>
-<p>Use them at your discretion to improve your skills.</p>
-<p><strong>(TU Delft only):</strong> You can find the Collegerama
-recordings from 2019 <a href="https://collegerama.tudelft.nl/Mediasite/Showcase/bsc-cse/Channel/cse2520">here</a>.
-Please note that the course contents have slightly changed, so do not
-base your exam studying on the old lectures.</p>
-</div>
-<div id="assignments" class="section level2">
-<h2>Assignments</h2>
-<p>You can find the course assignments on Brightspace and linked through
-this page.</p>
-<p><strong>All assignments are mandatory.</strong></p>
-<p>For submission, we will use <a href="https://weblab.tudelft.nl/">Weblab</a>. The course name is
-<strong>CSE2520: Big Data Processing</strong></p>
-<ul>
-<li>You need to signup to enroll and also declare your pairs</li>
-<li>All the assignments have deadlines</li>
-<li>Feedback and grading is automatic: the results are available on
-Weblab.</li>
-<li>Technical support: ask the Mattermost channel
-<ul>
-<li>If no feedback after 1 hour: DO ASK THE TAs.</li>
+<li><p><code>A</code> =&gt; All the cars currently traveling through an
+intersection.</p></li>
+<li><p><code>B</code> =&gt; All the cars that have been parked in a
+garage for the last 3 months.</p>
+<ol style="list-style-type: decimal">
+<li>Both datasets are unbounded data sets</li>
+<li>Both datasets are bounded data sets</li>
+<li><code>A</code> is an unbounded data set and <code>B</code> is a
+bounded data set <strong>&lt;—</strong></li>
+<li><code>A</code> is a bounded data set and <code>B</code> is an
+unbounded data set</li>
+</ol></li>
 </ul></li>
+<li><p>What kind of stream will be produced by the following Flink code
+snippet:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>dataStream<span class="op">.</span><span class="fu">map</span><span class="op">(</span>c <span class="op">=&gt;</span> <span class="op">(</span>c<span class="op">.</span>id<span class="op">,</span> <span class="dv">1</span><span class="op">)).</span><span class="fu">keyBy</span><span class="op">(</span>x <span class="op">=&gt;</span> x<span class="op">.</span>_1<span class="op">).</span><span class="fu">sum</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Stream of the sums per ID <strong>&lt;—</strong></li>
+<li>Stream with a single number (the total sum)</li>
+<li>Stream of increasing integers</li>
+<li>Runtime Exception</li>
+</ol></li>
+<li><p>Which of the following best describes synchronous
+replication?</p>
+<ol style="list-style-type: decimal">
+<li>The master reports success after its cache has been flushed.</li>
+<li>The master reports success after a configurable number of slaves
+have confirmed writes. <strong>&lt;—</strong></li>
+<li>The master reports success after a write was committed to its own
+disk.</li>
+<li>The master reports success after a read operation on its own disk
+results in the same outcome as a read operation on the disk of any of
+the slaves.</li>
+</ol></li>
+<li><p>Which of the following is true about Lamport timestamps and
+vector clocks?</p>
+<ol style="list-style-type: decimal">
+<li>Lamport timestamps and vector clocks both maintain total causal
+orders</li>
+<li>To use Lamport timestamps or vector clocks, each node in a system
+needs to maintain a vector of size N, where N is the total number of
+nodes in the system</li>
+<li>They both guarantee that if LP/VC(a) &lt; LP/VC(b) for event a and
+b, then a must happen before b</li>
+<li>Both guarantee that messages will arrive in order</li>
+</ol></li>
+</ol>
+<p><strong>This question only had wrong answers, so it was
+removed</strong></p>
+<ol start="9" style="list-style-type: decimal">
+<li><p>What is the correct function signature for
+<code>leftOuterJoin</code> on Spark RDDs?</p>
+<ol style="list-style-type: decimal">
+<li><code>RDD[(K,V)].leftOuterJoin(other: RDD[(K, W)]): RDD[(K, (Option[V], W))]</code></li>
+<li><code>RDD[(K,V)].leftOuterJoin(other: RDD[(K, W)]): RDD[(K, (Option[V], Option[W]))]</code></li>
+<li><code>RDD[(K,V)].leftOuterJoin(other: RDD[(K, W)]): RDD[(K, (V, W))]</code></li>
+<li><code>RDD[(K,V)].leftOuterJoin(other: RDD[(K, W)]): RDD[(K, (V, Option[W]))]</code>
+<strong>&lt;—</strong></li>
+</ol></li>
+<li><p>Which of the following function(s) is/are higher order?</p>
+<ul>
+<li><span class="math inline">\(A(a: Z, b: X) \rightarrow
+X\)</span></li>
+<li><span class="math inline">\(B(a:[T], x:T \rightarrow V) \rightarrow
+[V]\)</span></li>
+<li><span class="math inline">\(C(a: T, f: V) \rightarrow
+T\)</span></li>
 </ul>
-<p>The student groups must submit each assignment before 23:59 on the
-day of the deadline.</p>
-<p><strong>Late submission</strong>: All submissions must be handed in
-time, with no exceptions. Any late submission will be discarded and will
-be graded with 0. In case of <em>provable</em> sickness, please contact
-the course teacher to arrange a case-specific deadline.</p>
-</div>
-<div id="assessment" class="section level2">
-<h2>Assessment</h2>
+<ol style="list-style-type: decimal">
+<li>Only A</li>
+<li>A and B</li>
+<li>A and C</li>
+<li>Only B <strong>&lt;—</strong></li>
+</ol></li>
+<li><p>Which higher order function does the following signature
+correspond to? <span class="math display">\[
+  (xs: [A], f: (A, B) \rightarrow B, acc: B): B
+\]</span></p>
+<ol style="list-style-type: decimal">
+<li><code>foldL</code></li>
+<li><code>reduceByKey</code></li>
+<li><code>foldR</code> <strong>&lt;—</strong></li>
+<li><code>zip</code></li>
+</ol></li>
+<li><p>Which of the following statements about Watermarks in stream
+processing systems is <strong>not</strong> correct.</p>
+<ol style="list-style-type: decimal">
+<li>The timestamp of the watermark signifies that all events carrying a
+timestamp up to the watermark timestamp should have arrived.</li>
+<li>Watermarks allow events that are out of order to be processed as
+long as the event arrives before the first watermark that has a later
+event-time than the event itself. <strong>&lt;—</strong></li>
+<li>A watermark can trigger multiple tumbling windows at once.</li>
+<li>The session gaps for session windows do not depend on what
+watermarks are used.</li>
+</ol></li>
+<li><p>Given that <strong>t</strong> is the timestamp an event is
+processed by a stream processor, <em>event time skew</em> is:</p>
+<ol style="list-style-type: decimal">
+<li><strong>t−s</strong>, where <strong>s</strong> is the timestamp of
+the latest event processed. <strong>&lt;—</strong></li>
+<li><strong>t−s</strong>, where <strong>s</strong> is the timestamp when
+the last window trigger was fired.</li>
+<li><strong>t−s</strong>, where <strong>s</strong> is the timestamp of
+the first event processed.</li>
+<li><strong>t−s</strong>, where <strong>s</strong> is the timestamp of
+the actual timestamp of an event.</li>
+</ol></li>
+<li><p>Which of the following is <strong>not</strong> a replication
+architecture:</p>
+<ol style="list-style-type: decimal">
+<li>Master - Master</li>
+<li>Leaderless</li>
+<li>Master - Slave</li>
+<li>Eventually consistent <strong>&lt;—</strong></li>
+</ol></li>
+<li><p>Which of the following statements is <strong>false</strong>? In
+the context of Big Data Processing, ETL pipelines:</p>
+<ol style="list-style-type: decimal">
+<li>Usually feed machine learning systems</li>
+<li>Consume most of the developer/analyst project time</li>
+<li>It is the job of managers and CEOs to design, code and execute them
+<strong>&lt;—</strong></li>
+<li>Require special systems due to high volumes of data</li>
+</ol></li>
+<li><p>Which of the following methods is part of the
+<code>Observer</code> interface, for dealing with push-based data
+consumption?</p>
+<ol style="list-style-type: decimal">
+<li><code>def subscribe(obs: Observer[A]): Unit</code></li>
+<li><code>def onNext(a: A): Unit</code> <strong>&lt;—</strong></li>
+<li><code>def map(f: (A) -&gt; B): [B]</code></li>
+<li><code>def onExit(): Unit</code></li>
+</ol></li>
+<li><p>A transformation in Spark:</p>
+<ol style="list-style-type: decimal">
+<li>Schedules a pipeline run <strong>&lt;—</strong></li>
+<li>Runs a pipeline and reports a result</li>
+<li>Triggers a data shuffle</li>
+<li>Does nothing <strong>&lt;—</strong></li>
+</ol></li>
+<li><p>What is <em>Byzantine fault tolerance</em>?</p>
+<ol style="list-style-type: decimal">
+<li>Resilience against multiple node failures</li>
+<li>Resilience against node failures when electing cluster leaders</li>
+<li>Resilience against suboptimal voting <strong>&lt;—</strong></li>
+<li>A mechanism used by the Byzantine empire for the good of its
+people</li>
+</ol></li>
+<li><p>Consider a cluster of 5 machines running HDFS (1 namenode, 4
+datanodes). Each node in the cluster has a total of 1TB hard disk space
+and 128GB of main memory available. The cluster uses a block-size of 64
+MB and a replication factor of 3. The master maintains 100 bytes of
+metadata for each 64MB block. Imagine that we upload a 128GB file. How
+much data does each datanode store?</p>
+<ol style="list-style-type: decimal">
+<li>32GB</li>
+<li>64GB</li>
+<li>96GB <strong>&lt;—</strong></li>
+<li>128GB</li>
+</ol></li>
+<li><p>Which of the following statements is <strong>not</strong> true?
+An operating system kernel:</p>
+<ol style="list-style-type: decimal">
+<li>Provides a unified interface to hardware devices</li>
+<li>Is the main library loaded when the computer starts
+<strong>&lt;—</strong></li>
+<li>Contains and runs device drivers</li>
+<li>Splits the computer resources to multiple users</li>
+</ol></li>
+<li><p>When multiple senders/receivers are involved, we need external
+ordering scheme. Which type of order is dependent on “happens before”
+relationships?</p>
+<ol style="list-style-type: decimal">
+<li>Reflexive order</li>
+<li>Total order</li>
+<li>Causal order <strong>&lt;—</strong></li>
+<li>Asymptotic order</li>
+</ol></li>
+<li><p>Which of the following statements about microbatching (in
+streaming systems) is correct?</p>
+<ol style="list-style-type: decimal">
+<li>Every event is processed as soon as it arrives</li>
+<li>The engine buffers events before processing them further
+<strong>&lt;—</strong></li>
+<li>Microbatching allows element-wise operations to be executed per
+event</li>
+<li>Microbatching enables us to process batch data in a streaming
+fashion</li>
+</ol></li>
+<li><p>In the case of Spark, narrow dependencies:</p>
+<ol style="list-style-type: decimal">
+<li>Are expensive, as they require extensive data shuffles</li>
+<li>Represent element-wise operations <strong>&lt;—</strong></li>
+<li>Allow for recalculating parts of the RDD, if a node dies</li>
+<li>Trigger computations</li>
+</ol></li>
+<li><p>What is the correct function signature for reduce on Spark
+RDDs?</p>
+<ol style="list-style-type: decimal">
+<li><code>RDD[A].reduce(f: (A,B) -&gt; B)</code></li>
+<li><code>RDD[A].reduce(f: (A,A) -&gt; A)</code>
+<strong>&lt;—</strong></li>
+<li><code>RDD[A].reduce(init: B, seqOp: (A, B) -&gt; A, combOp: (B, B) -&gt; B)</code></li>
+<li><code>RDD[A].reduce(init:A, f: (A,A) -&gt; A)</code></li>
+</ol></li>
+<li><p>Vector clocks</p>
+<ol style="list-style-type: decimal">
+<li>enable us to establish <em>partial causal ordering</em> of events
+<strong>&lt;—</strong></li>
+<li>require space <span class="math inline">\(O(n^2)\)</span> for <span class="math inline">\(n\)</span> processes</li>
+<li>given 2 events A and B, enable us to determine which one happened
+first <strong>&lt;—</strong></li>
+<li>are a protocol for replicating time machines</li>
+</ol></li>
+<li><p>Choose the correct implementation of the <code>Monad</code>
+interface in Scala:</p>
+<ol style="list-style-type: decimal">
+<li><div class="sourceCode" id="cb2"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">trait</span> Monad<span class="op">[</span>M<span class="op">[</span>_<span class="op">]]</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> <span class="dt">unit</span><span class="op">[</span>S<span class="op">](</span>a<span class="op">:</span> S<span class="op">)</span> <span class="op">:</span> M<span class="op">[</span>S<span class="op">]</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> flatMap<span class="op">[</span>S<span class="op">,</span> T<span class="op">]</span> <span class="op">(</span>m<span class="op">:</span> M<span class="op">[</span>S<span class="op">],</span> f<span class="op">:</span> S <span class="op">=&gt;</span> M<span class="op">[</span>T<span class="op">])</span> <span class="op">:</span> Monad<span class="op">[</span>T<span class="op">]</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span></code></pre></div>
+<strong>&lt;—</strong></li>
+<li><div class="sourceCode" id="cb3"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>      <span class="kw">trait</span> Monad<span class="op">[</span>M<span class="op">[</span>_<span class="op">]]</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> <span class="dt">unit</span><span class="op">[</span>S<span class="op">](</span>a<span class="op">:</span> S<span class="op">)</span> <span class="op">:</span> M<span class="op">[</span>S<span class="op">]</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">def</span> map<span class="op">[</span>T<span class="op">]</span> <span class="op">(</span>m<span class="op">:</span> M<span class="op">[</span>S<span class="op">],</span> f<span class="op">:</span> S <span class="op">=&gt;</span> M<span class="op">[</span>T<span class="op">])</span> <span class="op">:</span> Monad<span class="op">[</span>T<span class="op">]</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>      <span class="op">}</span></span></code></pre></div></li>
+<li><div class="sourceCode" id="cb4"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>   <span class="kw">trait</span> Monad<span class="op">[</span>M<span class="op">[</span>_<span class="op">]]</span> <span class="op">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>     <span class="kw">def</span> map<span class="op">[</span>T<span class="op">]</span> <span class="op">(</span>m<span class="op">:</span> M<span class="op">[</span>S<span class="op">],</span> f<span class="op">:</span> S <span class="op">=&gt;</span> M<span class="op">[</span>T<span class="op">])</span> <span class="op">:</span> Monad<span class="op">[</span>T<span class="op">]</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>     <span class="kw">def</span> reduce<span class="op">[</span>T<span class="op">,</span>B<span class="op">](</span>init<span class="op">:</span> B<span class="op">,</span> f<span class="op">:</span> <span class="op">(</span>B<span class="op">,</span>T<span class="op">)</span> <span class="op">=&gt;</span> M<span class="op">[</span>B<span class="op">]):</span> Monad<span class="op">[</span>B<span class="op">]</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>   <span class="op">}</span></span></code></pre></div></li>
+<li><div class="sourceCode" id="cb5"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>   <span class="kw">trait</span> Monad<span class="op">[</span>M<span class="op">[</span>_<span class="op">]]</span> <span class="op">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>     <span class="kw">def</span> map<span class="op">[</span>T<span class="op">]</span> <span class="op">(</span>m<span class="op">:</span> M<span class="op">[</span>S<span class="op">],</span> f<span class="op">:</span> S <span class="op">=&gt;</span> M<span class="op">[</span>T<span class="op">])</span> <span class="op">:</span> Monad<span class="op">[</span>T<span class="op">]</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>     <span class="kw">def</span> flatMap<span class="op">[</span>S<span class="op">,</span> T<span class="op">]</span> <span class="op">(</span>m<span class="op">:</span> M<span class="op">[</span>S<span class="op">],</span> f<span class="op">:</span> S <span class="op">=&gt;</span> M<span class="op">[</span>T<span class="op">])</span> <span class="op">:</span> T</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>   <span class="op">}</span></span></code></pre></div></li>
+</ol></li>
+<li><p>An (in-memory) immutable data structure:</p>
+<ol style="list-style-type: decimal">
+<li>Updates values in place when updates are requested by the
+client</li>
+<li>Can be safely shared across multiple machines</li>
+<li>Can be safely shared across multiple threads
+<strong>&lt;—</strong></li>
+<li>None of the above</li>
+</ol></li>
+<li><p>What is <em>eventual consistency</em>?</p>
+<ol style="list-style-type: decimal">
+<li>At any time, the system is linearisable</li>
+<li>At any time, concurrent reads from any node return the same
+values</li>
+<li>If writes stop, all reads will return the same value after a while
+<strong>&lt;—</strong></li>
+<li>If writes stop, a distributed system will become consistent</li>
+</ol></li>
+<li><p>Immutability enables us to:</p>
+<ol style="list-style-type: decimal">
+<li>Modify data with multiple threads</li>
+<li>Create classes that do not change</li>
+<li>Provide safe access to shared data in memory
+<strong>&lt;—</strong></li>
+<li>All the above</li>
+</ol></li>
+<li><p>Which higher order function does the following code snippet
+correspond to:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  <span class="kw">def</span> f<span class="op">[</span>A<span class="op">](</span>xs<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">],</span> ys<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>B<span class="op">])</span> <span class="op">:</span> <span class="ex">List</span><span class="op">[(</span>A<span class="op">,</span> B<span class="op">)]</span> <span class="op">=</span> <span class="op">(</span>xs<span class="op">,</span> ys<span class="op">)</span> <span class="cf">match</span> <span class="op">{</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="op">(</span>_<span class="op">,</span> Nil<span class="op">)</span> <span class="op">=&gt;</span> Nil</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="op">(</span>Nil<span class="op">,</span> _<span class="op">)</span> <span class="op">=&gt;</span> Nil</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="op">(</span>a <span class="op">::</span> xss<span class="op">,</span> b <span class="op">::</span> yss<span class="op">)</span> <span class="op">=&gt;</span> <span class="op">(</span>a<span class="op">,</span> b<span class="op">)</span> <span class="op">::</span> <span class="fu">f</span><span class="op">(</span>xss<span class="op">,</span> yss<span class="op">)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li><code>foldL</code></li>
+<li><code>reduceR</code></li>
+<li><code>scanL</code></li>
+<li><code>zip</code> <strong>&lt;—</strong></li>
+</ol></li>
+<li><p>Given the following value in Scala:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> statement <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="ex">List</span><span class="op">(</span><span class="st">&quot;some&quot;</span><span class="op">,</span> <span class="st">&quot;questions&quot;</span><span class="op">),</span> <span class="ex">List</span><span class="op">(</span><span class="st">&quot;are&quot;</span><span class="op">,</span> <span class="st">&quot;difficult&quot;</span><span class="op">))</span></span></code></pre></div>
+<p>which of the following sequences of function calls would converted it
+to the string: <strong>“some questions are difficult”</strong></p>
+<ol style="list-style-type: decimal">
+<li><code>statement.flatMap(x =&gt; x).flatten</code></li>
+<li><code>statement.flatten.reduce((a, b) =&gt; a + &quot; &quot; + b)</code>
+<strong>&lt;—</strong></li>
+<li><code>statement.foldLeft(List[String]())((x : List[String], y : List[String]) =&gt; x ::: y)</code></li>
+<li><code>statement.reduceByValue(_ + _)</code></li>
+</ol></li>
+<li><p>What does Amdahl’s law prescribe?</p>
+<ol style="list-style-type: decimal">
+<li>A way to determine how many processors we need</li>
+<li>A way to compute the theoretical speedup a program get when using
+multiple CPUs <strong>&lt;—</strong></li>
+<li>A way to compute what portion of a program is parallel</li>
+<li>A way to determine whether we need to scale up or out</li>
+</ol></li>
+<li><p>Multi-leader systems have issues with write conflicts. Which of
+the following is the most plausible way of resolving them?</p>
+<ol style="list-style-type: decimal">
+<li>Maintain a write lock. Only one client at any moment can acquire
+it.</li>
+<li>Use Lamport timestamps: this will help determine the order of
+incoming writes.</li>
+<li>Report conflicts to clients and let clients handle them.
+<strong>&lt;—</strong></li>
+<li>Move conflicting writes to another cluster leader.</li>
+</ol></li>
+<li><p>A Unix pipe (denoted by <code>|</code>) enables us to:</p>
+<ol style="list-style-type: decimal">
+<li>Move text from the input of a command to the output of another
+command</li>
+<li>Copy data from one location on the hard drive to another</li>
+<li>Move structured records between two commands</li>
+<li>Move unstructured data between two commands
+<strong>&lt;—</strong></li>
+</ol></li>
+<li><p>Which of the following statements are true?</p>
 <ul>
-<li><p>Lab assignments (20%): Grade calculated as mean grade for all
-assignments. There is no minimum grade per individual assignment. If you
-don’t submit an assignment, or the submission is late, you will get a 0.
-Each assignment counts for 25% of the lab part. The final lab grade has
-a minimum of 5.</p></li>
-<li><p>Written Exam (80%): Closed-book exam. Minimum grade: 5</p></li>
+<li><ol style="list-style-type: lower-alpha">
+<li>The C in ACID and CAP mean the same thing</li>
+</ol></li>
+<li><ol start="2" style="list-style-type: lower-alpha">
+<li>Big data engineering is concerned with building pipelines, while big
+data analytics is concerned with discovering patterns, so we could say
+that big data analytics is the same as machine learning (ML), which also
+involves discovering patterns</li>
+</ol></li>
 </ul>
-<div id="example-exam-material" class="section level4">
-<h4>Example exam material</h4>
-<ul>
-<li><a href="model-exam.html">Model exam 1</a>, <a href="model-exam-solutions.html">solutions</a></li>
-<li><a href="model-exam-2.html">Model exam 2</a>, <a href="model-exam-2-solutions.html">solutions 2</a></li>
-</ul>
-</div>
-</div>
-<div id="resit-policy" class="section level2">
-<h2>Resit policy</h2>
-<p>There will be an exam resit during Q2/3. You are allowed to transfer
-your assignment grade to the resit <strong>as a whole</strong>.</p>
-<p>If the final assignment grade is in between 4 and 5.7, one of the
-previously submitted assignments can be repaired.</p>
-<p>Partial grades (assignments or exam) cannot be transferred to
-subsequent years.</p>
-<p>Disclaimer: information may change depending on unforeseen
-circumstances or measures (see: TER).</p>
-</div>
-<div id="course-resources" class="section level2">
-<h2>Course resources</h2>
-<ul>
-<li>Online lab sessions every Monday afternoon (no lab on the first
-week)
-<ul>
-<li>Ask questions about the next assignment</li>
-<li>Ask questions about your grades</li>
-</ul></li>
-<li>You are welcome to join the BDP 2026-2027 Mattermost team (link to
-the channel will be shared).
-<!-- (https://mattermost.tudelft.nl/signup_user_complete/?id=u47xqdqem7yiipqnt3uswjmzqc&md=link&sbr=su). -->
-<ul>
-<li>General questions can be asked here. Questions specific to your
-solutions should be asked during the lab</li>
-<li>TAs won’t always be active; don’t expect answers outside of lab
-hours</li>
-<li>You are recommended to help each other, but refrain from sharing
-solutions (this is considered fraud)</li>
-<li>All group members are responsible for the submission of a group
-assignment. Piggybacking is considered fraud.</li>
-<li>Be nice :)</li>
-</ul></li>
-</ul>
-<hr />
-<p>The course, by design, touches upon various current technologies; as
-such, there is no single source of truth. The following is an indicative
-list of resources where more information can be found. If you were to
-buy a single book about this course, we recommend <span class="citation">[1]</span>.</p>
-</div>
-<div id="bibliography" class="section level2">
-<h2>Bibliography</h2>
-<div id="refs" class="references csl-bib-body">
-<div id="ref-Klepp17" class="csl-entry">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">M.
-Kleppmann, <em>Designing data-intensive applications</em>. O’Reilly
-Media, Inc., 2017.</div>
-</div>
-<div id="ref-Lasko17" class="csl-entry">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">J.
-Laskowski, <span>“Mastering apache spark 2,”</span> 2017. [Online].
-Available: <a href="https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details">https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details</a>.</div>
-</div>
-<div id="ref-Ryza15" class="csl-entry">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">S.
-Ryza, U. Laserson, S. Owen, and J. Wills, <em>Advanced analytics with
-spark: Patterns for learning from data at scale</em>. O’Reilly Media,
-Inc., 2015.</div>
-</div>
-<div id="ref-Karau15" class="csl-entry">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">H.
-Karau, A. Konwinski, P. Wendell, and M. Zaharia, <em>Learning spark:
-Lightning-fast big data analysis</em>. O’Reilly Media, Inc., 2015.</div>
-</div>
-<div id="ref-Karau17" class="csl-entry">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">H.
-Karau and R. Warren, <em>High performance spark</em>. O’Reilly Media,
-Inc., 2017.</div>
-</div>
-<div id="ref-Chamb17" class="csl-entry">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">B.
-Chambers and M. Zaharia, <em>Spark: The definitive guide</em>. O’Reilly
-Media, Inc., 2017.</div>
-</div>
-<div id="ref-Akida18" class="csl-entry">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">T.
-Akidau, S. Chernyak, and R. Lax, <em>Streaming systems: The what, where,
-when, and how of large-scale data processing</em>. O’Reilly, 2018.</div>
-</div>
-<div id="ref-Martel15" class="csl-entry">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">C.
-Martella, R. Shaposhnik, D. Logothetis, and S. Harenberg, <em>Practical
-graph analytics with apache <span>G</span>iraph</em>. Springer,
-2015.</div>
-</div>
-<div id="ref-Robin15" class="csl-entry">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">I.
-Robinson, J. Webber, and E. Eifrem, <em>Graph databases: New
-opportunities for connected data</em>. Springer, 2015.</div>
-</div>
-</div>
-</div>
-<div id="copyright" class="section level2">
-<h2>Copyright</h2>
-<!--![Creative Commons](../images/ccsa.png)-->
-<p>This work is (c) 2017, 2018, 2019, 2020, 2021 - onwards by TU Delft
-and Georgios Gousios and licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
-Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>
-license.</p>
+<ol style="list-style-type: decimal">
+<li>Only a is true</li>
+<li>Only b is true</li>
+<li>Both are true</li>
+<li>Both are false <strong>&lt;—</strong></li>
+</ol></li>
+<li><p>Given that <code>file.txt</code> is a two column CSV file, what
+does the following Unix command do?</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  <span class="ex">$</span> sed <span class="at">-e</span> <span class="st">&#39;s/^\(.*\),\(.*\)$/\2 \1/&#39;</span> <span class="op">&lt;</span> file.txt <span class="kw">|</span> <span class="fu">sort</span></span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Changes the order of columns in a 2 column file, then sorts by
+column 1 <strong>&lt;—</strong></li>
+<li>Concatenates columns 1 and 2, then sorts by column 2
+<strong>&lt;—</strong></li>
+<li>Removes columns 1 and 2, then sort by whatever remains</li>
+<li>Appends columns 1 and 2 to <code>file.txt</code> and then sorts
+it</li>
+</ol></li>
+<li><p>For our new budget-constrained startup, called DelayedGram, we
+are building an application that serves millions of cat videos to
+millions of users in parallel. Which architecture would be more
+suitable?</p>
+<ol style="list-style-type: decimal">
+<li>A queue that stores and forwards a user request to a centralized
+database, which also contains the videos</li>
+<li>A web server that serves videos using a cloud-based object store
+(e.g. Amazon S3) <strong>&lt;—</strong></li>
+<li>A stream processor that registers the request and starts streaming
+video bytes to the user</li>
+<li>An in-memory cache that holds all videos, served by a web
+server</li>
+</ol></li>
+<li><p>Why do Spark RDDs contain lineage information?</p>
+<ol style="list-style-type: decimal">
+<li>To enable fault tolerance <strong>&lt;—</strong></li>
+<li>To increase parallelism</li>
+<li>To deal with issues in data partitioning</li>
+<li>To enable distributed snapshots</li>
+</ol></li>
+<li><p>Which one of the following statements is true, in the context of
+Unix?</p>
+<ol style="list-style-type: decimal">
+<li><code>awk</code> enables <code>reduce</code>-like operations
+<strong>&lt;—</strong></li>
+<li><code>sed</code> enables <code>reduce</code>-like operations</li>
+<li><code>xargs</code> enables <code>reduce</code>-like operations</li>
+<li><code>ls</code> enables <code>reduce</code>-like operations</li>
+</ol></li>
+<li><p>Which of the following RDD API calls is a performance killer in
+Spark?</p>
+<ol style="list-style-type: decimal">
+<li><code>reduceByKey</code></li>
+<li><code>keyBy</code></li>
+<li><code>groupByKey</code> <strong>&lt;—</strong></li>
+<li><code>aggregatebyKey</code></li>
+</ol></li>
+</ol>
 </div>
 
 

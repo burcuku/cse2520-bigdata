@@ -9,10 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Burcu Kulahcioglu Ozkan and Diomidis Spinellis" />
+<meta name="author" content="Georgios Gousios" />
 
+<meta name="date" content="2018-01-29" />
 
-<title>CSE2520: Big Data Processing, 2026</title>
+<title>TI2736-B: Exam January 2018</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -220,31 +221,110 @@ ul.task-list{list-style: none;}
 
 
 
-
-
-
 <style type="text/css">
-
-div.csl-bib-body { }
-div.csl-entry {
-clear: both;
+code {
+white-space: pre;
 }
-.hanging div.csl-entry {
-margin-left:2em;
-text-indent:-2em;
-}
-div.csl-left-margin {
-min-width:2em;
-float:left;
-}
-div.csl-right-inline {
-margin-left:2em;
-padding-left:1em;
-}
-div.csl-indent {
-margin-left: 2em;
+.sourceCode {
+overflow: visible;
 }
 </style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
 
 <style type="text/css">.reveal .slides {
 text-align: left;
@@ -346,17 +426,23 @@ overflow-y: auto;
 border: 1px solid #ddd;
 border-radius: 4px;
 }
-.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-content: "\e259";
+.tabset-dropdown > .nav-tabs > li.active:before {
+content: "";
 font-family: 'Glyphicons Halflings';
 display: inline-block;
 padding: 10px;
 border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-content: "\e258";
-font-family: 'Glyphicons Halflings';
+content: "";
 border: none;
+}
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+content: "";
+font-family: 'Glyphicons Halflings';
+display: inline-block;
+padding: 10px;
+border-right: 1px solid #ddd;
 }
 .tabset-dropdown > .nav-tabs > li.active {
 display: block;
@@ -397,396 +483,546 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">CSE2520: Big Data Processing, 2026</h1>
-<h4 class="author">Burcu Kulahcioglu Ozkan and Diomidis Spinellis</h4>
+<h1 class="title toc-ignore">TI2736-B: Exam January 2018</h1>
+<h4 class="author">Georgios Gousios</h4>
+<h4 class="date">29 January 2018</h4>
 
 </div>
 
 
-<div id="general-description" class="section level2">
-<h2>General description</h2>
-<p>The term “Big Data” describes datasets that are either too big or
-change too fast or both to be processed on a single computer.</p>
-<p>Big Data Processing provides an introduction to systems used to
-process Big Data. The main focus of the course is understanding the
-underpinnings of, programming and engineering big data systems;
-initially, the course explores general programming primitives that span
-across big data systems and touches upon distributed systems. Then, the
-course examines in detail the implementation of data analysis algorithms
-in Spark, in the context of batch processing applications, and Flink, in
-the context of streaming applications.</p>
-</div>
-<div id="learning-objectives" class="section level2">
-<h2>Learning objectives</h2>
-<p>After the end of the course, all students should be able to:</p>
+<p><strong>Name:</strong></p>
+<p><strong>Student Number:</strong></p>
+<p><strong>BSc CS/TI or minor student?: </strong></p>
+<div id="instructions" class="section level1">
+<h1>Instructions</h1>
 <ul>
-<li>Apply basic data processing operations (filtering, folding,
-projecting, etc)<br />
-</li>
-<li>Explain basic techniques (vector clocks, consensus) in distributed
-systems<br />
-</li>
-<li>Explain basic data management techniques in distributed
-databases<br />
-</li>
-<li>Explain the major components of batch processing systems<br />
-</li>
-<li>Create batch algorithms for novel (unseen) practical problems<br />
-</li>
-<li>Explain the difference between iterative/non-iterative
-algorithms<br />
-</li>
-<li>Explain basic graph algorithms and their implementation batch
-processing systems<br />
-</li>
-<li>Describe in which scenaria streaming algorithms are most
-applicable<br />
-</li>
-<li>Apply basic streaming algorithms to practical problems</li>
+<li>Before you start, write down your name and student number on this
+page. On all the following pages, write your student number at the top
+of the page.</li>
+<li>When you are asked to provide implementations, you can provide them
+in either Scala or Python.</li>
+<li>The use of material (book, slides, laptop, etc.) during the exam is
+not allowed.</li>
+<li>Use the provided paper for notes etc. Don’t write on the exam
+paper.</li>
+<li><strong>Write clearly!</strong> If your writing cannot be
+deciphered, it will not be considered for grading.</li>
 </ul>
+<p>The total number of points is <strong>75</strong>. You have
+<strong>180</strong> minutes: <em>Good Luck!</em></p>
 </div>
-<div id="course-organization" class="section level2">
-<h2>Course organization</h2>
+<div id="open-questions" class="section level1">
+<h1>Open Questions</h1>
+<p>Please provide <strong>brief</strong> answers to the following
+questions. Be precice!</p>
+<div id="data-processing-with-fp" class="section level2">
+<h2>Data processing with FP</h2>
+<ol style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Describe what is a <em>relation</em> and
+what is a <em>Key/Value pair</em> and comment on their differences.</li>
+</ol>
+<p><em>Relation</em>: a set of tuples which share the same type(s). Keys
+are always unique. <em>Key/Value pair</em>: a 2-tuple where the key is
+the identifier for the value. It can contain duplicate keys.</p>
+<p>Differences: in a relation the types are predefined while using
+key/value pairs this is not the case. This makes key-value pairs more
+flexible while relations provide more (type) safety.</p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Provide the function signatures for the following functions of
+the type <code>List[A]</code>.</p>
 <ul>
-<li><p><strong>5 ECTS</strong>: This means that you need to devote at
-least 140 hours of study for this course.</p></li>
-<li><p><strong>Online meetings</strong>: The course consists of 12
-2-hour meetings. You are not required, but you are <strong>strongly
-encouraged</strong>, to attend.</p></li>
-<li><p><strong>Homework</strong>: In the homework assignments, you will
-have to write code or reply to open questions. You will always work in
-pairs.</p></li>
-<li><p><strong>Groups</strong>: The students are responsible to form
-pairs and communicate them to the course TAs, by registering them to
-Weblab.</p></li>
-<li><p><strong>Labs</strong>: 4 hours per week, designed to help you
-work together and get support from teaching assistants.</p></li>
-<li><p><strong>Teaching Assistants</strong>: Teaching assistants will be
-available during lab hours to provide your with feedback on your
-assignments. Do be active in asking questions, but don’t expect them to
-provide you with solutions.</p></li>
-</ul>
-</div>
-<div id="contents-and-tentative-schedule" class="section level2">
-<h2>Contents and tentative schedule</h2>
-<table>
-<colgroup>
-<col width="5%" />
-<col width="8%" />
-<col width="37%" />
-<col width="13%" />
-<col width="34%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Week</th>
-<th align="left">Date</th>
-<th align="left">Topic</th>
-<th align="left">Teacher</th>
-<th align="left">Assignment (Deadline)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">31/8</td>
-<td align="left"><a href="course-intro.html">Course introduction</a>, <a href="big-data.html">Big and Fast data</a>, <a href="intro-to-langs.html">Intro to course PL</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">2/9</td>
-<td align="left"><a href="prog-big-data.html">Programming for Big Data
-(1): Basic data types, FP in a nutshell</a></td>
-<td align="left">BKO</td>
-<td align="left">FP (26/9)</td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">7/9</td>
-<td align="left"><a href="ds-cmd-line.html">Data Engineering on the
-Command Line (1)</a>, <a href="https://www.spinellis.gr/unix/utools-en-90.pdf">Diomidis’s
-slides</a></td>
-<td align="left">DS</td>
-<td align="left"><!--(https://brightspace.tudelft.nl/d2l/le/content/399744/viewContent/2324723/View)--></td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">9/9</td>
-<td align="left"><a href="ds-cmd-line.html">Data Engineering on the
-Command Line (2)</a>, <a href="https://www.spinellis.gr/unix/utools-en-90.pdf">Diomidis’s
-slides</a></td>
-<td align="left">DS</td>
-<td align="left">Unix (3/10)</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="left">14/9</td>
-<td align="left"><a href="prog-big-data.html">Programming for Big Data
-(2): Enumerating datasets</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="left">16/9</td>
-<td align="left"><a href="dist-systems.html">Distributed
-Systems</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="left">21/9</td>
-<td align="left"><a href="dist-databases.html">Distributed
-Databases</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="left">23/9</td>
-<td align="left"><a href="dist-fs.html">Distributed Filesystems</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">28/9</td>
-<td align="left"><a href="spark.html">Spark: RDDs and Pair RDDs</a></td>
-<td align="left">BKO</td>
-<td align="left">Spark (24/10)</td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="left">30/9</td>
-<td align="left"><a href="spark.html">Spark Internals</a>, <a href="spark-datasets.html">Spark SQL</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">6</td>
-<td align="left">5/10</td>
-<td align="left"><a href="graphs.html">Graph Processing</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="left">7/10</td>
-<td align="left"><em>No lecture</em></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">7</td>
-<td align="left">12/10</td>
-<td align="left"><a href="streaming.html">Stream processing</a></td>
-<td align="left">BKO</td>
-<td align="left">Flink (01/11)</td>
-</tr>
-<tr class="even">
-<td align="left">7</td>
-<td align="left">14/10</td>
-<td align="left"><a href="streaming.html">Stream processing
-systems</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"><a href="recap.html">Recap</a></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody>
-</table>
-<!--| 8 | 20/10 | Guest Lecture by [Maciej Gorywoda](https://blog.jetbrains.com/author/maciej-gorywoda-jetbrains-com/), JetBrains: Functional Programming in Scala  | Guest Lecture | ||-->
-<!--| 8 | 25/10 | _No lecture_ |  | ||
-| 9 | 1/11 | [Recap](recap.html) | | || -->
-<!--, [Answers to recap questions](https://docs.google.com/document/d/1BpVzfK1AfAt9q8PtKAVM8XhHzCp2QHpOzeTl6pLexbo) (Quintin van Leersum and Mikhail Epifanov)-->
-<!--| 8 | 20/10 | [Recap](recap.html) *(no lecture)* |  | ||-->
-<p>The schedule is subject to small changes during the term.</p>
-<p>You can access the websites of the previous edition <a href="https://burcuku.github.io/cse2520-bigdata/2025/">here</a>. The
-lecture notes are based on the lectures taught by <a href="http://gousiosg.org">Georgios Gousios</a> in 2017-2020.</p>
-<div id="teachers" class="section level3">
-<h3>Teachers</h3>
-<ul>
-<li><strong>BKO</strong>: <a href="https://burcuku.github.io/home">Burcu
-Kulahcioglu Ozkan</a></li>
-<li><strong>DS</strong>: <a href="http://www.spinellis.gr/">Diomidis
-Spinellis</a></li>
-</ul>
-<p>The lab work is supervised by <a href="https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/software-technology/computer-science-engineering-teaching-team/people/thomas-overklift-vaupel-klein">Thomas
-Overklift</a>.</p>
-</div>
-</div>
-<div id="online-resources" class="section level2">
-<h2>Online resources</h2>
-<p>Portions of this course have been converted to online educational
-material by other TU Delft teachers. Please take a look at the following
-EdX MOOCs / ProfEds:</p>
-<ul>
-<li><a href="https://www.edx.org/course/unix-tools-data-software-and-production-engineering">Unix
-Tools: Data, Software and Production Engineering</a>, by Diomidis
-Spinellis</li>
-<li><a href="https://online-learning.tudelft.nl/courses/introduction-to-functional-programming-for-big-data-processing/">Introduction
-to Functional Programming for Big Data Processing</a>, by Jan
-Rellermeyer</li>
-<li><a href="https://online-learning.tudelft.nl/courses/taming-big-data-streams-real-time-data-processing-at-scale/">Taming
-Big Data Streams: Real-time Data Processing at Scale</a>, by Asterios
-Katsifodimos</li>
-</ul>
-<p>Use them at your discretion to improve your skills.</p>
-<p><strong>(TU Delft only):</strong> You can find the Collegerama
-recordings from 2019 <a href="https://collegerama.tudelft.nl/Mediasite/Showcase/bsc-cse/Channel/cse2520">here</a>.
-Please note that the course contents have slightly changed, so do not
-base your exam studying on the old lectures.</p>
-</div>
-<div id="assignments" class="section level2">
-<h2>Assignments</h2>
-<p>You can find the course assignments on Brightspace and linked through
-this page.</p>
-<p><strong>All assignments are mandatory.</strong></p>
-<p>For submission, we will use <a href="https://weblab.tudelft.nl/">Weblab</a>. The course name is
-<strong>CSE2520: Big Data Processing</strong></p>
-<ul>
-<li>You need to signup to enroll and also declare your pairs</li>
-<li>All the assignments have deadlines</li>
-<li>Feedback and grading is automatic: the results are available on
-Weblab.</li>
-<li>Technical support: ask the Mattermost channel
-<ul>
-<li>If no feedback after 1 hour: DO ASK THE TAs.</li>
+<li>(<strong>1 point</strong>)
+<code>foldL: foldL(list: List[A], f: (acc: B, x: A) =&gt; B, init: B) : B</code></li>
+<li>(<strong>1 point</strong>)
+<code>reduceR: reduceR(list: List[A], init: B, f: (x: A, acc: B) =&gt; B) : B</code></li>
+<li>(<strong>1 point</strong>)
+<code>flatMap: flatMap(list: List[A], f: A =&gt; List[B]) : List[B]</code></li>
+<li>(<strong>1 point</strong>)
+<code>scan: scan(list: List[A], f: (B, A) =&gt; B, init: B) : List[B]</code></li>
+<li>(<strong>1 point</strong>)
+<code>groupBy: groupBy(list: List[A], f: A =&gt; K) : Map[K, List[A]]</code></li>
 </ul></li>
+<li><p>(<strong>2 points</strong>) Implement <code>groupBy</code> for
+<code>List[A]</code> using <code>foldL</code>.</p></li>
+</ol>
+<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">groupBy</span><span class="op">(</span>list<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">],</span> classifier <span class="op">:</span> <span class="op">(</span>A<span class="op">)</span> <span class="op">=&gt;</span> <span class="ex">String</span><span class="op">))</span> <span class="op">:</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">]]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">helper</span><span class="op">(</span>map <span class="op">:</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">]],</span> item <span class="op">:</span> A<span class="op">)</span> <span class="op">:</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">]]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> key <span class="op">=</span> <span class="fu">classifier</span><span class="op">(</span>item<span class="op">)</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> <span class="op">(</span>map<span class="op">.</span><span class="fu">contains</span><span class="op">(</span>key<span class="op">))</span> <span class="op">{</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="kw">val</span> values<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">]</span> <span class="op">=</span> <span class="op">(</span>map<span class="op">.</span><span class="fu">get</span><span class="op">(</span>key<span class="op">)).</span>get</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> map <span class="op">+</span> <span class="op">(</span>key <span class="op">-&gt;</span> <span class="op">(</span>values <span class="op">:+</span> item<span class="op">))</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> map <span class="op">+</span> <span class="op">(</span>key <span class="op">-&gt;</span> <span class="op">(</span>item <span class="op">::</span> Nil<span class="op">))</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>        <span class="op">}</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">foldL</span><span class="op">(</span>list<span class="op">,</span> <span class="ex">Map</span><span class="op">[</span><span class="ex">String</span><span class="op">,</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">]](),</span> helper<span class="op">)</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ol start="4" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Implement <code>foldL</code> for
+<code>List[A]</code> using <code>foldR</code></li>
+</ol>
+<div class="sourceCode" id="cb2"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">foldL</span><span class="op">(</span>list<span class="op">:</span> <span class="ex">List</span><span class="op">[</span>A<span class="op">],</span> f<span class="op">:</span> <span class="op">(</span>B<span class="op">,</span> A<span class="op">)</span> <span class="op">=&gt;</span> B<span class="op">,</span> init<span class="op">:</span> B<span class="op">)</span> <span class="op">:</span> B <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> functionSwap <span class="op">=</span> <span class="op">(</span>x<span class="op">:</span> A<span class="op">,</span> y<span class="op">:</span> B<span class="op">)</span> <span class="op">=&gt;</span> <span class="fu">f</span><span class="op">(</span>y<span class="op">,</span> x<span class="op">)</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fu">foldR</span><span class="op">(</span>list<span class="op">.</span>reverse<span class="op">,</span> functionSwap<span class="op">,</span> init<span class="op">)</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<ol start="5" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Implement
+<code>leftJoin(xs:[(K, A)], ys:[(K, B)])</code> for KV pairs
+<code>xs</code> and <code>ys</code> where the type <code>K</code>
+signifies the key. What is the return type?</li>
+</ol>
+<div class="sourceCode" id="cb3"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> leftJoin<span class="op">[</span>K<span class="op">,</span>A<span class="op">,</span>B<span class="op">](</span>xs<span class="op">:</span><span class="ex">List</span><span class="op">[(</span>K<span class="op">,</span> A<span class="op">)],</span> ys<span class="op">:</span><span class="ex">List</span><span class="op">[(</span>K<span class="op">,</span> B<span class="op">)])</span> <span class="op">:</span> <span class="ex">List</span><span class="op">[(</span>K<span class="op">,</span> <span class="op">(</span>A<span class="op">,</span> <span class="ex">Option</span><span class="op">[</span>B<span class="op">]))]</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  xs<span class="op">.</span>flatMap <span class="op">{</span> x <span class="op">=&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">val</span> inBoth <span class="op">=</span> ys<span class="op">.</span><span class="fu">filter</span><span class="op">(</span>y <span class="op">=&gt;</span> y<span class="op">.</span>_1 <span class="op">==</span> x<span class="op">.</span>_1<span class="op">)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="op">(</span>inBoth<span class="op">.</span>size <span class="op">&gt;</span> <span class="dv">0</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>      inBoth<span class="op">.</span><span class="fu">map</span><span class="op">(</span>i <span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_1<span class="op">,</span> <span class="op">(</span>x<span class="op">.</span>_2<span class="op">,</span> <span class="bu">Some</span><span class="op">(</span>i<span class="op">.</span>_2<span class="op">))))</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span> <span class="cf">else</span> <span class="op">{</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>      <span class="ex">List</span><span class="op">((</span>x<span class="op">.</span>_1<span class="op">,</span> <span class="op">(</span>x<span class="op">.</span>_2<span class="op">,</span> <span class="bu">None</span><span class="op">)))</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>  <span class="op">}</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> xs <span class="op">=</span> <span class="ex">List</span><span class="op">((</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">),</span> <span class="op">(</span><span class="dv">2</span><span class="op">,</span><span class="dv">3</span><span class="op">),</span> <span class="op">(</span><span class="dv">1</span><span class="op">,</span><span class="dv">4</span><span class="op">))</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> ys <span class="op">=</span> <span class="ex">List</span><span class="op">((</span><span class="dv">1</span><span class="op">,</span><span class="dv">2</span><span class="op">))</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a><span class="fu">leftJoin</span><span class="op">(</span>xs<span class="op">,</span> ys<span class="op">)</span></span></code></pre></div>
+<ol start="6" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) How would you rewrite (in any language)
+the following 2 examples without side-effects?</li>
+</ol>
+<p>Example 1, in Scala</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> sum <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> <span class="op">(</span>i <span class="op">&lt;-</span> <span class="dv">1</span> to <span class="dv">10</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  sum <span class="op">=</span> sum <span class="op">+</span> i</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> toSum <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">0</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">,</span> <span class="dv">7</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">10</span><span class="op">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> summed <span class="op">=</span> toSum<span class="op">.</span><span class="fu">reduce</span><span class="op">(</span>_ <span class="op">+</span> _<span class="op">)</span></span></code></pre></div>
+<p>Example 2, in Python</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> {}</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]:</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  key <span class="op">=</span> i <span class="op">%</span> <span class="dv">2</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> key <span class="kw">in</span> x.keys():</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    x[key].append(i)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    x[key] <span class="op">=</span> [i]</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> toGroup <span class="op">=</span> <span class="ex">List</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span><span class="op">)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>toGroup<span class="op">.</span><span class="fu">groupBy</span><span class="op">(</span>x <span class="op">=&gt;</span> x <span class="op">%</span> <span class="dv">2</span><span class="op">)</span></span></code></pre></div>
+<ol start="7" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Describe what monads are and why they
+are useful. Give an example of a useful monad application.</li>
+</ol>
+<p>They are a design pattern which define how functions can be used
+together to build generic types. They wrap values, that can only be
+transformed to another monad. They are useful to deal with
+side-effects.</p>
+<p>Example: <code>Option[T]</code>, which deals with null values, or
+<code>Future[T]</code>, which masks network latency.</p>
+</div>
+<div id="distributed-systemsdatabasesfilesystems" class="section level2">
+<h2>Distributed systems/databases/filesystems</h2>
+<ol start="8" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) What is Amdahl’s law and what are its
+implications?</li>
+</ol>
+<p>Amdahl’s law is a formula to calculate the maximum improvement if you
+parallelize part of the system. It gives us an upper bound to the
+speedup that we can obtain through parallelization. One implication is
+that performance gains through paralellization drop sharply even if a
+very small fraction (e.g. 5%) of our computation is serial.</p>
+<ol start="9" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) What is the CAP conjecture and what are
+its implications?</li>
+</ol>
+<p>The CAP conjecture consists of the following guarantees: -
+Consistency - Availability - Partition tolerance</p>
+<p>It is speculated that a distributed system can only provide 2 of
+those 3 guarantees. In practice, a system can provide all 3 guarantees,
+while the network is working.</p>
+<ol start="10" style="list-style-type: decimal">
+<li>(<strong>3 points</strong>) What are the 3 typical replication
+architectures? Describe one benefit and one drawback for each.</li>
+</ol>
+<pre><code>master-slave:
+    benefit: Reads can scale
+    drawback: Bad availability if the master crashes
+master-master:
+    benefit: If a master crashes, there are still other masters available. Writes can scale.
+    drawback: Might run in conflicts with concurrent writes
+leaderless replication:
+    benefit: Node failures can be tolerated more easily
+    drawback: Client has to handle synchronization conflicts</code></pre>
+<ol start="11" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Explain the guarantees given by each
+“letter” in an ACID compliant database.</li>
+</ol>
+<pre><code>A: atomic: a transaction is either completely executed or not.
+
+C: consistent: a transaction will bring the database from one valid state to another.
+
+I: isolated: transactions cannot read data from each other
+(depending on the isolation level) if a transaction is not yet completed.
+
+D: durable: if a transaction has been committed, it will be remain so, even after a crash or error</code></pre>
+<ol start="12" style="list-style-type: decimal">
+<li>(<strong>6 points</strong>) Consider a cluster of 6 machines running
+HDFS (1 namenode, 5 datanodes). Each node in the cluster has a total of
+1TB hard disk space and 2GB of main memory available. The cluster uses a
+block-size of 64 MB and a replication factor of 3. The master maintains
+100 bytes of metadata for each 64MB block. Imagine that we upload a
+128GB file.</li>
+</ol>
+<ul>
+<li>(<strong>2 points</strong>) How much data does each datanode
+store?</li>
 </ul>
-<p>The student groups must submit each assignment before 23:59 on the
-day of the deadline.</p>
-<p><strong>Late submission</strong>: All submissions must be handed in
-time, with no exceptions. Any late submission will be discarded and will
-be graded with 0. In case of <em>provable</em> sickness, please contact
-the course teacher to arrange a case-specific deadline.</p>
-</div>
-<div id="assessment" class="section level2">
-<h2>Assessment</h2>
+<pre><code>data * replication factor = 128 * 3 = 384GB total data
+384 / 5 datanodes = 76.8GB per data node
+(76.8 * 1000MB) / 64MB = 1200 blocks</code></pre>
 <ul>
-<li><p>Lab assignments (20%): Grade calculated as mean grade for all
-assignments. There is no minimum grade per individual assignment. If you
-don’t submit an assignment, or the submission is late, you will get a 0.
-Each assignment counts for 25% of the lab part. The final lab grade has
-a minimum of 5.</p></li>
-<li><p>Written Exam (80%): Closed-book exam. Minimum grade: 5</p></li>
+<li>(<strong>4 points</strong>) Describe how HDFS will store the
+file.</li>
 </ul>
-<div id="example-exam-material" class="section level4">
-<h4>Example exam material</h4>
+<p>The client requests the NameNode to write a file. The NameNode
+provides the address of the DataNodes. Then the client directly writes
+the data on the DataNodes. Internally the DataNodes will replicate the
+data 3 times. Once the data is replicated, the DataNode sends an
+acknowledgment to the client.</p>
+<ol start="13" style="list-style-type: decimal">
+<li><p>(<strong>10 points</strong>) You are tasked to design a system
+that reliably delivers messages from one client to another (think
+Whatsapp). The process to deliver a message from client <em>A</em> to
+client <em>B</em> is the following:</p>
+<ol style="list-style-type: decimal">
+<li><em>A</em> writes outgoing messages to a queue</li>
+<li>The system retrieves it from the queue and stores it in a
+database</li>
+<li>The system notifies <em>B</em> that a message is waiting</li>
+<li><em>B</em> connects, retrieves the message and marks it as read
+(let’s ignore read receipts for now)</li>
+</ol></li>
+</ol>
+<p>The system needs to work 24/7 and be resilient to database and queue
+failures. You will be using ready-made databases and queues that support
+replication, sharding and transactions. How would you design it? Discuss
+the advantages and disadvantages of your design decisions.</p>
+<p>This is an open question with no single correct solution. Some
+elements that would lead to a 10 point grade in this question are the
+following:</p>
 <ul>
-<li><a href="model-exam.html">Model exam 1</a>, <a href="model-exam-solutions.html">solutions</a></li>
-<li><a href="model-exam-2.html">Model exam 2</a>, <a href="model-exam-2-solutions.html">solutions 2</a></li>
+<li><p>Ordering of messages only depends on the source (client A);
+therefore, a timestamp-based ordering is enough to guarantee that client
+B sees A’s messages in the correct order. If two messages arrive out of
+order on B, B can just sort them based on the timestamp.</p></li>
+<li><p>Both the queue and the database need to be both highly available
+and high performance. This means that they need to employ replication.
+Multi-master replication can work nicely for the queue as it is write
+intensive and ordering of messages does not need to be maintained within
+the system. The database requires transactional semantics both for
+writing messages and acknoweledgements, so a simpler single-master
+replication scheme might be more suitable.</p></li>
+<li><p>The queue and the database need to co-ordinate writes; to do this
+in a way that no messages are lot between 2 indpendent systems, we need
+to employ <em>2 phase commits</em>.</p></li>
+<li><p>It is difficult to scale millions of clients (B) connected to a
+single database that continuously ask the database whether there are new
+messages for them. So what we need is an Observation read pattern, where
+each client B connects to an intermediate system that sits between the
+database and the client and just maintains an open connection to B. When
+a new message transaction is committed in the database, the database
+notifies the intermediate system about a new message for each client B.
+The notification can happen through, for example, a stored procedure.
+The intermediate system then pushes the new message to B.</p></li>
+<li><p>The intermediate system can also acknoweledge messages to the
+database after it pushes them to B and B acknoweledges receipt. There
+are no transaction requirements as the writes only affect a single
+record.</p></li>
 </ul>
 </div>
+<div id="spark" class="section level2">
+<h2>Spark</h2>
+<p>You are given the following dataset; it contains citation information
+in the IEEE CS format (lines that end with <code>\</code> continue to
+the next line):</p>
+<pre><code>S. Ryza, U. Laserson, S. Owen, and J. Wills, Advanced analytics with spark: \
+ Patterns for learning from data at scale. O’Reilly Media, Inc., 2015.
+H. Karau, A. Konwinski, P. Wendell, and M. Zaharia, Learning spark: \
+  Lightning-fast big data analysis. O’Reilly Media, Inc., 2015.
+B. Chambers and M. Zaharia, Spark: The definitive guide. O’Reilly Media, Inc., 2017.
+M. Kleppmann, Designing data-intensive applications. O’Reilly Media, Inc., 2017.
+H. Karau and R. Warren, High performance spark. O’Reilly Media, Inc., 2017.
+T. H. Cormen, C. E. Leiserson, Ronald L. Rivest, and C. Stein, Introduction \
+  to algorithms (3rd ed.). MIT press, 2009.
+P. Louridas, Real world algorithms. MIT press, 2017.</code></pre>
+<p>The format looks like this:</p>
+<pre><code>author1, author2, ... , authorN, title. publisher, year.</code></pre>
+<ol start="14" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Write code to load the data into an RDD.
+Then, convert the RDD into a DataFrame.</li>
+</ol>
+<div class="sourceCode" id="cb13"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> <span class="fu">parser</span><span class="op">(</span>input<span class="op">:</span> <span class="ex">String</span><span class="op">)</span> <span class="op">:</span> <span class="op">(</span><span class="ex">Array</span><span class="op">[</span><span class="ex">String</span><span class="op">],</span> <span class="ex">String</span><span class="op">,</span> <span class="ex">String</span><span class="op">,</span> <span class="ex">Integer</span><span class="op">)</span> <span class="op">=</span> <span class="op">{</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> authors <span class="op">=</span> input<span class="op">.</span><span class="fu">split</span><span class="op">(</span><span class="st">&quot;,&quot;</span><span class="op">)</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> last2Elements <span class="op">=</span> authors<span class="op">.</span><span class="fu">takeRight</span><span class="op">(</span><span class="dv">2</span><span class="op">)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> titlePublisher <span class="op">=</span> <span class="fu">last2Elements</span><span class="op">(</span><span class="dv">0</span><span class="op">).</span><span class="fu">split</span><span class="op">(</span><span class="st">&quot;.&quot;</span><span class="op">,</span> <span class="dv">2</span><span class="op">)</span> <span class="co">//split on . max 2 elements</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="op">(</span>authors<span class="op">.</span><span class="fu">dropRight</span><span class="op">(</span><span class="dv">2</span><span class="op">),</span> <span class="fu">titlePublisher</span><span class="op">(</span><span class="dv">0</span><span class="op">),</span> <span class="fu">titlePublisher</span><span class="op">(</span><span class="dv">1</span><span class="op">),</span> <span class="fu">last2Elements</span><span class="op">(</span><span class="dv">1</span><span class="op">))</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="kw">val</span> rdd <span class="op">=</span> spark<span class="op">.</span><span class="fu">textFile</span><span class="op">(</span>data<span class="op">).</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=</span> <span class="fu">parser</span><span class="op">(</span>x<span class="op">))</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">//convert to dataframe</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>rdd<span class="op">.</span><span class="fu">toDF</span><span class="op">()</span></span></code></pre></div>
+<ol start="15" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Write a query (in SQL or
+programmatically) to print a list of publisher names along with the
+number of publications in the dataset. For the given dataset, the output
+should look like:</li>
+</ol>
+<pre><code>O’Reilly Media, Inc., 5
+MIT press, 2</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>rdd<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">.</span>_3<span class="op">,</span> <span class="dv">1</span><span class="op">)).</span><span class="fu">reduceByKey</span><span class="op">((</span>a<span class="op">,</span> b<span class="op">)</span> <span class="op">=&gt;</span> a <span class="op">+</span> b<span class="op">).</span><span class="fu">sortBy</span><span class="op">(</span>x <span class="op">=&gt;</span> x<span class="op">.</span>_2<span class="op">,</span> <span class="kw">false</span><span class="op">).</span><span class="fu">collect</span><span class="op">()</span></span></code></pre></div>
+<ol start="16" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Write a query (in SQL or
+programmatically) to find the author with the most publications. In our
+case that should be: <code>M. Zaharia</code>.</li>
+</ol>
+<div class="sourceCode" id="cb16"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>rdd<span class="op">.</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> x<span class="op">.</span>_1<span class="op">).</span><span class="fu">flatMap</span><span class="op">(</span>x <span class="op">=&gt;</span> x<span class="op">).</span><span class="fu">map</span><span class="op">(</span>x <span class="op">=&gt;</span> <span class="op">(</span>x<span class="op">,</span> <span class="dv">1</span><span class="op">)).</span><span class="fu">reduceByKey</span><span class="op">((</span>a<span class="op">,</span> b<span class="op">)</span> <span class="op">=&gt;</span> a <span class="op">+</span> b<span class="op">).</span><span class="fu">sortBy</span><span class="op">(</span>x <span class="op">=&gt;</span> x<span class="op">.</span>_2<span class="op">,</span> <span class="kw">false</span><span class="op">).</span><span class="fu">take</span><span class="op">(</span><span class="dv">1</span><span class="op">)</span></span></code></pre></div>
+<ol start="17" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) In the 2 queries you have writen above,
+which operators cause a data shuffle?</li>
+</ol>
+<div class="sourceCode" id="cb17"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>reduceByKey and sortBy</span></code></pre></div>
+<ol start="18" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Explain how Spark deals with fault
+tolerance.</li>
+</ol>
+<p>Spark uses RDD lineage information to know which partition(s) to
+recompute in case of a node failure.</p>
+<ol start="19" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Explain how Spark schedules jobs on a
+cluster.</li>
+</ol>
+<p>A job is initiated when an action is called on a RDD. The RDD
+dependency graph is then evaluated backwards and a graph of stages is
+build. Each stage consists of multiple tasks. Tasks are scheduled in
+parallel on cluster nodes.</p>
 </div>
-<div id="resit-policy" class="section level2">
-<h2>Resit policy</h2>
-<p>There will be an exam resit during Q2/3. You are allowed to transfer
-your assignment grade to the resit <strong>as a whole</strong>.</p>
-<p>If the final assignment grade is in between 4 and 5.7, one of the
-previously submitted assignments can be repaired.</p>
-<p>Partial grades (assignments or exam) cannot be transferred to
-subsequent years.</p>
-<p>Disclaimer: information may change depending on unforeseen
-circumstances or measures (see: TER).</p>
-</div>
-<div id="course-resources" class="section level2">
-<h2>Course resources</h2>
+<div id="streaming" class="section level2">
+<h2>Streaming</h2>
+<p><em>Only answer the following questions if you are a BSc TI
+student!</em></p>
+<ol start="20" style="list-style-type: decimal">
+<li>(<strong>3 points</strong>) Why do we need streaming windows? What
+is a <em>range</em> and what is a <em>slice</em> in a streaming
+window?</li>
+</ol>
+<p>We need streaming windows to aggregate data on a relevant set of
+data.</p>
 <ul>
-<li>Online lab sessions every Monday afternoon (no lab on the first
-week)
-<ul>
-<li>Ask questions about the next assignment</li>
-<li>Ask questions about your grades</li>
-</ul></li>
-<li>You are welcome to join the BDP 2026-2027 Mattermost team (link to
-the channel will be shared).
-<!-- (https://mattermost.tudelft.nl/signup_user_complete/?id=u47xqdqem7yiipqnt3uswjmzqc&md=link&sbr=su). -->
-<ul>
-<li>General questions can be asked here. Questions specific to your
-solutions should be asked during the lab</li>
-<li>TAs won’t always be active; don’t expect answers outside of lab
-hours</li>
-<li>You are recommended to help each other, but refrain from sharing
-solutions (this is considered fraud)</li>
-<li>All group members are responsible for the submission of a group
-assignment. Piggybacking is considered fraud.</li>
-<li>Be nice :)</li>
-</ul></li>
+<li>Range: The range on which window operations are executed (e.g. 100
+entries, 12 hours)</li>
+<li>Slide: The frequency of the evaluation of a window range.</li>
 </ul>
-<hr />
-<p>The course, by design, touches upon various current technologies; as
-such, there is no single source of truth. The following is an indicative
-list of resources where more information can be found. If you were to
-buy a single book about this course, we recommend <span class="citation">[1]</span>.</p>
+<ol start="21" style="list-style-type: decimal">
+<li>(<strong>3 points</strong>) Say that we have 5 different event
+sources and 20 clients that can consume all of them; briefly describe 3
+ways in which we can connect the sources to the clients, and comment on
+the relative drawbacks of each.</li>
+</ol>
+<ul>
+<li><p><em>direct messaging</em>: send events directly to clients,
+drawback is that both the sources and clients have to be online at the
+same time.</p></li>
+<li><p><em>message brokers</em>: adds some sort of ‘queue’ between
+source and client also functioning as load balancer. drawback is that
+the broker needs to ‘bookkeep’ the events in the queue and this broker
+is not scalable.</p></li>
+<li><p><em>partitioned logs</em>: ‘distributed’ message brokers, so
+easily scalable. Drawback is that using partitioned logs requires a more
+complex setup.</p></li>
+</ul>
 </div>
-<div id="bibliography" class="section level2">
-<h2>Bibliography</h2>
-<div id="refs" class="references csl-bib-body">
-<div id="ref-Klepp17" class="csl-entry">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">M.
-Kleppmann, <em>Designing data-intensive applications</em>. O’Reilly
-Media, Inc., 2017.</div>
-</div>
-<div id="ref-Lasko17" class="csl-entry">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">J.
-Laskowski, <span>“Mastering apache spark 2,”</span> 2017. [Online].
-Available: <a href="https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details">https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details</a>.</div>
-</div>
-<div id="ref-Ryza15" class="csl-entry">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">S.
-Ryza, U. Laserson, S. Owen, and J. Wills, <em>Advanced analytics with
-spark: Patterns for learning from data at scale</em>. O’Reilly Media,
-Inc., 2015.</div>
-</div>
-<div id="ref-Karau15" class="csl-entry">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">H.
-Karau, A. Konwinski, P. Wendell, and M. Zaharia, <em>Learning spark:
-Lightning-fast big data analysis</em>. O’Reilly Media, Inc., 2015.</div>
-</div>
-<div id="ref-Karau17" class="csl-entry">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">H.
-Karau and R. Warren, <em>High performance spark</em>. O’Reilly Media,
-Inc., 2017.</div>
-</div>
-<div id="ref-Chamb17" class="csl-entry">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">B.
-Chambers and M. Zaharia, <em>Spark: The definitive guide</em>. O’Reilly
-Media, Inc., 2017.</div>
-</div>
-<div id="ref-Akida18" class="csl-entry">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">T.
-Akidau, S. Chernyak, and R. Lax, <em>Streaming systems: The what, where,
-when, and how of large-scale data processing</em>. O’Reilly, 2018.</div>
-</div>
-<div id="ref-Martel15" class="csl-entry">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">C.
-Martella, R. Shaposhnik, D. Logothetis, and S. Harenberg, <em>Practical
-graph analytics with apache <span>G</span>iraph</em>. Springer,
-2015.</div>
-</div>
-<div id="ref-Robin15" class="csl-entry">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">I.
-Robinson, J. Webber, and E. Eifrem, <em>Graph databases: New
-opportunities for connected data</em>. Springer, 2015.</div>
+<div id="unix" class="section level2">
+<h2>Unix</h2>
+<p><em>Only answer the following questions if you are a minor
+student!</em></p>
+<ol start="22" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Write a program that given a directory
+of text files, prints the 10 most common words in those files (across
+all files)</li>
+</ol>
+<pre><code>find . -type f |
+xargs cat |
+tr &#39; &#39; &#39;\n&#39; |
+sort |
+uniq -c |
+sort -n |
+tail -n 10</code></pre>
+<p>For the next 2 questions, you are given a CSV file whose contents
+look like the following:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat fileA</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ex">user_id,</span> account_id, balance</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ex">10,</span> 12, 1000</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ex">10,</span> 1, 32</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">12,</span> 122, 5</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> cat fileB</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="ex">account_id,</span> transaction_id, amount</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="ex">12,</span> 332, 21</span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="ex">122,</span> 21, 20</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code></pre></div>
+<ol start="23" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Write a pipeline to find and report
+duplicate lines in <code>fileA</code></li>
+</ol>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> fileA <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span> <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-n</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-s</span> <span class="st">&#39; &#39;</span><span class="kw">|</span><span class="fu">grep</span> <span class="st">&quot;^ [2-9]* .*&quot;</span></span></code></pre></div>
+<ol start="24" style="list-style-type: decimal">
+<li>(<strong>2 points</strong>) Write a pipeline to list all
+transactions per user.</li>
+</ol>
+<pre><code>join -1 2 -2 1 -t &#39;,&#39; &lt;(cat fileA|sed &#39;1d&#39;|sort -n -k 2 -t &#39;,&#39;) &lt;(cat fileB|sed &#39;1d&#39;| sort -n)</code></pre>
 </div>
 </div>
-</div>
-<div id="copyright" class="section level2">
-<h2>Copyright</h2>
-<!--![Creative Commons](../images/ccsa.png)-->
-<p>This work is (c) 2017, 2018, 2019, 2020, 2021 - onwards by TU Delft
-and Georgios Gousios and licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
-Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>
-license.</p>
+<div id="multiple-choice-questions" class="section level1">
+<h1>Multiple choice questions</h1>
+<p>Please select and circle <strong>only one</strong> answer per
+question.</p>
+<ol style="list-style-type: decimal">
+<li><p>(<strong>1 point</strong>) What is the correct function signature
+for reduce on Spark RDDs?</p>
+<ol style="list-style-type: decimal">
+<li><code>RDD[A].reduce(f: (A,B) -&gt; B)</code></li>
+<li><code>RDD[A].reduce(f: (A,A) -&gt; A)</code>
+<strong>&lt;—</strong></li>
+<li><code>RDD[A].reduce(init: B, seqOp: (A, B) -&gt; A, combOp: (B, B) -&gt; B)</code></li>
+<li><code>RDD[A].reduce(init:A, f: (A,A) -&gt; A)</code></li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) Distributed systems:</p>
+<ol style="list-style-type: decimal">
+<li>Share memory</li>
+<li>Share CPUs</li>
+<li>Share networks</li>
+<li>None of the above <strong>&lt;—</strong></li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) Lamport timestamps</p>
+<ol style="list-style-type: decimal">
+<li>enable us to establish <em>total causal ordering</em> of events</li>
+<li>enable us to establish a <em>total order</em> of events</li>
+<li>given 2 events A and B, enable us to determine which one happend
+first</li>
+<li>none of the above <strong>&lt;—</strong></li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) The <code>serializable</code>
+transaction isolation level protects transcations against:</p>
+<ol style="list-style-type: decimal">
+<li>Dirty reads</li>
+<li>Non-repeatable reads</li>
+<li>Phantom reads</li>
+<li>all of the above <strong>&lt;—</strong></li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) Which of the following methods is part
+of the <code>Observer</code> interface, for dealing with push-based data
+consumption?</p>
+<ol style="list-style-type: decimal">
+<li><code>def subscribe(obs: Observer[A]): Unit</code></li>
+<li><code>def onNext(a: A): Unit</code> <strong>&lt;—</strong></li>
+<li><code>def map(f: (A) -&gt; B): [B]</code></li>
+<li><code>def onExit(): Unit</code></li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) An transformation in Spark:</p>
+<ol style="list-style-type: decimal">
+<li>Schedules a pipeline run <strong>&lt;—</strong></li>
+<li>Runs a pipeline and reports a result</li>
+<li>Triggers a data shuffle</li>
+<li>Does nothing</li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) Which of the following is a likely
+computation order of applying <code>reduceR</code> to a list of 10
+integers with the ‘+’ operator?</p>
+<ol style="list-style-type: decimal">
+<li>(((((((((0 + 1) + 2) + 3) + 4) + 5) + 6) + 7) + 8) + 9)</li>
+<li>(((1 + 2) + (3 + 4)) + 5) + (((6 + 7) + (8 + 9)) + 0)</li>
+<li>(1 + (2 + (3 + (4 + (5 + (6 + (7 + (8 + (9 + 0)))))))))
+<strong>&lt;—</strong></li>
+<li>(1 + 2) + (3 + 4) + (5 + 6) + (7 + 8) + (9 + 0)</li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) Collaborative filtering:</p>
+<ol style="list-style-type: decimal">
+<li>Allows us to predict a user’s preferences using his/her previous
+choices</li>
+<li>Allows us to predict a user’s preferences using other similar user’s
+preferences <strong>&lt;—</strong></li>
+<li>Is a technique where swarms of collaborating users inspect and
+filter content before it reaches its destination</li>
+<li>Is used by Google to filter out search results</li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) What is <em>precision</em> in the
+context of Machine Learning? (<span class="math inline">\(TP\)</span> =
+True Positive, <span class="math inline">\(FP\)</span> = False Positive,
+<span class="math inline">\(TN\)</span> = True Negative, <span class="math inline">\(FN\)</span> = False Negative)</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\(\frac{TP}{TP + FP}\)</span>
+<strong>&lt;—</strong></li>
+<li><span class="math inline">\(\frac{TP}{TP + FN}\)</span></li>
+<li><span class="math inline">\(\frac{FP}{FP + TN}\)</span></li>
+<li>None of the above</li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) What is <em>Byzantine fault
+tolerance</em>?</p>
+<ol style="list-style-type: decimal">
+<li>Resilience against multiple node failures</li>
+<li>Resilience against suboptimal voting <strong>&lt;—</strong></li>
+<li>Tolerating node failures when electing cluster leaders</li>
+<li>A mechanism used by the Byzantine empire for the good of its
+people</li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) What is <em>eventual
+consistency</em>?</p>
+<ol style="list-style-type: decimal">
+<li>At any time, the system is linearisable</li>
+<li>At any time, concurrent reads from any node return the same
+values</li>
+<li>If writes stop, all reads will return the same value after a while
+<strong>&lt;—</strong></li>
+<li>If writes stop, a distributed system will become consistent</li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) Which of the following RDD API calls
+is a performance killer in Spark?</p>
+<ol style="list-style-type: decimal">
+<li><code>reduceByKey</code></li>
+<li><code>keyBy</code></li>
+<li><code>groupByKey</code> <strong>&lt;—</strong></li>
+<li><code>aggregatebyKey</code></li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) Copy-on-write is a technique to:</p>
+<ol style="list-style-type: decimal">
+<li>Enable efficient immutable data</li>
+<li>Implement filesystems</li>
+<li>Share read-only buffers</li>
+<li>All the above <strong>&lt;—</strong></li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) What is the correct signature for
+<code>rightOuterJoin</code> on Spark RDDs?</p>
+<ol style="list-style-type: decimal">
+<li><code>RDD[(K,V)].rightOuterJoin(other: RDD[(K, W)]): RDD[(K, (Option[V], W))]</code>
+<strong>&lt;–</strong></li>
+<li><code>RDD[(K,V)].rightOuterJoin(other: RDD[(K, W)]): RDD[(K, (Option[V], Option[W]))]</code></li>
+<li><code>RDD[(K,V)].rightOuterJoin(other: RDD[(K, W)]): RDD[(K, (V, W))]</code></li>
+<li><code>RDD[(K,V)].rightOuterJoin(other: RDD[(K, W)]): RDD[(K, (V, Option[W]))]</code></li>
+</ol></li>
+<li><p>(<strong>1 point</strong>) A GFS chunkserver/HDFS datanode is
+responsible to:</p>
+<ol style="list-style-type: decimal">
+<li>Store filesystem path information</li>
+<li>Split the data into partitions</li>
+<li>Store data partitions <strong>&lt;—</strong></li>
+<li>Replicate the data onto multiple disks</li>
+</ol></li>
+</ol>
 </div>
 
 

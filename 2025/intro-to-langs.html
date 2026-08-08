@@ -9,10 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Burcu Kulahcioglu Ozkan and Diomidis Spinellis" />
+<meta name="author" content="Georgios Gousios" />
 
+<meta name="date" content="2025-08-31" />
 
-<title>CSE2520: Big Data Processing, 2026</title>
+<title>Introduction to the Course’s PLs</title>
 
 <script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
 // be compatible with the behavior of Pandoc < 2.8).
@@ -220,6 +221,107 @@ ul.task-list{list-style: none;}
 
 
 
+<style type="text/css">
+code {
+white-space: pre;
+}
+.sourceCode {
+overflow: visible;
+}
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+{ counter-reset: source-line 0; }
+pre.numberSource code > span
+{ position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+{ content: counter(source-line);
+position: relative; left: -1em; text-align: right; vertical-align: baseline;
+border: none; display: inline-block;
+-webkit-touch-callout: none; -webkit-user-select: none;
+-khtml-user-select: none; -moz-user-select: none;
+-ms-user-select: none; user-select: none;
+padding: 0 4px; width: 4em;
+color: #aaaaaa;
+}
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa; padding-left: 4px; }
+div.sourceCode
+{ }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } 
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.at { color: #7d9029; } 
+code span.bn { color: #40a070; } 
+code span.bu { color: #008000; } 
+code span.cf { color: #007020; font-weight: bold; } 
+code span.ch { color: #4070a0; } 
+code span.cn { color: #880000; } 
+code span.co { color: #60a0b0; font-style: italic; } 
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.do { color: #ba2121; font-style: italic; } 
+code span.dt { color: #902000; } 
+code span.dv { color: #40a070; } 
+code span.er { color: #ff0000; font-weight: bold; } 
+code span.ex { } 
+code span.fl { color: #40a070; } 
+code span.fu { color: #06287e; } 
+code span.im { color: #008000; font-weight: bold; } 
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } 
+code span.kw { color: #007020; font-weight: bold; } 
+code span.op { color: #666666; } 
+code span.ot { color: #007020; } 
+code span.pp { color: #bc7a00; } 
+code span.sc { color: #4070a0; } 
+code span.ss { color: #bb6688; } 
+code span.st { color: #4070a0; } 
+code span.va { color: #19177c; } 
+code span.vs { color: #4070a0; } 
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } 
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -397,386 +499,305 @@ display: none;
 
 
 
-<h1 class="title toc-ignore">CSE2520: Big Data Processing, 2026</h1>
-<h4 class="author">Burcu Kulahcioglu Ozkan and Diomidis Spinellis</h4>
+<h1 class="title toc-ignore">Introduction to the Course’s PLs</h1>
+<h4 class="author">Georgios Gousios</h4>
+<h4 class="date">31 August 2025</h4>
 
 </div>
 
 
-<div id="general-description" class="section level2">
-<h2>General description</h2>
-<p>The term “Big Data” describes datasets that are either too big or
-change too fast or both to be processed on a single computer.</p>
-<p>Big Data Processing provides an introduction to systems used to
-process Big Data. The main focus of the course is understanding the
-underpinnings of, programming and engineering big data systems;
-initially, the course explores general programming primitives that span
-across big data systems and touches upon distributed systems. Then, the
-course examines in detail the implementation of data analysis algorithms
-in Spark, in the context of batch processing applications, and Flink, in
-the context of streaming applications.</p>
-</div>
-<div id="learning-objectives" class="section level2">
-<h2>Learning objectives</h2>
-<p>After the end of the course, all students should be able to:</p>
+<div id="programming-languages-for-big-data-processing" class="section level1">
+<h1>Programming Languages for Big Data Processing</h1>
+<div id="scala-and-python" class="section level2">
+<h2>Scala and Python</h2>
+<p>The <em>de facto</em> languages of Big Data and data science are</p>
 <ul>
-<li>Apply basic data processing operations (filtering, folding,
-projecting, etc)<br />
-</li>
-<li>Explain basic techniques (vector clocks, consensus) in distributed
-systems<br />
-</li>
-<li>Explain basic data management techniques in distributed
-databases<br />
-</li>
-<li>Explain the major components of batch processing systems<br />
-</li>
-<li>Create batch algorithms for novel (unseen) practical problems<br />
-</li>
-<li>Explain the difference between iterative/non-iterative
-algorithms<br />
-</li>
-<li>Explain basic graph algorithms and their implementation batch
-processing systems<br />
-</li>
-<li>Describe in which scenaria streaming algorithms are most
-applicable<br />
-</li>
-<li>Apply basic streaming algorithms to practical problems</li>
+<li><strong>Scala</strong> Mostly used for data intensive systems</li>
+<li><strong>Python</strong> Mostly used for data analytics tasks</li>
 </ul>
-</div>
-<div id="course-organization" class="section level2">
-<h2>Course organization</h2>
+<p>Other languages include</p>
 <ul>
-<li><p><strong>5 ECTS</strong>: This means that you need to devote at
-least 140 hours of study for this course.</p></li>
-<li><p><strong>Online meetings</strong>: The course consists of 12
-2-hour meetings. You are not required, but you are <strong>strongly
-encouraged</strong>, to attend.</p></li>
-<li><p><strong>Homework</strong>: In the homework assignments, you will
-have to write code or reply to open questions. You will always work in
-pairs.</p></li>
-<li><p><strong>Groups</strong>: The students are responsible to form
-pairs and communicate them to the course TAs, by registering them to
-Weblab.</p></li>
-<li><p><strong>Labs</strong>: 4 hours per week, designed to help you
-work together and get support from teaching assistants.</p></li>
-<li><p><strong>Teaching Assistants</strong>: Teaching assistants will be
-available during lab hours to provide your with feedback on your
-assignments. Do be active in asking questions, but don’t expect them to
-provide you with solutions.</p></li>
+<li><strong>Java</strong> The “assembly” of big data systems; the
+language that most big data infrastructure is written into.</li>
+<li><strong>R</strong> The statistician’s tool of choice. Great
+selection of libraries for serious data analytics, great plotting
+tools.</li>
 </ul>
+<p>In our course, we will be using Scala.</p>
 </div>
-<div id="contents-and-tentative-schedule" class="section level2">
-<h2>Contents and tentative schedule</h2>
-<table>
-<colgroup>
-<col width="5%" />
-<col width="8%" />
-<col width="37%" />
-<col width="13%" />
-<col width="34%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th align="left">Week</th>
-<th align="left">Date</th>
-<th align="left">Topic</th>
-<th align="left">Teacher</th>
-<th align="left">Assignment (Deadline)</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1</td>
-<td align="left">31/8</td>
-<td align="left"><a href="course-intro.html">Course introduction</a>, <a href="big-data.html">Big and Fast data</a>, <a href="intro-to-langs.html">Intro to course PL</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">1</td>
-<td align="left">2/9</td>
-<td align="left"><a href="prog-big-data.html">Programming for Big Data
-(1): Basic data types, FP in a nutshell</a></td>
-<td align="left">BKO</td>
-<td align="left">FP (26/9)</td>
-</tr>
-<tr class="odd">
-<td align="left">2</td>
-<td align="left">7/9</td>
-<td align="left"><a href="ds-cmd-line.html">Data Engineering on the
-Command Line (1)</a>, <a href="https://www.spinellis.gr/unix/utools-en-90.pdf">Diomidis’s
-slides</a></td>
-<td align="left">DS</td>
-<td align="left"><!--(https://brightspace.tudelft.nl/d2l/le/content/399744/viewContent/2324723/View)--></td>
-</tr>
-<tr class="even">
-<td align="left">2</td>
-<td align="left">9/9</td>
-<td align="left"><a href="ds-cmd-line.html">Data Engineering on the
-Command Line (2)</a>, <a href="https://www.spinellis.gr/unix/utools-en-90.pdf">Diomidis’s
-slides</a></td>
-<td align="left">DS</td>
-<td align="left">Unix (3/10)</td>
-</tr>
-<tr class="odd">
-<td align="left">3</td>
-<td align="left">14/9</td>
-<td align="left"><a href="prog-big-data.html">Programming for Big Data
-(2): Enumerating datasets</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">3</td>
-<td align="left">16/9</td>
-<td align="left"><a href="dist-systems.html">Distributed
-Systems</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">4</td>
-<td align="left">21/9</td>
-<td align="left"><a href="dist-databases.html">Distributed
-Databases</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">4</td>
-<td align="left">23/9</td>
-<td align="left"><a href="dist-fs.html">Distributed Filesystems</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">5</td>
-<td align="left">28/9</td>
-<td align="left"><a href="spark.html">Spark: RDDs and Pair RDDs</a></td>
-<td align="left">BKO</td>
-<td align="left">Spark (24/10)</td>
-</tr>
-<tr class="even">
-<td align="left">5</td>
-<td align="left">30/9</td>
-<td align="left"><a href="spark.html">Spark Internals</a>, <a href="spark-datasets.html">Spark SQL</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">6</td>
-<td align="left">5/10</td>
-<td align="left"><a href="graphs.html">Graph Processing</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="even">
-<td align="left">6</td>
-<td align="left">7/10</td>
-<td align="left"><em>No lecture</em></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left">7</td>
-<td align="left">12/10</td>
-<td align="left"><a href="streaming.html">Stream processing</a></td>
-<td align="left">BKO</td>
-<td align="left">Flink (01/11)</td>
-</tr>
-<tr class="even">
-<td align="left">7</td>
-<td align="left">14/10</td>
-<td align="left"><a href="streaming.html">Stream processing
-systems</a></td>
-<td align="left">BKO</td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left"></td>
-<td align="left"></td>
-<td align="left"><a href="recap.html">Recap</a></td>
-<td align="left"></td>
-<td align="left"></td>
-</tr>
-</tbody>
-</table>
-<!--| 8 | 20/10 | Guest Lecture by [Maciej Gorywoda](https://blog.jetbrains.com/author/maciej-gorywoda-jetbrains-com/), JetBrains: Functional Programming in Scala  | Guest Lecture | ||-->
-<!--| 8 | 25/10 | _No lecture_ |  | ||
-| 9 | 1/11 | [Recap](recap.html) | | || -->
-<!--, [Answers to recap questions](https://docs.google.com/document/d/1BpVzfK1AfAt9q8PtKAVM8XhHzCp2QHpOzeTl6pLexbo) (Quintin van Leersum and Mikhail Epifanov)-->
-<!--| 8 | 20/10 | [Recap](recap.html) *(no lecture)* |  | ||-->
-<p>The schedule is subject to small changes during the term.</p>
-<p>You can access the websites of the previous edition <a href="https://burcuku.github.io/cse2520-bigdata/2025/">here</a>. The
-lecture notes are based on the lectures taught by <a href="http://gousiosg.org">Georgios Gousios</a> in 2017-2020.</p>
-<div id="teachers" class="section level3">
-<h3>Teachers</h3>
+<div id="scala-and-python-from-10k-feet" class="section level2 unnumbered">
+<h2 class="unnumbered">Scala and Python from 10k feet</h2>
 <ul>
-<li><strong>BKO</strong>: <a href="https://burcuku.github.io/home">Burcu
-Kulahcioglu Ozkan</a></li>
-<li><strong>DS</strong>: <a href="http://www.spinellis.gr/">Diomidis
-Spinellis</a></li>
-</ul>
-<p>The lab work is supervised by <a href="https://www.tudelft.nl/ewi/over-de-faculteit/afdelingen/software-technology/computer-science-engineering-teaching-team/people/thomas-overklift-vaupel-klein">Thomas
-Overklift</a>.</p>
-</div>
-</div>
-<div id="online-resources" class="section level2">
-<h2>Online resources</h2>
-<p>Portions of this course have been converted to online educational
-material by other TU Delft teachers. Please take a look at the following
-EdX MOOCs / ProfEds:</p>
+<li>Both support object orientation, functional programming and
+imperative programming
 <ul>
-<li><a href="https://www.edx.org/course/unix-tools-data-software-and-production-engineering">Unix
-Tools: Data, Software and Production Engineering</a>, by Diomidis
-Spinellis</li>
-<li><a href="https://online-learning.tudelft.nl/courses/introduction-to-functional-programming-for-big-data-processing/">Introduction
-to Functional Programming for Big Data Processing</a>, by Jan
-Rellermeyer</li>
-<li><a href="https://online-learning.tudelft.nl/courses/taming-big-data-streams-real-time-data-processing-at-scale/">Taming
-Big Data Streams: Real-time Data Processing at Scale</a>, by Asterios
-Katsifodimos</li>
-</ul>
-<p>Use them at your discretion to improve your skills.</p>
-<p><strong>(TU Delft only):</strong> You can find the Collegerama
-recordings from 2019 <a href="https://collegerama.tudelft.nl/Mediasite/Showcase/bsc-cse/Channel/cse2520">here</a>.
-Please note that the course contents have slightly changed, so do not
-base your exam studying on the old lectures.</p>
-</div>
-<div id="assignments" class="section level2">
-<h2>Assignments</h2>
-<p>You can find the course assignments on Brightspace and linked through
-this page.</p>
-<p><strong>All assignments are mandatory.</strong></p>
-<p>For submission, we will use <a href="https://weblab.tudelft.nl/">Weblab</a>. The course name is
-<strong>CSE2520: Big Data Processing</strong></p>
-<ul>
-<li>You need to signup to enroll and also declare your pairs</li>
-<li>All the assignments have deadlines</li>
-<li>Feedback and grading is automatic: the results are available on
-Weblab.</li>
-<li>Technical support: ask the Mattermost channel
-<ul>
-<li>If no feedback after 1 hour: DO ASK THE TAs.</li>
+<li>Scala’s strong point is the combination of FP and OO</li>
+<li>Python’s strong point is the combination of OO and IP</li>
 </ul></li>
-</ul>
-<p>The student groups must submit each assignment before 23:59 on the
-day of the deadline.</p>
-<p><strong>Late submission</strong>: All submissions must be handed in
-time, with no exceptions. Any late submission will be discarded and will
-be graded with 0. In case of <em>provable</em> sickness, please contact
-the course teacher to arrange a case-specific deadline.</p>
-</div>
-<div id="assessment" class="section level2">
-<h2>Assessment</h2>
-<ul>
-<li><p>Lab assignments (20%): Grade calculated as mean grade for all
-assignments. There is no minimum grade per individual assignment. If you
-don’t submit an assignment, or the submission is late, you will get a 0.
-Each assignment counts for 25% of the lab part. The final lab grade has
-a minimum of 5.</p></li>
-<li><p>Written Exam (80%): Closed-book exam. Minimum grade: 5</p></li>
-</ul>
-<div id="example-exam-material" class="section level4">
-<h4>Example exam material</h4>
-<ul>
-<li><a href="model-exam.html">Model exam 1</a>, <a href="model-exam-solutions.html">solutions</a></li>
-<li><a href="model-exam-2.html">Model exam 2</a>, <a href="model-exam-2-solutions.html">solutions 2</a></li>
+<li>Python is <em>interpreted</em>, Scala is <em>compiled</em></li>
 </ul>
 </div>
-</div>
-<div id="resit-policy" class="section level2">
-<h2>Resit policy</h2>
-<p>There will be an exam resit during Q2/3. You are allowed to transfer
-your assignment grade to the resit <strong>as a whole</strong>.</p>
-<p>If the final assignment grade is in between 4 and 5.7, one of the
-previously submitted assignments can be repaired.</p>
-<p>Partial grades (assignments or exam) cannot be transferred to
-subsequent years.</p>
-<p>Disclaimer: information may change depending on unforeseen
-circumstances or measures (see: TER).</p>
-</div>
-<div id="course-resources" class="section level2">
-<h2>Course resources</h2>
+<div id="hello-world" class="section level2">
+<h2>Hello world</h2>
+<div id="left">
+<p><strong>Scala</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="kw">object</span> Hello <span class="kw">extends</span> App <span class="op">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>    <span class="fu">println</span><span class="op">(</span><span class="st">&quot;Hello, world&quot;</span><span class="op">)</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a>    <span class="cf">for</span> <span class="op">(</span>i <span class="op">&lt;-</span> <span class="dv">1</span> to <span class="dv">10</span><span class="op">)</span> <span class="op">{</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a>      <span class="ex">System</span><span class="op">.</span>out<span class="op">.</span><span class="fu">println</span><span class="op">(</span><span class="st">&quot;Hello&quot;</span><span class="op">)</span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a>    <span class="op">}</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
 <ul>
-<li>Online lab sessions every Monday afternoon (no lab on the first
-week)
-<ul>
-<li>Ask questions about the next assignment</li>
-<li>Ask questions about your grades</li>
-</ul></li>
-<li>You are welcome to join the BDP 2026-2027 Mattermost team (link to
-the channel will be shared).
-<!-- (https://mattermost.tudelft.nl/signup_user_complete/?id=u47xqdqem7yiipqnt3uswjmzqc&md=link&sbr=su). -->
-<ul>
-<li>General questions can be asked here. Questions specific to your
-solutions should be asked during the lab</li>
-<li>TAs won’t always be active; don’t expect answers outside of lab
-hours</li>
-<li>You are recommended to help each other, but refrain from sharing
-solutions (this is considered fraud)</li>
-<li>All group members are responsible for the submission of a group
-assignment. Piggybacking is considered fraud.</li>
-<li>Be nice :)</li>
-</ul></li>
+<li>Scala is compiled to JVM bytecode</li>
+<li>Can interoperate with JVM libraries</li>
+<li>Scala is not sensitive to spaces/tabs. <em>Blocks</em> are denoted
+by <code>{</code> and <code>}</code></li>
 </ul>
-<hr />
-<p>The course, by design, touches upon various current technologies; as
-such, there is no single source of truth. The following is an indicative
-list of resources where more information can be found. If you were to
-buy a single book about this course, we recommend <span class="citation">[1]</span>.</p>
+</div>
+<div id="right">
+<p><strong>Python</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co">#!/usr/bin/env python3</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">10</span>):</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  <span class="bu">print</span>(<span class="st">&quot;Hello, world&quot;</span>)</span></code></pre></div>
+<ul>
+<li>Python is interpreted</li>
+<li>Python is indentation sensitive: <em>blocks</em> are denoted by a
+TAB or 2 spaces.</li>
+</ul>
+</div>
+</div>
+<div id="declarations" class="section level2">
+<h2>Declarations</h2>
+<div id="left">
+<p><strong>Scala</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="kw">val</span> a<span class="op">:</span> <span class="bu">Int</span> <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="kw">val</span> b <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>b <span class="op">=</span> <span class="dv">6</span> <span class="co">// re-assignment to val</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co">// Type of foo is inferred</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a><span class="kw">val</span> foo <span class="op">=</span> <span class="kw">new</span> <span class="fu">ImportantClass</span><span class="op">(...)</span></span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="kw">var</span> a <span class="op">=</span> <span class="st">&quot;Foo&quot;</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>a <span class="op">=</span> <span class="st">&quot;Bar&quot;</span></span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a>a <span class="op">=</span> <span class="dv">4</span> <span class="co">// type mismatch</span></span></code></pre></div>
+<ul>
+<li><em>Type inference</em> used extensively</li>
+<li>Two types of variables: <code>val</code>s are single-assignment,
+<code>var</code>s are multiple assignment</li>
+</ul>
+</div>
+<div id="right">
+<p><strong>Python</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>a : <span class="bu">int</span> <span class="op">=</span> <span class="dv">5</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>a <span class="op">=</span> <span class="st">&quot;Foo&quot;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>a <span class="op">=</span> ImportantClass(...)</span></code></pre></div>
+<ul>
+<li>Optional typing, not enforced at runtime</li>
+</ul>
+</div>
+</div>
+<div id="declaring-functions" class="section level2 unnumbered">
+<h2 class="unnumbered">Declaring functions</h2>
+<div id="left">
+<p><strong>Scala</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="kw">def</span> <span class="fu">max</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">):</span> <span class="bu">Int</span> <span class="op">=</span> </span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>  <span class="cf">if</span> <span class="op">(</span>x <span class="op">&gt;=</span> y<span class="op">)</span> x <span class="cf">else</span> y</span></code></pre></div>
+<ul>
+<li>Statically typed</li>
+<li>Evaluated <em>expressions</em> have types</li>
+<li>The return type is the most generic type of all return
+expressions</li>
+</ul>
+</div>
+<div id="right">
+<p><strong>Python</strong></p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="kw">def</span> <span class="bu">max</span>(x : <span class="bu">int</span>, y : <span class="bu">int</span>) <span class="op">-&gt;</span> <span class="bu">int</span>:</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>  <span class="cf">if</span> x <span class="op">&gt;=</span> y:</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>    <span class="cf">return</span> x</span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>  <span class="cf">else</span>:</span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>    <span class="cf">return</span> y</span></code></pre></div>
+<ul>
+<li>Python is dynamically typed</li>
+<li>Mostly based on <em>statements</em></li>
+<li>Types are optional</li>
+</ul>
+</div>
+</div>
+<div id="higher-order-functions" class="section level2">
+<h2>Higher order functions</h2>
+<div id="left">
+<p><strong>Scala</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="kw">def</span> <span class="fu">bigger</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>  f<span class="op">:</span> <span class="op">(</span><span class="bu">Int</span><span class="op">,</span><span class="bu">Int</span><span class="op">)</span> <span class="op">=&gt;</span> <span class="ex">Boolean</span><span class="op">)</span> <span class="op">=</span></span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>  <span class="fu">f</span><span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a><span class="fu">bigger</span> <span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span> <span class="op">=&gt;</span> <span class="op">(</span>x <span class="op">&lt;</span> y<span class="op">))</span></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="fu">bigger</span> <span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span> <span class="op">=&gt;</span> <span class="op">(</span>x <span class="op">&gt;</span> y<span class="op">))</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a><span class="co">// Compile error</span></span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="fu">bigger</span> <span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> x <span class="op">=&gt;</span> x<span class="op">)</span></span></code></pre></div>
+</div>
+<div id="right">
+<p><strong>Python</strong></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="kw">def</span> bigger(x, y, f):</span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>  <span class="cf">return</span> f(x, y)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a>bigger(<span class="dv">1</span>,<span class="dv">2</span>, <span class="kw">lambda</span> x,y: x <span class="op">&gt;</span> y)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a>bigger(<span class="dv">1</span>,<span class="dv">2</span>, <span class="kw">lambda</span> x,y: x <span class="op">&lt;</span> y)</span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># Runtime error</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a>bigger(<span class="dv">1</span>,<span class="dv">2</span>, <span class="kw">lambda</span> x: x)</span></code></pre></div>
+<p><br /></p>
+</div>
+<p><code>bigger</code> is a higher-order function, i.e. a function whose
+behaviour is parametrised by another function. <code>f</code> a function
+parameter. To call a HO function, we need to pass a function with the
+appropriate argument types. The compiler checks this in the case of
+Scala.</p>
+</div>
+<div id="declaring-classes" class="section level2 unnumbered">
+<h2 class="unnumbered">Declaring classes</h2>
+<div id="left">
+<p><strong>Scala</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="kw">class</span> <span class="fu">Foo</span><span class="op">(</span><span class="kw">val</span> x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>          <span class="kw">var</span> y<span class="op">:</span> <span class="ex">Double</span> <span class="op">=</span> <span class="fl">0.0</span><span class="op">)</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">// Type of a is inferred</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a><span class="kw">val</span> a <span class="op">=</span> <span class="kw">new</span> <span class="fu">Foo</span><span class="op">(</span><span class="dv">1</span><span class="op">,</span> <span class="fl">4.0</span><span class="op">)</span></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>a<span class="op">.</span>x<span class="op">)</span> <span class="co">//x is read-only</span></span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>a<span class="op">.</span>y<span class="op">)</span> <span class="co">//y is read-write</span></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a>a<span class="op">.</span>y <span class="op">=</span> <span class="fl">10.0</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a><span class="fu">println</span><span class="op">(</span>a<span class="op">.</span>y<span class="op">)</span> <span class="co">//y is read-write</span></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a>a<span class="op">.</span>y <span class="op">=</span> <span class="st">&quot;Foo&quot;</span>   <span class="co">// Type mismatch, y is double</span></span></code></pre></div>
+<ul>
+<li><code>val</code> means a read-only attribute. <code>var</code> is
+read-write</li>
+<li>A default constructor is created automatically</li>
+</ul>
+</div>
+<div id="right">
+<p><strong>Python</strong></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="kw">class</span> Foo():</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a>    <span class="va">self</span>.x <span class="op">=</span> x</span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>    <span class="va">self</span>.y <span class="op">=</span> y</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>a <span class="op">=</span> Foo(<span class="dv">3</span>,<span class="dv">2</span>)</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a><span class="bu">print</span> a.x</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a>a.x <span class="op">=</span> <span class="st">&quot;foo&quot;</span></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a><span class="bu">print</span> a.x</span></code></pre></div>
+<ul>
+<li>Attributes are declared in the <em>constructor</em></li>
+<li>Attributes are by default read-write</li>
+<li>No types are enforced</li>
+</ul>
+</div>
+</div>
+<div id="object-oriented-programming" class="section level2">
+<h2>Object-Oriented programming</h2>
+<div id="left">
+<p><strong>Scala</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="kw">class</span> <span class="fu">Foo</span><span class="op">(</span><span class="kw">val</span> x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>          <span class="kw">var</span> y<span class="op">:</span> <span class="ex">Double</span> <span class="op">=</span> <span class="fl">0.0</span><span class="op">)</span></span>
+<span id="cb11-3"><a href="#cb11-3" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" tabindex="-1"></a><span class="kw">class</span> <span class="fu">Bar</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> z<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span>
+<span id="cb11-5"><a href="#cb11-5" tabindex="-1"></a>  <span class="kw">extends</span> <span class="fu">Foo</span><span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span></span>
+<span id="cb11-6"><a href="#cb11-6" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" tabindex="-1"></a><span class="kw">trait</span> <span class="ex">Printable</span> <span class="op">{</span></span>
+<span id="cb11-8"><a href="#cb11-8" tabindex="-1"></a>  <span class="kw">val</span> s<span class="op">:</span> <span class="ex">String</span></span>
+<span id="cb11-9"><a href="#cb11-9" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">asString</span><span class="op">()</span> <span class="op">:</span> <span class="ex">String</span></span>
+<span id="cb11-10"><a href="#cb11-10" tabindex="-1"></a><span class="op">}</span></span>
+<span id="cb11-11"><a href="#cb11-11" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" tabindex="-1"></a><span class="kw">class</span> <span class="fu">Baz</span><span class="op">(</span>x<span class="op">:</span> <span class="bu">Int</span><span class="op">,</span> y<span class="op">:</span> <span class="ex">Double</span><span class="op">,</span> <span class="kw">private</span> <span class="kw">val</span> z<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span>
+<span id="cb11-13"><a href="#cb11-13" tabindex="-1"></a>  <span class="kw">extends</span> <span class="fu">Foo</span><span class="op">(</span>x<span class="op">,</span> y<span class="op">)</span> <span class="kw">with</span> <span class="ex">Printable</span> <span class="op">{</span></span>
+<span id="cb11-14"><a href="#cb11-14" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">val</span> s<span class="op">:</span> <span class="ex">String</span> <span class="op">=</span> s</span>
+<span id="cb11-15"><a href="#cb11-15" tabindex="-1"></a>  <span class="kw">override</span> <span class="kw">def</span> <span class="fu">asString</span><span class="op">():</span> <span class="ex">String</span> <span class="op">=</span> <span class="op">???</span></span>
+<span id="cb11-16"><a href="#cb11-16" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="right">
+<p><strong>Python</strong></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="kw">class</span> Foo():</span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y):</span>
+<span id="cb12-3"><a href="#cb12-3" tabindex="-1"></a>    <span class="va">self</span>.x <span class="op">=</span> x</span>
+<span id="cb12-4"><a href="#cb12-4" tabindex="-1"></a>    <span class="va">self</span>.y <span class="op">=</span> y</span>
+<span id="cb12-5"><a href="#cb12-5" tabindex="-1"></a></span>
+<span id="cb12-6"><a href="#cb12-6" tabindex="-1"></a><span class="kw">class</span> Bar(Foo):</span>
+<span id="cb12-7"><a href="#cb12-7" tabindex="-1"></a>  <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, x, y, z):</span>
+<span id="cb12-8"><a href="#cb12-8" tabindex="-1"></a>    Foo.<span class="fu">__init__</span>(<span class="va">self</span>, x, y)</span>
+<span id="cb12-9"><a href="#cb12-9" tabindex="-1"></a>    <span class="va">self</span>.z <span class="op">=</span> z</span></code></pre></div>
+<p><br /></p>
+</div>
+<p>In both cases, the traditional rules of method overriding apply.
+Traits in Scala are similar to default interfaces in Java &gt; 9; in
+addition, they can include attributes (state).</p>
+</div>
+<div id="data-classes" class="section level2 unnumbered">
+<h2 class="unnumbered">Data classes</h2>
+<div id="left">
+<p><strong>Scala</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Address</span><span class="op">(</span>street<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> </span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  number<span class="op">:</span> <span class="bu">Int</span><span class="op">)</span></span>
+<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a><span class="cf">case</span> <span class="kw">class</span> <span class="fu">Person</span><span class="op">(</span>name<span class="op">:</span> <span class="ex">String</span><span class="op">,</span> </span>
+<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>  address<span class="op">:</span> Address<span class="op">)</span></span>
+<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a><span class="kw">val</span> p <span class="op">=</span> <span class="fu">Person</span><span class="op">(</span><span class="st">&quot;G&quot;</span><span class="op">,</span> <span class="fu">Address</span><span class="op">(</span><span class="st">&quot;a&quot;</span><span class="op">,</span> <span class="dv">2</span><span class="op">))</span></span></code></pre></div>
+</div>
+<div id="right">
+<p><strong>Python &gt;= 3.7</strong></p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="im">from</span> dataclasses <span class="im">import</span> dataclass</span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a><span class="kw">class</span> Address:</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>    street: <span class="bu">str</span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>    number: <span class="bu">int</span></span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a><span class="at">@dataclass</span></span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a><span class="kw">class</span> Person:</span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>    name: <span class="bu">str</span></span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a>    addr: Address</span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a></span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>p <span class="op">=</span> Person(<span class="st">&quot;G&quot;</span>, Address(<span class="st">&quot;a&quot;</span>, <span class="dv">2</span>))</span></code></pre></div>
+</div>
+<p>Data classes are blueprints for immutable objects. We use them to
+represent data records. Both languages implement <code>equals</code> (or
+<code>__eq__</code>) for them, so we can compare objects directly.</p>
+</div>
+<div id="pattern-matching-in-scala" class="section level2 unnumbered">
+<h2 class="unnumbered">Pattern matching in Scala</h2>
+<p>Pattern matching is <code>if..else</code> on steroids</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co">// Code for demo only, won&#39;t compile</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>value <span class="cf">match</span> <span class="op">{</span></span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="co">// Match on a value, like if</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="cf">case</span> <span class="dv">1</span> <span class="op">=&gt;</span> <span class="st">&quot;One&quot;</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  <span class="co">// Match on the contents of a list</span></span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>  <span class="cf">case</span> x <span class="op">::</span> xs <span class="op">=&gt;</span> <span class="st">&quot;The remaining contents are &quot;</span> <span class="op">+</span> xs</span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>  <span class="co">// Match on a case class, extract values</span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>  <span class="cf">case</span> <span class="fu">Email</span><span class="op">(</span>addr<span class="op">,</span> title<span class="op">,</span> _<span class="op">)</span> <span class="op">=&gt;</span> <span class="ss">s&quot;</span><span class="st">New email: </span><span class="ss">$title</span><span class="st">...</span><span class="ss">&quot;</span></span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>  <span class="co">// Match on the type</span></span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>  <span class="cf">case</span> xs <span class="op">:</span> <span class="ex">List</span><span class="op">[</span>_<span class="op">]</span> <span class="op">=&gt;</span> <span class="st">&quot;This is a list&quot;</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>  <span class="co">// With a pattern guard</span></span>
+<span id="cb15-13"><a href="#cb15-13" tabindex="-1"></a>  <span class="cf">case</span> xs <span class="op">:</span> <span class="ex">List</span><span class="op">[</span><span class="bu">Int</span><span class="op">]</span> <span class="cf">if</span> xs<span class="op">.</span>head <span class="op">==</span> <span class="dv">5</span> <span class="op">=&gt;</span> <span class="st">&quot;This is a list of integers&quot;</span></span>
+<span id="cb15-14"><a href="#cb15-14" tabindex="-1"></a>  <span class="cf">case</span> _ <span class="op">=&gt;</span> <span class="st">&quot;This is the default case&quot;</span></span>
+<span id="cb15-15"><a href="#cb15-15" tabindex="-1"></a><span class="op">}</span></span></code></pre></div>
+</div>
+<div id="reading-ahead" class="section level2 unnumbered">
+<h2 class="unnumbered">Reading ahead</h2>
+<p>This is by far not an introduction to either programming languages.
+Please read more here</p>
+<ul>
+<li><a href="https://docs.scala-lang.org">Scala documentation</a></li>
+<li><a href="https://docs.python.org/2/">Python documentation</a></li>
+</ul>
 </div>
 <div id="bibliography" class="section level2">
 <h2>Bibliography</h2>
 <div id="refs" class="references csl-bib-body">
-<div id="ref-Klepp17" class="csl-entry">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">M.
-Kleppmann, <em>Designing data-intensive applications</em>. O’Reilly
-Media, Inc., 2017.</div>
-</div>
-<div id="ref-Lasko17" class="csl-entry">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">J.
-Laskowski, <span>“Mastering apache spark 2,”</span> 2017. [Online].
-Available: <a href="https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details">https://www.gitbook.com/book/jaceklaskowski/mastering-apache-spark/details</a>.</div>
-</div>
-<div id="ref-Ryza15" class="csl-entry">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">S.
-Ryza, U. Laserson, S. Owen, and J. Wills, <em>Advanced analytics with
-spark: Patterns for learning from data at scale</em>. O’Reilly Media,
-Inc., 2015.</div>
-</div>
-<div id="ref-Karau15" class="csl-entry">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">H.
-Karau, A. Konwinski, P. Wendell, and M. Zaharia, <em>Learning spark:
-Lightning-fast big data analysis</em>. O’Reilly Media, Inc., 2015.</div>
-</div>
-<div id="ref-Karau17" class="csl-entry">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">H.
-Karau and R. Warren, <em>High performance spark</em>. O’Reilly Media,
-Inc., 2017.</div>
-</div>
-<div id="ref-Chamb17" class="csl-entry">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">B.
-Chambers and M. Zaharia, <em>Spark: The definitive guide</em>. O’Reilly
-Media, Inc., 2017.</div>
-</div>
-<div id="ref-Akida18" class="csl-entry">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">T.
-Akidau, S. Chernyak, and R. Lax, <em>Streaming systems: The what, where,
-when, and how of large-scale data processing</em>. O’Reilly, 2018.</div>
-</div>
-<div id="ref-Martel15" class="csl-entry">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">C.
-Martella, R. Shaposhnik, D. Logothetis, and S. Harenberg, <em>Practical
-graph analytics with apache <span>G</span>iraph</em>. Springer,
-2015.</div>
-</div>
-<div id="ref-Robin15" class="csl-entry">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">I.
-Robinson, J. Webber, and E. Eifrem, <em>Graph databases: New
-opportunities for connected data</em>. Springer, 2015.</div>
+<div id="ref-Hutto99" class="csl-entry">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">G.
+Hutton, <span>“A tutorial on the universality and expressiveness of
+fold,”</span> <em>Journal of Functional Programming</em>, vol. 9, no. 4,
+pp. 355–372, 1999.</div>
 </div>
 </div>
 </div>
@@ -787,6 +808,7 @@ opportunities for connected data</em>. Springer, 2015.</div>
 and Georgios Gousios and licensed under the <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative
 Commons Attribution-NonCommercial-ShareAlike 4.0 International</a>
 license.</p>
+</div>
 </div>
 
 
