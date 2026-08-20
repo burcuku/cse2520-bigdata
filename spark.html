@@ -1010,7 +1010,7 @@ blocks spread across a cluster, data in RDDs is split into
 <p>Partitions define a unit of computation and persistence: any Spark
 computation transforms a partition to a new partition.</p>
 <p>If during computation a machine fails, Spark will redistribute its
-partitions to other machines and restart the computation <em>one those
+partitions to other machines and restart the computation <em>on those
 partitions only</em>.</p>
 <p>The partitioning scheme of an application is configurable; better
 configurations lead to better performance.</p>
@@ -1247,7 +1247,7 @@ starts as many jobs as the data partitions.</p>
 </div>
 <div id="a-job-graph" class="section level2 unnumbered">
 <h2 class="unnumbered">A job graph</h2>
-<p>We can see how our job executes in we connect to our driver’s WebUI
+<p>We can see how our job executes if we connect to our driver’s WebUI
 (port 4040 on the driver machine).</p>
 <p>Here is the graph for the word counting job we saw before.</p>
 <div class="sourceCode" id="cb34"><pre class="sourceCode scala"><code class="sourceCode scala"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="kw">val</span> result <span class="op">=</span> sc<span class="op">.</span><span class="fu">textFile</span><span class="op">(</span><span class="st">&quot;sample.txt&quot;</span><span class="op">)</span></span>
